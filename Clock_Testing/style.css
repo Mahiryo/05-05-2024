@@ -1,0 +1,146 @@
+body {
+  background-color: black;
+  margin: 0;
+  padding: 0;
+  color: white;
+  height: 100vh;
+}
+.clock-container {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.colon {
+  font-size: 75px;
+  font-weight: 900;
+  text-align: center;
+}
+/* AAAAAAAAAAAAAAAAAAAAA */
+#clock {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.controls{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.digit {
+  position: relative;
+  width: 55px;
+  height: 110px;
+  margin: 0 10px;
+}
+.controls button{
+  background: rgb(33,33,33);
+  border: none;
+  margin: 0;
+  padding: 0;
+  margin-top: 15px ;
+  margin-bottom: 15px;
+}
+.controls button img{
+  height: 15px;
+  width: 55px;
+  /* filter: invert(100%); */
+  
+}
+.controls button:hover img{
+filter: invert(100);
+}
+.controls button.arrow-up{
+  transform: rotate(180deg);
+  
+}
+
+
+
+.segment {
+  background-color: rgb(33, 33, 33);
+  position: absolute;
+  padding: 0;
+  margin: 0;
+}
+.on {
+  background-color: white
+}
+.segment.a,
+.segment.d,
+.segment.g {
+  height: 10px;
+  width: 50px;
+  
+}
+.segment.b,
+.segment.c,
+.segment.e,
+.segment.f {
+  height: 50px;
+  width: 10px;
+}
+.segment.a {
+  top: 0%;
+  left: 2.5px;
+  margin: 0px;
+  /* top linha do digito */
+}
+
+.segment.d {
+  top: 50%;
+  left: 2.5px;
+  margin: 0px;
+    /* meio linha do digito */
+
+}
+
+.segment.g {
+  top: 97.5%;
+  left: 2.5px;
+  margin: 0px;
+    /* bot linha do digito */
+
+}
+
+.segment.b{
+  left: -5px;
+  top: 5px;
+  margin: 0px;
+}
+.segment.c{
+  left: 50px;
+  top: 5px;
+  margin: 0px;
+}
+.segment.e{
+  left: 50px;
+  top: 62.5px;
+  margin: 0px;
+}
+.segment.f{
+  left: -5px;
+  top: 62.5px;
+  margin: 0px;
+}
+@font-face {
+  font-family: pixel_like;
+  src: url(../assets/font/Average_Sans_Merriweather_Rubik_Pixels/Rubik_Pixels/RubikPixels-Regular.ttf);
+}
+
+.enter-timer{
+  font-family: 'pixel_like';
+  color: black;
+  font-weight: 333;
+  font-size: larger;
+  width: 50%;
+}
+.enter-timer:hover{
+  filter: invert(100%);
+}

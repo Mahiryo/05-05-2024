@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Clock</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <div class="clock-container">
+        <div id="clock">
+            <div class="controls">
+                <button class="arrow-up" id="button_hora_h1_mais" onclick="AumentarPrimeiroDigito()"><img src="../assets/icon/down_arrow.png"></button>
+
+                <div class="digit" id="h1">
+
+                    <div class="segment a on"></div>
+                    <div class="segment b on"></div>
+                    <div class="segment c on"></div>
+                    <div class="segment d"></div>
+                    <div class="segment e on"></div>
+                    <div class="segment f on"></div>
+                    <div class="segment g on"></div>
+
+                </div>
+
+                <button id="button_hora_h1_menos" onclick="DiminuirPrimeiroDigito()"><img src="../assets/icon/down_arrow.png"></button>
+            </div>
+
+            <div class="controls">
+                <button class="arrow-up" id="button_hora_h2_mais" onclick="AumentarSegundoDigito()"><img src="../assets/icon/down_arrow.png"></button>
+
+                <div class="digit" id="h2">
+
+                    <div class="segment a on"></div>
+                    <div class="segment b on"></div>
+                    <div class="segment c on"></div>
+                    <div class="segment d"></div>
+                    <div class="segment e on"></div>
+                    <div class="segment f on"></div>
+                    <div class="segment g on"></div>
+
+                </div>
+
+                <button id="button_hora_h2_menos" onclick="DiminuirSegundoDigito()"><img src="../assets/icon/down_arrow.png"></button>
+            </div>
+
+
+            <div class="colon">:</div>
+            
+            <div class="controls">
+                <button class="arrow-up" id="button_minuto_m1_mais" onclick="AumentarTerceiroDigito()"><img src="../assets/icon/down_arrow.png"></button>
+
+                <div class="digit" id="m1">
+
+                    <div class="segment a on"></div>
+                    <div class="segment b on"></div>
+                    <div class="segment c on"></div>
+                    <div class="segment d"></div>
+                    <div class="segment e on"></div>
+                    <div class="segment f on"></div>
+                    <div class="segment g on"></div>
+
+                </div>
+
+                <button id="button_minuto_m1_menos" onclick="DiminuirTerceiroDigito()"><img src="../assets/icon/down_arrow.png"></button>
+            </div>
+
+
+            <div class="controls">
+                <button class="arrow-up" id="button_minuto_m2_mais" onclick="AumentarQuartoDigito()"><img src="../assets/icon/down_arrow.png"></button>
+
+                <div class="digit" id="m2">
+
+                    <div class="segment a on"></div>
+                    <div class="segment b on"></div>
+                    <div class="segment c on"></div>
+                    <div class="segment d"></div>
+                    <div class="segment e on"></div>
+                    <div class="segment f on"></div>
+                    <div class="segment g on"></div>
+
+                </div>
+
+                <button id="button_minuto_m2_menos" onclick="DiminuirQuartoDigito()"><img src="../assets/icon/down_arrow.png"></button>
+            </div>
+
+
+        </div>
+
+        <button class="enter-timer">INPUT=={VALUE}</button>
+
+    </div>
+
+    <script src="./main.js"></script>
+</body>
+
+</html>

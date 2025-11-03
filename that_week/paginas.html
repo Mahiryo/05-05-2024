@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> 05 / 05 / 2024 </title>
+  <link rel="stylesheet" href="./assets/style/style.css">
+</head>
+
+<body>
+
+  <div class="header">
+    <div class="container">
+      <div class="navbar">
+        <img class="icon" src="./assets/icon/mirror.png" alt="Espelho">
+        <h1 class="titulo"> 05 / 05 / 2024 </h1>
+      </div>
+
+      <ul class="navbar">
+        <li><a href="./Index.html">Inicial</a></li>
+        <li class="agora"><a href="./paginas.html">Horarios</a></li>
+        <li>|</li>
+        <li>
+          <a class="login_cadastro" href="#">
+            <img src="./assets/icon/icon_person.png" alt="Vitalis Perfil">
+            MeuPerfil
+          </a>
+        </li>
+
+      </ul>
+    </div>
+  </div>
+
+
+  <div class="banner">
+    <div class="container">
+
+      <div class="clock-container">
+        <div id="clock">
+          <div class="controls">
+            <button class="arrow-up" id="button_hora_h1_mais" onclick="AumentarPrimeiroDigito()"><img
+                src="./assets/icon/down_arrow.png"></button>
+
+            <div class="digit" id="h1">
+
+              <div class="segment a on"></div>
+              <div class="segment b on"></div>
+              <div class="segment c on"></div>
+              <div class="segment d"></div>
+              <div class="segment e on"></div>
+              <div class="segment f on"></div>
+              <div class="segment g on"></div>
+
+            </div>
+
+            <button id="button_hora_h1_menos" onclick="DiminuirPrimeiroDigito()"><img
+                src="./assets/icon/down_arrow.png"></button>
+          </div>
+
+          <div class="controls">
+            <button class="arrow-up" id="button_hora_h2_mais" onclick="AumentarSegundoDigito()"><img
+                src="./assets/icon/down_arrow.png"></button>
+
+            <div class="digit" id="h2">
+
+              <div class="segment a on"></div>
+              <div class="segment b on"></div>
+              <div class="segment c on"></div>
+              <div class="segment d"></div>
+              <div class="segment e on"></div>
+              <div class="segment f on"></div>
+              <div class="segment g on"></div>
+
+            </div>
+
+            <button id="button_hora_h2_menos" onclick="DiminuirSegundoDigito()"><img
+                src="./assets/icon/down_arrow.png"></button>
+          </div>
+
+
+          <div class="colon">:</div>
+
+          <div class="controls">
+            <button class="arrow-up" id="button_minuto_m1_mais" onclick="AumentarTerceiroDigito()"><img
+                src="./assets/icon/down_arrow.png"></button>
+
+            <div class="digit" id="m1">
+
+              <div class="segment a on"></div>
+              <div class="segment b on"></div>
+              <div class="segment c on"></div>
+              <div class="segment d"></div>
+              <div class="segment e on"></div>
+              <div class="segment f on"></div>
+              <div class="segment g on"></div>
+
+            </div>
+
+            <button id="button_minuto_m1_menos" onclick="DiminuirTerceiroDigito()"><img
+                src="./assets/icon/down_arrow.png"></button>
+          </div>
+
+
+          <div class="controls">
+            <button class="arrow-up" id="button_minuto_m2_mais" onclick="AumentarQuartoDigito()"><img
+                src="./assets/icon/down_arrow.png"></button>
+
+            <div class="digit" id="m2">
+
+              <div class="segment a on"></div>
+              <div class="segment b on"></div>
+              <div class="segment c on"></div>
+              <div class="segment d"></div>
+              <div class="segment e on"></div>
+              <div class="segment f on"></div>
+              <div class="segment g on"></div>
+
+            </div>
+
+            <button id="button_minuto_m2_menos" onclick="DiminuirQuartoDigito()"><img
+                src="./assets/icon/down_arrow.png"></button>
+          </div>
+
+
+        </div>
+
+        <button class="enter-timer" onclick="redirect_timer()">INPUT=={VALUE:timer-til}</button>
+
+      </div>
+
+      <div class="description">
+        <p>Não sei a data de quando começou, mas sei que aquele <span class="dia">Dia</span> e todos dias antes começavam as <span class="time-hint enabled">04:00</span> </p>
+      </div>
+
+
+
+    </div>
+  </div>
+
+
+  <div class="footer">
+    <div class="container">
+      <div class="left_container">
+        <h4>Soluções inteligentes para o agronegócio</h4>
+        <div class="contacts_container">
+          <img src="./assets/icon/instagran.png" alt="Instagram">
+          <img src="./assets/icon/whatzapp.png" alt="WhatsApp">
+          <img src="./assets/icon/facebook.png" alt="Facebook">
+        </div>
+      </div>
+
+      <div class="right_container">
+        <div class="left">
+          <h6>Explore</h6>
+          <p>Home</p>
+          <p>Sobre Nós</p>
+          <p>Equipe</p>
+        </div>
+
+        <div class="vertical_ruler">
+          <hr>
+        </div>
+
+        <div class="right">
+          <div class="above">
+            <h6>Endereço</h6>
+            <p>
+              Rua Haddock Lobo 595<br>
+              São Paulo, SP<br>
+              01414-905
+            </p>
+          </div>
+
+          <div class="bellow">
+            <h6>Contato</h6>
+            <p>vitaliscaju@gmail.com</p>
+            <p>+55 11 4002-8922</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="middle">
+      <hr>
+    </div>
+
+    <div class="page_end">
+      <p>© 2025 Vitalis. Todos os direitos reservados.</p>
+      <p>Política de Privacidade</p>
+    </div>
+  </div>
+</body>
+
+</html>
+
+<script>
+var digit_0 = [1, 1, 1, 0, 1, 1, 1]; // [a,b,c,#,e,f,g]
+var digit_1 = [0, 0, 1, 0, 0, 1, 0]; // [#,#,c,#,#,f,#]
+var digit_2 = [1, 0, 1, 1, 1, 0, 1];
+var digit_3 = [1, 0, 1, 1, 0, 1, 1];
+var digit_4 = [0, 1, 1, 1, 0, 1, 0];
+var digit_5 = [1, 1, 0, 1, 0, 1, 1];
+var digit_6 = [1, 1, 0, 1, 1, 1, 1];
+var digit_7 = [1, 0, 1, 0, 0, 1, 0];
+var digit_8 = [1, 1, 1, 1, 1, 1, 1];
+var digit_9 = [1, 1, 1, 1, 0, 1, 1];
+var complete_digit_0 = `
+                    <div class="segment a on"></div>
+                    <div class="segment b on"></div>
+                    <div class="segment c on"></div>
+                    <div class="segment d"></div>
+                    <div class="segment e on"></div>
+                    <div class="segment f on"></div>
+                    <div class="segment g on"></div>
+                    `;
+var complete_digit_1 = `
+                    <div class="segment a"></div>
+                    <div class="segment b"></div>
+                    <div class="segment c on"></div>
+                    <div class="segment d"></div>
+                    <div class="segment e"></div>
+                    <div class="segment f on"></div>
+                    <div class="segment g"></div>
+                    `;
+var complete_digit_2 = `
+                    <div class="segment a on"></div>
+                    <div class="segment b"></div>
+                    <div class="segment c on"></div>
+                    <div class="segment d on"></div>
+                    <div class="segment e on"></div>
+                    <div class="segment f"></div>
+                    <div class="segment g on"></div>
+                    `;
+var complete_digit_3 = `
+                    <div class="segment a on"></div>
+                    <div class="segment b"></div>
+                    <div class="segment c on"></div>
+                    <div class="segment d on"></div>
+                    <div class="segment e"></div>
+                    <div class="segment f on"></div>
+                    <div class="segment g on"></div>
+                    `;
+var complete_digit_4 = `
+                    <div class="segment a"></div>
+                    <div class="segment b on"></div>
+                    <div class="segment c on"></div>
+                    <div class="segment d on"></div>
+                    <div class="segment e"></div>
+                    <div class="segment f on"></div>
+                    <div class="segment g"></div>
+                    `;
+var complete_digit_5 = `
+                    <div class="segment a on"></div>
+                    <div class="segment b on"></div>
+                    <div class="segment c"></div>
+                    <div class="segment d on"></div>
+                    <div class="segment e"></div>
+                    <div class="segment f on"></div>
+                    <div class="segment g on"></div>
+                    `;
+var complete_digit_6 = `
+                    <div class="segment a on"></div>
+                    <div class="segment b on"></div>
+                    <div class="segment c"></div>
+                    <div class="segment d on"></div>
+                    <div class="segment e on"></div>
+                    <div class="segment f on"></div>
+                    <div class="segment g on"></div>
+                    `;
+var complete_digit_7 = `
+                    <div class="segment a on"></div>
+                    <div class="segment b"></div>
+                    <div class="segment c on"></div>
+                    <div class="segment d"></div>
+                    <div class="segment e"></div>
+                    <div class="segment f on"></div>
+                    <div class="segment g"></div>
+                    `;
+var complete_digit_8 = `
+                    <div class="segment a on"></div>
+                    <div class="segment b on"></div>
+                    <div class="segment c on"></div>
+                    <div class="segment d on"></div>
+                    <div class="segment e on"></div>
+                    <div class="segment f on"></div>
+                    <div class="segment g on"></div>
+                    `;
+var complete_digit_9 = `
+                    <div class="segment a on"></div>
+                    <div class="segment b on"></div>
+                    <div class="segment c on"></div>
+                    <div class="segment d on"></div>
+                    <div class="segment e"></div>
+                    <div class="segment f on"></div>
+                    <div class="segment g on"></div>
+                    `;
+
+// a b c d e f g
+//      aaaaa
+//     b     c
+//     b     c
+//     b     c
+//      ddddd
+//     e     f
+//     e     f
+//     e     f
+//      ggggg
+
+var primeiro_digito = document.getElementById("h1");
+var segundo_digito = document.getElementById("h2");
+var terceiro_digito = document.getElementById("m1");
+var quarto_digito = document.getElementById("m2");
+
+var counter_h1 = 0;
+var counter_h2 = 0;
+
+var counter_m1 = 0;
+var counter_m2 = 0;
+
+function AumentarPrimeiroDigito() {
+  if (counter_h1 >= 0 && counter_h1 < 9) {
+    counter_h1 += 1;
+  }
+  switch (counter_h1) {
+    case 0:
+      {
+        primeiro_digito.innerHTML = complete_digit_0;
+      }
+      break;
+    case 1:
+      {
+        primeiro_digito.innerHTML = complete_digit_1;
+      }
+      break;
+    case 2:
+      {
+        primeiro_digito.innerHTML = complete_digit_2;
+      }
+      break;
+    case 3:
+      {
+        primeiro_digito.innerHTML = complete_digit_3;
+      }
+      break;
+    case 4:
+      {
+        primeiro_digito.innerHTML = complete_digit_4;
+      }
+      break;
+    case 5:
+      {
+        primeiro_digito.innerHTML = complete_digit_5;
+      }
+      break;
+    case 6:
+      {
+        primeiro_digito.innerHTML = complete_digit_6;
+      }
+      break;
+    case 7:
+      {
+        primeiro_digito.innerHTML = complete_digit_7;
+      }
+      break;
+    case 8:
+      {
+        primeiro_digito.innerHTML = complete_digit_8;
+      }
+      break;
+    case 9:
+      {
+        primeiro_digito.innerHTML = complete_digit_9;
+      }
+      break;
+  }
+}
+function DiminuirPrimeiroDigito() {
+  if (counter_h1 > 0 && counter_h1 <= 9) {
+    counter_h1 -= 1;
+  }
+  switch (counter_h1) {
+    case 0:
+      {
+        primeiro_digito.innerHTML = complete_digit_0;
+      }
+      break;
+    case 1:
+      {
+        primeiro_digito.innerHTML = complete_digit_1;
+      }
+      break;
+    case 2:
+      {
+        primeiro_digito.innerHTML = complete_digit_2;
+      }
+      break;
+    case 3:
+      {
+        primeiro_digito.innerHTML = complete_digit_3;
+      }
+      break;
+    case 4:
+      {
+        primeiro_digito.innerHTML = complete_digit_4;
+      }
+      break;
+    case 5:
+      {
+        primeiro_digito.innerHTML = complete_digit_5;
+      }
+      break;
+    case 6:
+      {
+        primeiro_digito.innerHTML = complete_digit_6;
+      }
+      break;
+    case 7:
+      {
+        primeiro_digito.innerHTML = complete_digit_7;
+      }
+      break;
+    case 8:
+      {
+        primeiro_digito.innerHTML = complete_digit_8;
+      }
+      break;
+    case 9:
+      {
+        primeiro_digito.innerHTML = complete_digit_9;
+      }
+      break;
+  }
+}
+function AumentarTerceiroDigito() {
+  if (counter_m1 >= 0 && counter_m1 < 9) {
+    counter_m1 += 1;
+  }
+  switch (counter_m1) {
+    case 0:
+      {
+        terceiro_digito.innerHTML = complete_digit_0;
+      }
+      break;
+    case 1:
+      {
+        terceiro_digito.innerHTML = complete_digit_1;
+      }
+      break;
+    case 2:
+      {
+        terceiro_digito.innerHTML = complete_digit_2;
+      }
+      break;
+    case 3:
+      {
+        terceiro_digito.innerHTML = complete_digit_3;
+      }
+      break;
+    case 4:
+      {
+        terceiro_digito.innerHTML = complete_digit_4;
+      }
+      break;
+    case 5:
+      {
+        terceiro_digito.innerHTML = complete_digit_5;
+      }
+      break;
+    case 6:
+      {
+        terceiro_digito.innerHTML = complete_digit_6;
+      }
+      break;
+    case 7:
+      {
+        terceiro_digito.innerHTML = complete_digit_7;
+      }
+      break;
+    case 8:
+      {
+        terceiro_digito.innerHTML = complete_digit_8;
+      }
+      break;
+    case 9:
+      {
+        terceiro_digito.innerHTML = complete_digit_9;
+      }
+      break;
+  }
+}
+function DiminuirTerceiroDigito() {
+  if (counter_m1 > 0 && counter_m1 <= 9) {
+    counter_m1 -= 1;
+  }
+  switch (counter_m1) {
+    case 0:
+      {
+        terceiro_digito.innerHTML = complete_digit_0;
+      }
+      break;
+    case 1:
+      {
+        terceiro_digito.innerHTML = complete_digit_1;
+      }
+      break;
+    case 2:
+      {
+        terceiro_digito.innerHTML = complete_digit_2;
+      }
+      break;
+    case 3:
+      {
+        terceiro_digito.innerHTML = complete_digit_3;
+      }
+      break;
+    case 4:
+      {
+        terceiro_digito.innerHTML = complete_digit_4;
+      }
+      break;
+    case 5:
+      {
+        terceiro_digito.innerHTML = complete_digit_5;
+      }
+      break;
+    case 6:
+      {
+        terceiro_digito.innerHTML = complete_digit_6;
+      }
+      break;
+    case 7:
+      {
+        terceiro_digito.innerHTML = complete_digit_7;
+      }
+      break;
+    case 8:
+      {
+        terceiro_digito.innerHTML = complete_digit_8;
+      }
+      break;
+    case 9:
+      {
+        terceiro_digito.innerHTML = complete_digit_9;
+      }
+      break;
+  }
+}
+
+function AumentarSegundoDigito() {
+  if ((counter_h2 >= 0) && (counter_h2 < 9)) {
+    counter_h2 += 1;
+  }
+  switch (counter_h2) {
+    case 0:
+      {
+        segundo_digito.innerHTML = complete_digit_0;
+      }
+      break;
+    case 1:
+      {
+        segundo_digito.innerHTML = complete_digit_1;
+      }
+      break;
+    case 2:
+      {
+        segundo_digito.innerHTML = complete_digit_2;
+      }
+      break;
+    case 3:
+      {
+        segundo_digito.innerHTML = complete_digit_3;
+      }
+      break;
+    case 4:
+      {
+        segundo_digito.innerHTML = complete_digit_4;
+      }
+      break;
+    case 5:
+      {
+        segundo_digito.innerHTML = complete_digit_5;
+      }
+      break;
+    case 6:
+      {
+        segundo_digito.innerHTML = complete_digit_6;
+      }
+      break;
+    case 7:
+      {
+        segundo_digito.innerHTML = complete_digit_7;
+      }
+      break;
+    case 8:
+      {
+        segundo_digito.innerHTML = complete_digit_8;
+      }
+      break;
+    case 9:
+      {
+        segundo_digito.innerHTML = complete_digit_9;
+      }
+      break;
+  }
+}
+function DiminuirSegundoDigito() {
+  if (counter_h2 > 0 && counter_h2 <= 9) {
+    counter_h2 -= 1;
+  }
+  switch (counter_h2) {
+    case 0:
+      {
+        segundo_digito.innerHTML = complete_digit_0;
+      }
+      break;
+    case 1:
+      {
+        segundo_digito.innerHTML = complete_digit_1;
+      }
+      break;
+    case 2:
+      {
+        segundo_digito.innerHTML = complete_digit_2;
+      }
+      break;
+    case 3:
+      {
+        segundo_digito.innerHTML = complete_digit_3;
+      }
+      break;
+    case 4:
+      {
+        segundo_digito.innerHTML = complete_digit_4;
+      }
+      break;
+    case 5:
+      {
+        segundo_digito.innerHTML = complete_digit_5;
+      }
+      break;
+    case 6:
+      {
+        segundo_digito.innerHTML = complete_digit_6;
+      }
+      break;
+    case 7:
+      {
+        segundo_digito.innerHTML = complete_digit_7;
+      }
+      break;
+    case 8:
+      {
+        segundo_digito.innerHTML = complete_digit_8;
+      }
+      break;
+    case 9:
+      {
+        segundo_digito.innerHTML = complete_digit_9;
+      }
+      break;
+  }
+}
+
+function AumentarQuartoDigito() {
+  if ((counter_m2) >= 0 && counter_m2 < 9) {
+    counter_m2 += 1;
+  }
+  switch (counter_m2) {
+    case 0:
+      {
+        quarto_digito.innerHTML = complete_digit_0;
+      }
+      break;
+    case 1:
+      {
+        quarto_digito.innerHTML = complete_digit_1;
+      }
+      break;
+    case 2:
+      {
+        quarto_digito.innerHTML = complete_digit_2;
+      }
+      break;
+    case 3:
+      {
+        quarto_digito.innerHTML = complete_digit_3;
+      }
+      break;
+    case 4:
+      {
+        quarto_digito.innerHTML = complete_digit_4;
+      }
+      break;
+    case 5:
+      {
+        quarto_digito.innerHTML = complete_digit_5;
+      }
+      break;
+    case 6:
+      {
+        quarto_digito.innerHTML = complete_digit_6;
+      }
+      break;
+    case 7:
+      {
+        quarto_digito.innerHTML = complete_digit_7;
+      }
+      break;
+    case 8:
+      {
+        quarto_digito.innerHTML = complete_digit_8;
+      }
+      break;
+    case 9:
+      {
+        quarto_digito.innerHTML = complete_digit_9;
+      }
+      break;
+  }
+}
+function DiminuirQuartoDigito() {
+  if (counter_m2 > 0 && counter_m2 <= 9) {
+    counter_m2 -= 1;
+  }
+  switch (counter_m2) {
+    case 0:
+      {
+        quarto_digito.innerHTML = complete_digit_0;
+      }
+      break;
+    case 1:
+      {
+        quarto_digito.innerHTML = complete_digit_1;
+      }
+      break;
+    case 2:
+      {
+        quarto_digito.innerHTML = complete_digit_2;
+      }
+      break;
+    case 3:
+      {
+        quarto_digito.innerHTML = complete_digit_3;
+      }
+      break;
+    case 4:
+      {
+        quarto_digito.innerHTML = complete_digit_4;
+      }
+      break;
+    case 5:
+      {
+        quarto_digito.innerHTML = complete_digit_5;
+      }
+      break;
+    case 6:
+      {
+        quarto_digito.innerHTML = complete_digit_6;
+      }
+      break;
+    case 7:
+      {
+        quarto_digito.innerHTML = complete_digit_7;
+      }
+      break;
+    case 8:
+      {
+        quarto_digito.innerHTML = complete_digit_8;
+      }
+      break;
+    case 9:
+      {
+        quarto_digito.innerHTML = complete_digit_9;
+      }
+      break;
+  }
+}
+
+function redirect_timer(){
+  var timer_value = `${counter_h1}` + `${counter_h2}` + ':' + `${counter_m1}` + `${counter_m2}`;
+  alert(timer_value);
+  if(timer_value == '04:00'){
+    window.location.href = './0400.html';
+  }
+}
+</script>
