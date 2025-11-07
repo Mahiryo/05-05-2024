@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> I made my own! </title>
+  <link rel="stylesheet" href="./assets/style/style.css">
+</head>
+
+<body>
+
+
+    <video id="video_olho" autoplay onplay="setTimeout(mudar_pag, 9750)">
+      <source src="./assets/video/olho_origami_333.mp4">
+    </video>
+
+
+</body>
+
+</html>
+
+<script>
+
+  document.body.addEventListener('click', tocar_vid);
+
+  function tocar_vid(){
+    video_olho.play();
+  }
+
+  function mudar_pag() {
+    window.location.href = './0400_back.html';
+  }
+</script>
