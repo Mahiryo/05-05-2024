@@ -2,7 +2,8 @@
 Repositório para controle dos meus arquivos de projeto individual
 
 <p  align="center">
-    <img width="509" height="216" alt="image" src="https://github.com/user-attachments/assets/3e75c2b6-783a-46e6-8989-10f46ec76546"/>
+    <img width="320" height="1100" alt="image" src="https://github.com/user-attachments/assets/5a28bf96-7aec-466b-9e72-3b644f882321" />
+
 </p>
 
 
