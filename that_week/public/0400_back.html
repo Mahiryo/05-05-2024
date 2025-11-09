@@ -438,8 +438,6 @@
     }
   }
 
-
-
   function QuartoZeroUm() {
     document.getElementById("minha_resposta").textContent = "";
 
@@ -476,8 +474,6 @@
     typeWriter();
 
   }
-
-
 
   function SalaMain() {
     document.getElementById("minha_resposta").textContent = "";
@@ -520,8 +516,6 @@
     i = 0;
     typeWriter();
   }
-
-
 
   function Cozinha() {
     document.getElementById("minha_resposta").textContent = "";
@@ -607,8 +601,6 @@
     typeWriter();
   }
 
-
-
   function segredo_tio() {
     document.getElementById('div_header').style.display = 'none';
     document.getElementById('div_banner_0400').style.display = 'none';
@@ -628,7 +620,6 @@
       a++
     }
   }
-
 
   function error_fake() {
     document.body.style.backgroundColor = 'Black';
@@ -661,6 +652,7 @@
     setTimeout(() => (document.getElementById(String(elemento)).innerHTML = "COLETADO!"), 2750);
     updateInventory(elemento);
   }
+
   function updateInventory(elemento) {
     if (elemento == "div_collect_item_coffee") {
       for (i = 1; i < inventory_checker.length; i++) {
@@ -692,7 +684,96 @@
     }
   }
 
+var inv_01 = 0;
+var inv_02 = 0;
+var inv_03 = 0;
+var inv_04 = 0;
 
+  function saveState() {
+      var page = '0400';
+
+      if(slot_01.innerHTML == coffee_sprite){
+        inv_01 = 1;
+      }
+      if(slot_02.innerHTML == coffee_sprite){
+        inv_02 = 1;
+      }
+      if(slot_03.innerHTML == coffee_sprite){
+        inv_03 = 1;
+      }
+      if(slot_04.innerHTML == coffee_sprite){
+        inv_04 = 1;
+      }
+
+      if(slot_01.innerHTML == water_sprite){
+        inv_01 = 2;
+      }
+      if(slot_02.innerHTML == water_sprite){
+        inv_02 = 2;
+      }
+      if(slot_03.innerHTML == water_sprite){
+        inv_03 = 2;
+      }
+      if(slot_04.innerHTML == water_sprite){
+        inv_04 = 2;
+      }
+
+      if(slot_01.innerHTML == machine_sprite){
+        inv_01 = 3;
+      }
+      if(slot_02.innerHTML == machine_sprite){
+        inv_02 = 3;
+      }
+      if(slot_03.innerHTML == machine_sprite){
+        inv_03 = 3;
+      }
+      if(slot_04.innerHTML == machine_sprite){
+        inv_04 = 3;
+      }
+
+      if(slot_01.innerHTML == s01){
+        inv_01 = 99;
+      }
+      if(slot_02.innerHTML == s01){
+        inv_02 = 99;
+      }
+      if(slot_03.innerHTML == s01){
+        inv_03 = 99;
+      }
+      if(slot_04.innerHTML == s01){
+        inv_04 = 99;
+      }
+
+    fetch('/save/save', {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        slot_01: inv_01,
+        slot_02: inv_02,
+        slot_03: inv_03,
+        slot_04: inv_04,
+        current_page: page,
+      }),
+    })
+      .then(function (resposta) {
+        console.log("resposta: ", resposta);
+
+        if (resposta.ok) {
+          cardErro.style.display = "block";
+          // limparFormulario();
+          // finalizarAguardar();
+        } else {
+          throw "Houve um erro ao tentar salvar!";
+        }
+      })
+      .catch(function (resposta) {
+        // console.log(`#ERRO: ${resposta}`);
+        // finalizarAguardar();
+      });
+    return false;
+  }
 
 
   function completion(){

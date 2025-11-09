@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>05 / 05 / 2024</title>
+    <link rel="stylesheet" href="./assets/style/style.css" />
+    <script src="./js/sessao.js"></script>
+  </head>
+
+  <body>
+    <!-- 
+  <div class="header">
+    <div class="container">
+      <div class="navbar">
+        <img class="icon" src="./assets/icon/mirror.png" alt="Espelho">
+        <h1 class="titulo"> 05 / 05 / 2024 </h1>
+      </div>
+
+      <ul class="navbar">
+        <li class="agora"><a href="./Index.html">Inicial</a></li>
+        <li><a href="./paginas.html">Horarios</a></li>
+        <li>|</li>
+        <li><a class="login_cadastro" href="#"><img src="./assets/icon/icon_person.png" alt="Vitalis Perfil">Meu
+            Perfil</a></li>
+      </ul>
+    </div>
+  </div>
+ -->
+
+    <div class="banner" style="height: 100vh">
+      <div class="container" style="justify-content: center">
+        <div class="box">
+          <div>
+            <p style="text-align: left">
+              REGISTER REGISTER REGISTER REGISTER REGISTER
+            </p>
+            <p style="text-align: left">
+              REGISTER REGISTER REGISTER REGISTER REGISTER
+            </p>
+            <p style="text-align: left">
+              REGISTER REGISTER REGISTER
+              <span style="color: antiquewhite">MA#I##OR</span> REGISTER
+            </p>
+            <p style="text-align: left">
+              REGISTER REGISTER REGISTER REGISTER REGISTER
+            </p>
+            <p style="text-align: left">
+              REGISTER REGISTER REGISTER REGISTER REGISTER
+            </p>
+            <p style="text-align: left">
+              REGISTER
+              <span style="color: antiquewhite">A#JU#D#A</span> REGISTER
+              REGISTER REGISTER
+            </p>
+            <p style="text-align: left">
+              REGISTER REGISTER REGISTER REGISTER REGISTER
+            </p>
+            <p style="text-align: left">
+              REGISTER REGISTER REGISTER REGISTER REGISTER
+            </p>
+            <p style="text-align: left">
+              <span style="color: antiquewhite">BUS##CAR</span> REGISTER
+              REGISTER REGISTER REGISTER
+            </p>
+            <p style="text-align: left">
+              REGISTER REGISTER REGISTER REGISTER REGISTER
+            </p>
+            <p style="text-align: left">
+              REGISTER REGISTER REGISTER REGISTER REGISTER
+            </p>
+            <p style="text-align: left">
+              REGISTER REGISTER REGISTER REGISTER REGISTER
+            </p>
+            <p style="text-align: left">
+              REGISTER REGISTER REGISTER REGISTER REGISTER
+            </p>
+            <p style="text-align: left">
+              REGISTER REGISTER
+              <span style="color: antiquewhite">L#E##V#A</span> REGISTER
+              REGISTER
+            </p>
+            <p style="text-align: left">
+              REGISTER REGISTER REGISTER REGISTER REGISTER
+            </p>
+            <p style="text-align: left">
+              REGISTER REGISTER REGISTER REGISTER REGISTER
+            </p>
+            <p style="text-align: left">
+              REGISTER REGISTER REGISTER REGISTER REGISTER
+            </p>
+            <p style="text-align: left">
+              REGISTER REGISTER REGISTER REGISTER REGISTER
+            </p>
+            <p style="text-align: left">
+              REGISTER REGISTER REGISTER REGISTER REGISTER
+            </p>
+            <p style="text-align: left">
+              REGISTER REGISTER REGISTER REGISTER
+              <span style="color: antiquewhite">CORAGEM</span>
+            </p>
+            <p style="text-align: left">
+              REGISTER REGISTER REGISTER REGISTER REGISTER
+            </p>
+          </div>
+
+          <div style="margin-right: 25%">
+            <div
+              id="div_error_register"
+              style="
+                width: 100%;
+                height: 100%;
+                text-align: center;
+                display: none;
+              "
+            >
+              error error error error error error error error
+            </div>
+
+            <div
+              id="div_input_register"
+              style="
+                width: 100%;
+                height: 100%;
+                text-align: center;
+                display: block;
+              "
+            >
+              <label for="input_user_name">
+                <p>Insira um nome de usuário</p>
+                <div style="display: flex;">
+                  <input id="input_user_name" type="text" oninput="updateChar()"/><span id="char_left_username">33</span>
+                </div>
+              </label>
+
+              <label for="input_user_email">
+                <p>Insira um endereço de email válido</p>
+                <input id="input_user_email" type="text"/>
+              </label>
+
+              <label for="input_user_pass">
+                <p>Insira sua senha</p>
+                <div style="display: flex;">
+                  <input id="input_user_pass" type="password" oninput="verifyPass()"/> <button onclick="seePassword()"> Olhar Senha </button>
+                </div>
+                <span id="pass_helper"></span>
+              </label>
+              
+              <label for="input_user_pass_confirm">
+                <p>Confirme sua senha</p>
+                <div style="display: flex;">
+                  <input id="input_user_pass_confirm" type="password"/> <button onclick="seePassword()">Olhar Senha</button>
+                </div>
+              </label>
+
+              <button onclick="cadastrar()">[REGISTRAR]</button>
+              <div id="div_aguardar" class="loading-div">
+                <img src="./assets/img/GIF/aguarde-pink.gif" id="loading-gif" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 
+  <div class="footer">
+    <div class="hotbar" style="display: none;">
+      <button disabled="true" id="button_open_iventory" onclick="
+            var content = document.getElementById('item_bar');
+            content.style.display = (content.style.display === 'flex') ? 'none' : 'flex';
+          ">
+        Itens::Bar
+      </button>
+      <div id="item_bar" class="inventory">
+        <div class="iten-container">null</div>
+        <div class="iten-container">null</div>
+        <div class="iten-container">null</div>
+        <div class="iten-container">null</div>
+      </div>
+
+      <div id="minha_resposta">
+        <span class="cursor">|</span>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="left_container">
+        <h4>Está tudo bem</h4>
+        <div class="contacts_container">
+          <img src="./assets/icon/instagran.png" alt="Instagram" />
+          <img src="./assets/icon/whatzapp.png" alt="WhatsApp" />
+          <img src="./assets/icon/facebook.png" alt="Facebook" />
+          <img src="./assets/icon/discord.png" alt="Discord" />
+        </div>
+      </div>
+
+      <div class="right_container">
+        <div class="left" style="display: none;">
+          <h6>Explore</h6>
+          <button id="button_quarto_01" disabled="true" class="explore desativado " onclick="QuartoZeroUm()">
+            Quarto::01
+          </button>
+          <button id="button_quarto_02" disabled="true" class="explore desativado" onclick="QuartoZeroDois()">
+            Quarto::02
+          </button>
+          <button id="button_cozinha" disabled="true" class="explore desativado" onclick="Cozinha()">
+            Cozinha
+          </button>
+          <button id="button_sala" disabled="true" class="explore desativado" onclick="SalaMain()">
+            Sala
+          </button>
+        </div>
+
+        <div class="vertical_ruler">
+          <hr />
+        </div>
+
+        <div class="right">
+          <div class="above">
+            <h6>Endereço</h6>
+            <p>Sua Casa</p>
+          </div>
+
+          <div class="bellow">
+            <h6>Contato</h6>
+            <p>SeuNome@gmail.com</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="middle">
+      <hr />
+    </div>
+
+    <div class="page_end"></div>
+  </div> -->
+  </body>
+</html>
+
+<script>
+  var pass = document.getElementById("input_user_pass");
+  var pass_confirm = document.getElementById("input_user_pass_confirm");
+
+  var email = document.getElementById("input_user_email");
+  var username = document.getElementById("input_user_name");
+
+  var error_card = document.getElementById("div_error_register");
+  var input_card = document.getElementById("div_input_register");
+
+  var pass_helper = document.getElementById("pass_helper");
+  
+  var char_left = document.getElementById("char_left_username");
+
+  var regex_has_lower = /^(?=.*[a-z]).+$/;
+
+  var regex_has_upper = /^(?=.*[A-Z]).+$/;
+
+  var regex_has_number = /^(?=.*[0-9]).+$/;
+
+  var regex_has_special = /^(?=.*[!@#\$%\^\&*\)\(+=._-]).+$/;
+
+  var regex_has_valid = /^[A-Za-z0-9!@#\$%\^\&*\)\(+=._-]+$/;
+  var valido = true;
+  var text_help = '';
+
+
+  function cadastrar() {
+    aguardar();
+    var username_var = username.value;
+    var email_var = email.value;
+    var pass_var = pass.value;
+    var pass_confirm_var = pass_confirm.value;
+
+    if (username_var == "" || email_var == "" || pass_var == "" || pass_confirm_var == "") {
+      input_card.style.display = "none";
+      error_card.style.display = "block";
+      error_card.innerHTML = `por favor tenha todos os campos preenchidos`;
+
+      finalizarAguardar();
+      setInterval(sumirMensagem, 5000);
+      return false;
+    }
+    
+    fetch('/usuarios/cadastrar', {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        nomeServer: username_var,
+        emailServer: email_var,
+        senhaServer: pass_var,
+      }),
+    })
+      .then(function (resposta) {
+        console.log("resposta: ", resposta);
+
+        if (resposta.ok) {
+          cardErro.style.display = "block";
+
+          setTimeout(() => {
+            window.location = "login.html";
+          }, "2000");
+
+          limparFormulario();
+          finalizarAguardar();
+        } else {
+          throw "Houve um erro ao tentar realizar o cadastro!";
+        }
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+        finalizarAguardar();
+      });
+
+    return false;
+  }
+
+  function sumirMensagem() {
+    error_card.style.display = "none";
+    input_card.style.display = "block";
+  }
+  function verifyPass(){
+
+    var pass_verification_value = pass.value;
+    var strength = 0;
+    text_help = '';
+
+    if (pass_verification_value.length >= 10){
+      strength += 1;
+    } else{
+      text_help += `sua senha possui menos de 10 caracteres <br>`
+    }
+    
+    if (regex_has_lower.test(pass_verification_value)){
+      strength += 1;
+    } else{
+      text_help += `sua senha não possui caráter minúsculo <br>`
+    }
+    
+    if (regex_has_upper.test(pass_verification_value)){
+      strength += 1;
+    } else{
+      text_help += `sua senha não possui caráter maiúsculo <br>`
+    }
+
+    if (regex_has_number.test(pass_verification_value)){
+      strength += 1;
+    } else{
+      text_help += `sua senha não possui um digito numérico <br>`
+    }
+
+    if (regex_has_special.test(pass_verification_value)){
+      strength += 1;
+    } else{
+      text_help += `sua senha não possui um digito especial <br>`
+    }
+    valido = regex_has_valid.test(pass_verification_value);
+    if(valido == true){
+      pass_helper.innerHTML = text_help;
+    } else{
+      pass_helper.innerHTML = 'CARACTERE INVÁLIDO'
+    }
+  }
+  function seePassword(){
+
+    pass.type = 'text';
+    pass_confirm.type = 'text';
+    setTimeout(() => {(pass.type = 'password'); (pass_confirm.type = 'password')}, 750);
+
+  }
+  function updateChar(){
+
+    var char_total = username.value.length;
+    if(char_total <= 33){
+      char_left.innerHTML = `${33 - char_total} caracteres restantes`;
+    }
+    var cortes_user= username.value.slice(0, 33);
+    setTimeout(() => {username.value = cortes_user}, 100);
+  }
+
+</script>

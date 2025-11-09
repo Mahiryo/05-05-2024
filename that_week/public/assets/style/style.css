@@ -575,3 +575,8 @@ label input{
   border-radius: 50%;
   opacity: 0.25;
 }
+.loading-div{
+  display: none;
+  height: 66px;
+  filter: grayscale();
+}

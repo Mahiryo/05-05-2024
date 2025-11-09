@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>05 / 05 / 2024</title>
+    <link rel="stylesheet" href="./assets/style/style.css" />
+    <script src="./js/sessao.js"></script>
+  </head>
+
+  <body>
+    <!-- 
+  <div class="header">
+    <div class="container">
+      <div class="navbar">
+        <img class="icon" src="./assets/icon/mirror.png" alt="Espelho">
+        <h1 class="titulo"> 05 / 05 / 2024 </h1>
+      </div>
+
+      <ul class="navbar">
+        <li class="agora"><a href="./Index.html">Inicial</a></li>
+        <li><a href="./paginas.html">Horarios</a></li>
+        <li>|</li>
+        <li><a class="login_cadastro" href="#"><img src="./assets/icon/icon_person.png" alt="Vitalis Perfil">Meu
+            Perfil</a></li>
+      </ul>
+    </div>
+  </div>
+ -->
+
+    <div class="banner" style="height: 100vh">
+      <div class="container" style="justify-content: center">
+        <div class="box">
+          <div style="margin-right: 25%">
+            <div
+              id="div_error_register"
+              style="
+                width: 100%;
+                height: 100%;
+                text-align: center;
+                display: none;
+              "
+            ></div>
+
+            <div
+              id="div_input_register"
+              style="
+                width: 100%;
+                height: 100%;
+                text-align: center;
+                display: block;
+              "
+            >
+              <label for="input_user_email">
+                <p>Insira um endereço de email válido</p>
+                <input id="input_user_email" type="text" />
+              </label>
+
+              <label for="input_user_pass">
+                <p>Insira sua senha</p>
+                <div style="display: flex">
+                  <input id="input_user_pass" type="password" />
+                  <button onclick="seePassword()">Olhar Senha</button>
+                </div>
+              </label>
+
+              <button onclick="entrar()">[Entrar]</button>
+
+              <div id="div_aguardar" class="loading-div">
+                <img src="./assets/img/GIF/aguarde-pink.gif" id="loading-gif" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 
+  <div class="footer">
+    <div class="hotbar" style="display: none;">
+      <button disabled="true" id="button_open_iventory" onclick="
+            var content = document.getElementById('item_bar');
+            content.style.display = (content.style.display === 'flex') ? 'none' : 'flex';
+          ">
+        Itens::Bar
+      </button>
+      <div id="item_bar" class="inventory">
+        <div class="iten-container">null</div>
+        <div class="iten-container">null</div>
+        <div class="iten-container">null</div>
+        <div class="iten-container">null</div>
+      </div>
+
+      <div id="minha_resposta">
+        <span class="cursor">|</span>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="left_container">
+        <h4>Está tudo bem</h4>
+        <div class="contacts_container">
+          <img src="./assets/icon/instagran.png" alt="Instagram" />
+          <img src="./assets/icon/whatzapp.png" alt="WhatsApp" />
+          <img src="./assets/icon/facebook.png" alt="Facebook" />
+          <img src="./assets/icon/discord.png" alt="Discord" />
+        </div>
+      </div>
+
+      <div class="right_container">
+        <div class="left" style="display: none;">
+          <h6>Explore</h6>
+          <button id="button_quarto_01" disabled="true" class="explore desativado " onclick="QuartoZeroUm()">
+            Quarto::01
+          </button>
+          <button id="button_quarto_02" disabled="true" class="explore desativado" onclick="QuartoZeroDois()">
+            Quarto::02
+          </button>
+          <button id="button_cozinha" disabled="true" class="explore desativado" onclick="Cozinha()">
+            Cozinha
+          </button>
+          <button id="button_sala" disabled="true" class="explore desativado" onclick="SalaMain()">
+            Sala
+          </button>
+        </div>
+
+        <div class="vertical_ruler">
+          <hr />
+        </div>
+
+        <div class="right">
+          <div class="above">
+            <h6>Endereço</h6>
+            <p>Sua Casa</p>
+          </div>
+
+          <div class="bellow">
+            <h6>Contato</h6>
+            <p>SeuNome@gmail.com</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="middle">
+      <hr />
+    </div>
+
+    <div class="page_end"></div>
+  </div> -->
+  </body>
+</html>
+
+<script>
+  var pass = document.getElementById("input_user_pass");
+  var email = document.getElementById("input_user_email");
+
+  var error_card = document.getElementById("div_error_register");
+  var input_card = document.getElementById("div_input_register");
+
+  function entrar() {
+    aguardar();
+
+    var emailVar = email.value;
+    var senhaVar = pass.value;
+
+    if (emailVar == "" || senhaVar == "") {
+      error_card.style.display = "block";
+      input_card.style.display = "none";
+      finalizarAguardar();
+      return false;
+    } else {
+      setInterval(sumirMensagem, 5000);
+    }
+
+    console.log("FORM LOGIN: ", emailVar);
+    console.log("FORM SENHA: ", senhaVar);
+
+    fetch("/usuarios/autenticar", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        emailServer: emailVar,
+        senhaServer: senhaVar,
+      }),
+    })
+      .then((resposta) => {
+        console.log("ESTOU NO THEN DO entrar()!", resposta.status);
+
+        if (resposta.ok) {
+          return resposta.json();
+        } else {
+          return resposta.text().then((texto) => {
+            throw new Error(texto || "Erro desconhecido");
+          });
+        }
+      })
+      .then((json) => {
+        console.log("Resposta JSON:", json);
+        sessionStorage.EMAIL_USUARIO = json.email;
+        sessionStorage.NOME_USUARIO = json.username;
+        sessionStorage.ID_USUARIO = json.idUser;
+        console.log("Salvo no sessionStorage:", sessionStorage);
+        setTimeout(() => {
+          window.location = "./paginas.html";
+        }, 1000);
+      })
+      .catch((erro) => {
+        console.error("Erro no login:", erro);
+      });
+  }
+
+  function sumirMensagem() {
+    error_card.style.display = "none";
+    input_card.style.display = "block";
+  }
+  function seePassword() {
+    pass.type = "text";
+    setTimeout(() => {
+      pass.type = "password";
+    }, 750);
+  }
+</script>
