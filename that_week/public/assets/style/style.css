@@ -172,7 +172,7 @@ width: 100%;
 } */
 
 .banner .container {
-  height: 100vh;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -224,21 +224,50 @@ width: 100%;
   align-items: center;
   justify-content: center;
 }
-
+.save_container:hover{
+  filter: invert();
+  width: fit-content;
+}
 #button_open_iventory {
   background-color: black;
   border: 1px white solid;
   color: white;
   margin-top: 2px;
 }
-
-#button_open_iventory:hover {
+#button_completion_end{
   background-color: black;
   border: 1px white solid;
   color: white;
   margin-top: 2px;
+
+}
+#button_completion_end:hover {
   filter: invert();
 }
+#button_open_iventory:hover {
+  filter: invert();
+}
+#save_button{
+  background-color: black;
+  border: 1px white solid;
+  color: white;
+  margin-top: 2px;
+}
+#save_button:hover {
+  filter: invert();
+}
+#load_button{
+  margin-top: 2px;
+  background-color: white;
+  border: 1px black solid;
+  color: black;
+}
+#load_button:hover {
+
+  filter: invert();
+}
+
+
 
 .controls button {
   background: rgb(33, 33, 33);
@@ -562,8 +591,9 @@ label input{
   font-size: larger;
 }
 .collectable{
-  height: 128px;
-  width: 128px;
+  height: 64px;
+  width: 64px;
+  position: absolute;
   display: flex;
   justify-content: center;
   align-items: center;

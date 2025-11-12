@@ -1,41 +1,37 @@
 var saveModel = require("../models/saveModel");
 // var aquarioModel = require("../models/aquarioModel");
 
-// function autenticar(req, res) {
-//   var email = req.body.emailServer;
-//   var senha = req.body.senhaServer;
+function load(req, res) {
+  var id = req.body.ID_USER;
 
-//   if (email == undefined) {
-//     res.status(400).send("Seu email está undefined!");
-//   } else if (senha == undefined) {
-//     res.status(400).send("Sua senha está indefinida!");
-//   } else {
-//     usuarioModel
-//       .autenticar(email, senha)
-//       .then(function (resultadoAutenticar) {
-//         console.log(`\nResultados encontrados: ${resultadoAutenticar.length}`);
-//         console.log(`Resultados: ${JSON.stringify(resultadoAutenticar)}`);
+  if (id == undefined) {
+    res.status(400).send("inicie uma sessão!");
+  } else {
+    saveModel
+      .load(id) // This should ideally return all saves for the user
+      .then(function (resultadoLoad) {
+        // resultadoLoad is the array of results from your database query
+        console.log(`\nResultados encontrados: ${resultadoLoad.length}`);
+        console.log(`Resultados: ${JSON.stringify(resultadoLoad)}`);
+        
+        if (resultadoLoad.length >= 1) {
+          // *** FIX: Send the entire array back to the client ***
+          // Express automatically formats an array into a JSON array response.
+          return res.status(200).json(resultadoLoad); 
+          
 
-//         if (resultadoAutenticar.length === 1) {
-//           const user = resultadoAutenticar[0];
-//           console.log("Usuário encontrado:", user);
-//           return res.status(200).json({
-//             idUser: user.idUser,
-//             username: user.username,
-//             email: user.email,
-//           });
-//         } else if (resultadoAutenticar.length === 0) {
-//           res.status(403).send("Email e/ou senha inválido(s)");
-//         } else {
-//           res.status(403).send("Mais de um usuário com o mesmo login e senha!");
-//         }
-//       })
-//       .catch(function (erro) {
-//         console.log("Erro no login:", erro);
-//         res.status(500).json(erro.sqlMessage || erro.message);
-//       });
-//   }
-// }
+
+        } else {
+          // If no saves were found, send an empty array or a specific status
+          res.status(200).json([]);
+        }
+      })
+      .catch(function (erro) {
+        console.log("Erro no login:", erro);
+        res.status(500).json(erro.sqlMessage || erro.message);
+      });
+  }
+}
 
 
 function save(req, res) {
@@ -46,29 +42,23 @@ function save(req, res) {
   var slot03 = req.body.slot_03;
   var slot04 = req.body.slot_04;
   var time_slot = req.body.current_page;
-
-  // var fkEmpresa = req.body.idEmpresaVincularServer;
-
-  // Faça as validações dos valores
-
-    // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-    saveModel
-      .save(slot01, slot02, slot03, slot04, time_slot)
-      .then(function (resultado) {
-        res.json(resultado);
-      })
-      .catch(function (erro) {
-        console.log(erro);
-        console.log(
-          "\nHouve um erro ao realizar o cadastro! Erro: ",
-          erro.sqlMessage
-        );
-        res.status(500).json(erro.sqlMessage);
-      });
-  
+  var id = req.body.ID_USER;
+  saveModel
+    .save(slot01, slot02, slot03, slot04, time_slot, id)
+    .then(function (resultado) {
+      res.json(resultado);
+    })
+    .catch(function (erro) {
+      console.log(erro);
+      console.log(
+        "\nHouve um erro ao realizar o cadastro! Erro: ",
+        erro.sqlMessage
+      );
+      res.status(500).json(erro.sqlMessage);
+    });
 }
 
 module.exports = {
-  // autenticar,
-  save
+  load,
+  save,
 };

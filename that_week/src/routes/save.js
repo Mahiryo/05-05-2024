@@ -9,8 +9,8 @@ router.post("/save", function (req, res) {
     saveController.save(req, res);
 })
 
-router.post("/autenticar", function (req, res) {
-    saveController.autenticar(req, res);
+router.post("/load", function (req, res) {
+    saveController.load(req, res);
 });
 
 module.exports = router;
