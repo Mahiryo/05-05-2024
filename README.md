@@ -9,18 +9,34 @@ Repositório para controle dos meus arquivos de projeto individual
 </p>
 
 
-# ENTREGÁVEIS: 
-▪ Tecnologia da Informação: Documento do Projeto, Planejamento no Trello, uso do Git (governança) ; <br>
+# 📦 Entregáveis
 
-▪ Banco de Dados: Modelo Lógico, relacionamentos, comandos SQL ; <br>
+ - [ ] Documentação do projeto
+ - [ ] Planejamento no trello
+ - [ ] Modelo Lógico
+ - [ ] Relacionamentos
+ - [ ] Comandos SQL
+ - [ ] Algoritmos: Variáveis, Funções, Operações Matemáticas, Condicionais, Repetições, Vetores
+ - [ ] Aplicação de Cálculos matemáticos
+ - [ ] Utilização de uma VM Linux contendo somente o BD
+ - [ ] Dashboard e Indicadores com gráficos
 
-▪ Introdução aos Sistemas Operacionais : Utilização de uma VM Linux contendo somente seu BD ;<br>
+# ⚙️ Como instalar
 
-▪ Algoritmos: Variáveis, Funções, Operações Matemáticas, Condicionais, Repetições, Vetores ;<br>
+1. **Clone o repositório**
+   ```bash
+   git clone https://github.com/Mahiryo/05-05-2024.git
 
-▪ Arq. Computadores e Matemática : Aplicação de cálculos matemáticos ;<br>
+# 🚀 Tecnologias utilizadas
+<b> Front-end <br>
+![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
+ ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
+ ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
 
-▪ Pesquisa e Inovação: Contexto, Planejamento, Dashboard e Indicadores ;<br>
-
-▪ Socioemocional: aplicar os conceitos trabalhados em aula ;<br>
+Back-end <br>
+	![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
+ ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
+ ![MySQL](https://img.shields.io/badge/mysql-4479A1.svg?style=for-the-badge&logo=mysql&logoColor=white)
+  </b>
+  
 
