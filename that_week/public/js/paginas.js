@@ -587,8 +587,13 @@ function redirect_timer(){
   alert(timer_value);
   if(timer_value == '04:00'){
     window.location.href = './0400_back.html';
-  } else if(timer_value == '33:33'){
+  } 
+  else if(timer_value == '33:33'){
     window.location.href = './0400_eye.html';
+    
+  }
+  else if(timer_value == '05:23'){
+    window.location.href = './0523_first.html';
     
   }
 }

@@ -5,10 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>05 / 05 / 2024</title>
     <link rel="stylesheet" href="./assets/style/style.css" />
+    <link rel="stylesheet" href="./assets/style/style_0523.css" />
+
   </head>
 
   <body>
     <div id="div_errors_fakeout" style="display: none"></div>
+    <div id="div_solution_ending" style="display: none" class="time-hint"></div>
     <div id="div_header" class="header">
       <div class="container">
         <div class="navbar">
@@ -32,125 +35,13 @@
       </div>
     </div>
 
-    <div id="div_banner_0400" class="banner quarto-01">
+    <div id="div_banner_0523" class="banner quarto-01">
       <div id="div_0400" class="container">
         <div id="div_quarto_01_0400">
-          <!-- <button id="button_lembra_dele" onclick="segredo_tio()">Error/?YouAreNotYou?</button> -->
-          <!-- 
-          <div class="collectable" id="div_collect_item_coffee">
-            <img id="img_coffee" src="./assets/img/coffee.png" style="filter: invert()" alt="coffee_image"onclick="comemorar('div_collect_item_coffee')">
-          </div>
-
-          <div class="collectable" id="div_collect_item_water">
-            <img id="img_coffee" src="./assets/img/water-jar.png" style="filter: invert()" alt="water_image" onclick="comemorar('div_collect_item_water')">
-          </div>
-
-          <div class="collectable" id="div_collect_item_machine">
-            <img id="img_coffee" src="./assets/img/coffee-machine.png" style="filter: invert()" alt="machine_image" onclick="comemorar('div_collect_item_machine')">
-          </div> 
-        -->
-
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <label for="ini_rad_dia">
-            <p>audios ={ Guia: [0, 4, 0, 0]; }</p>
-            <audio
-              id="ini_rad_dia"
-              controls
-              src="./assets/audio/Inicio_dia_radio.mp3"
-            ></audio>
-            <p>result__reconstruction</p>
-          </label>
-          <br />
-          <br />
-          <br />
-          <p><u>alarme toca</u></p>
-
-          <p>Tap-Tap- tap-</p>
-          <p>Tap- Tap-tap-</p>
-          <p>Tap- tap- Tap TA-</p>
-          <br />
-          <p>
-            Ao acordar é correto evitar telas, deixar luz natural entrar e se
-            movimentar mesmo que um pouco.
-          </p>
-
-          <p class="weird">a todo custo não durma mais.</p>
-
-          <p>É ideal começar a manhã com uma refeição.</p>
-          <br />
-          <p>
-            O café da manhã é considerado por muitos como a refeição mais
-            importante do <span class="dia">Dia</span>
-          </p>
-          <p>
-            no Brasil é comum que se tenha uma refeição breve durante o café da
-            manhã
-          </p>
-          <p>
-            ao contrário do que é dito, nossas refeições matinais são menores do
-            que a de outros paises
-          </p>
-          <br />
-          <p class="fala marc">P R E C I S O F A Z E R O C A F É</p>
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <div class="drawings">
-            <div class="right-drawing">
-              <p>__________________</p>
-              <p>&nbsp\__________________\</p>
-              <p>&nbsp&nbsp&nbsp&nbsp\__________________\</p>
-              <p>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp\__________________\</p>
-              <p>/.\</p>
-              <p>/....\</p>
-              <p>/........\</p>
-              <p>/...........\</p>
-              <p>/..............\</p>
-              <p>|..............|</p>
-              <p>|||</p>
-              <p>|||</p>
-              <p>|||</p>
-              <p>_|||_</p>
-              <p>/--##--\</p>
-              <p>|--#$#--|</p>
-              <p>|--#$#--|</p>
-              <p>\-##-/</p>
-              <br />
-              <p>/_~~~_\</p>
-              <p>/_~~~_\</p>
-              <p>/_~~~~~~_\</p>
-              <p>/_~~~~~~_\</p>
-              <p>/_~~~~~~~~~_\</p>
-              <p>/_~~~~~~~~~_\</p>
-              <p>/_~~~~~==~~~~~_\</p>
-              <p>/_~~~~====~~~~_\</p>
-              <p>/...................................\</p>
-
-              <br /><br /><br /><br /><br /><br /><br />
-              <p>_______</p>
-              <p>/&nbsp &nbsp &nbsp 12 &nbsp &nbsp &nbsp\</p>
-              <p>| &nbsp &nbsp &nbsp &nbsp|&nbsp &nbsp &nbsp &nbsp &nbsp|</p>
-              <p>| 9 &nbsp&nbsp &nbsp| &nbsp&nbsp &nbsp 3 |</p>
-              <p>|&nbsp &nbsp &nbsp &nbsp&nbsp \ &nbsp &nbsp &nbsp &nbsp|</p>
-              <p>|&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp&nbsp&nbsp|</p>
-              <p>\___6___/</p>
+            <div id="div_interact_grandma">
+              <img id="gif_grandma" src="./assets/img/GIF/clock_mouth_grandma-ezgif.com-effects.gif" alt="grandma_image">
             </div>
-            <div class="left-drawing"></div>
+
           </div>
         </div>
       </div>
@@ -167,6 +58,7 @@
         >
           Itens::Bar
         </button>
+        <button id="button_completion_end" onclick="showEnd()">{seguir_frente: null}</button>
         <div id="item_bar" class="inventory">
           <div class="iten-container" id="div_iten_container_01"></div>
           <div class="iten-container" id="div_iten_container_02"></div>
@@ -203,15 +95,15 @@
             <h6>Explore</h6>
             <button
               id="button_quarto_01"
-              class="explore ativado agora"
+              class="explore desativado"
+              disabled="true"
               onclick="QuartoZeroUm()"
-            >
+              >
               Quarto::01
             </button>
             <button
               id="button_quarto_02"
-              disabled="true"
-              class="explore desativado"
+              class="explore ativado agora"
               onclick="QuartoZeroDois()"
             >
               Quarto::02
@@ -260,8 +152,7 @@
     <div id="div_effect_blackout" style="display: none; height: 100%;width: 100%;background-color: black;position: fixed;left:50%; top: 50%;transform: translate(-50%,-50%); z-index: 99;"></div>
   </body>
 </html>
-<script src="./js/0400_back.js"></script>
-
+<script src="./js/0523_first.js"></script>
 <!-- <script src="./js/register.js"></script> -->
 <!-- <script src="./js/paginas.js"></script> -->
 <!-- <script src="./js/login.js"></script> -->

@@ -7,9 +7,9 @@ var text = "";
 var speed = 100;
 var i = 0;
 
-var banner_0400 = document.getElementById("div_banner_0400");
+var banner_0523 = document.getElementById("div_banner_0523");
 var container = document.getElementById("div_quarto_01_0400");
-
+banner_0523.style.filter = "brightness(2)";
 const blackout = document.getElementById("div_effect_blackout");
 
 var quarto_01 = document.getElementById("button_quarto_01");
@@ -31,28 +31,63 @@ var slot_04 = document.getElementById("div_iten_container_04");
 var inventory_checker = ["", "", "", ""];
 var a = 0;
 
-var notAddedCoffee = true;
-var notAddedMachine = true;
+var notAddedCapsules = true;
+var notAddedMedicine = true;
 var notAddedWater = true;
+
+var served_mother = false;
+var served_gradma = false;
+
 var notAddedS01 = true;
 
 var menu_open = false;
 
 var canEnd = false;
 
-var estou_quarto_01 = true;
-var estou_quarto_02 = false;
+var estou_quarto_01 = false;
+var estou_quarto_02 = true;
 var estou_sala = false;
 var estou_Cozinha = false;
 
-var coffee_sprite = String(
-  '<img id="img_coffee" src="./assets/img/coffee.png" style="filter: invert()" alt="coffee_image">'
+var div_cozinha_0523_content = String(`
+            <div class="collectable" id="div_collect_item_capsules">
+              <img id="img_capsules" src="./assets/img/capsules.png" style="filter: invert()" alt="capsules_image"onclick="comemorar('div_collect_item_capsules')">
+            </div>
+
+            <div class="collectable" id="div_collect_item_water">
+              <img id="img_water" src="./assets/img/cup_water.png" style="filter: invert()" alt="water_image" onclick="comemorar('div_collect_item_water')">
+            </div>
+
+            <audio id="audio_joy" src="./assets/audio/children-joy-100078.mp3"></audio>
+            <audio id="audio_knock" src="./assets/audio/knock.mp3"></audio>
+`);
+
+var div_quarto_01_0523_content = String(`
+            <div class="collectable" id="div_collect_item_medicine">
+              <img id="img_medicine" src="./assets/img/medicine.png" style="filter: invert()" alt="medicine_image" onclick="comemorar('div_collect_item_medicine')">
+            </div>
+
+            <audio id="audio_joy" src="./assets/audio/children-joy-100078.mp3"></audio>
+            <audio id="audio_knock" src="./assets/audio/knock.mp3"></audio>
+`);
+
+var div_sala_01_0523_content = String(`
+            <div class="collectable" id="div_interact_grandma>
+              <img id="gif_grandma" src="./assets/img/GIF/clock_mouth_grandma.gif" alt="grandma_image">
+            </div>
+
+            <audio id="audio_joy" src="./assets/audio/children-joy-100078.mp3"></audio>
+            <audio id="audio_knock" src="./assets/audio/knock.mp3"></audio>
+`);
+
+var capsules_sprite = String(
+  '<img id="img_capsules" src="./assets/img/capsules.png" style="filter: invert()" alt="capsules_image">'
 );
 var water_sprite = String(
-  '<img id="img_water" src="./assets/img/water-jar.png" style="filter: invert()" alt="water_image">'
+  '<img id="img_water" src="./assets/img/cup_water.png" style="filter: invert()" alt="water_image">'
 );
-var machine_sprite = String(
-  '<img id="img_machine" src="./assets/img/coffee-machine.png" style="filter: invert()" alt="machine_image">'
+var medicine_sprite = String(
+  '<img id="img_medicine" src="./assets/img/medicine.png" style="filter: invert()" alt="medicine_image">'
 );
 
 var s01 = String(
@@ -62,171 +97,27 @@ var s01 = String(
 var load_inventory_sprite_s01 = String(
   `<img src="./assets/img/GIF/ERROR_TIO.gif" style="border: 1px black solid; height: 100%;">`
 );
+
 var load_inventory_sprite_water = String(
-  `<img src="./assets/img/water-jar.png" style="border: 1px black solid; filter: invert(); height: 100%;">`
+  `<img src="./assets/img/cup_water.png" style="border: 1px black solid; filter: invert(); height: 100%;">`
 );
-var load_inventory_sprite_machine = String(
-  `<img src="./assets/img/coffee-machine.png"style="border: 1px black solid; filter: invert(); height: 100%;">`
+var load_inventory_sprite_medicine = String(
+  `<img src="./assets/img/medicine.png"style="border: 1px black solid; filter: invert(); height: 100%;">`
 );
-var load_inventory_sprite_coffee = String(
-  `<img src="./assets/img/coffee.png" style="border: 1px black solid; filter: invert(); height: 100%;">`
+var load_inventory_sprite_capsules = String(
+  `<img src="./assets/img/capsules.png" style="border: 1px black solid; filter: invert(); height: 100%;">`
 );
+
 var confetti_change = String(
   `<img class="confetti" id="img_gif_confetti" src="./assets/img/GIF/joy.gif" alt="confetti">`
 );
-
-var div_quarto_01_0400_content = String(`
-          <br>
-          <br>
-          <br />
-          <br />
-          <br />
-          <label for="ini_rad_dia">
-            <p>audios ={ Guia: [0, 4, 0, 0]; }</p>
-            <audio id="ini_rad_dia" controls src="./assets/audio/Inicio_dia_radio.mp3"></audio>
-            <p>result__reconstruction</p>
-          </label>
-          <br />
-          <br />
-          <br />
-          <p><u>alarme toca</u></p>
-
-          <p>Tap-Tap- tap-</p>
-          <p>Tap- Tap-tap-</p>
-          <p>Tap- tap- Tap TA-</p>
-          <br />
-          <p>
-            Ao acordar é correto evitar telas, deixar luz natural entrar e se
-            movimentar mesmo que um pouco.
-          </p>
-
-          <p class="weird">a todo custo não durma mais.</p>
-
-          <p>É ideal começar a manhã com uma refeição.</p>
-          <br />
-          <p>
-            O café da manhã é considerado por muitos como a refeição mais
-            importante do <span class="dia">Dia</span>
-          </p>
-          <p>
-            no Brasil é comum que se tenha uma refeição breve durante o café da
-            manhã
-          </p>
-          <p>
-            ao contrário do que é dito, nossas refeições matinais são menores do
-            que a de outros paises
-          </p>
-          <br />
-          <p class="fala marc">P R E C I S O F A Z E R O C A F É</p>
-          <br /> <span>safety in pills--</span> <span>safety in pills--</span> <span>safety in pills--</span> <span>safety in pills--</span> <span>safety in pills--</span> <span>safety in pills--</span>
-          <br /> <span>safety in pills--</span> <span>safety in pills--</span> <span>safety in pills--</span> <span>safety in pills--</span> <span>safety in pills--</span> <span>safety in pills--</span> <span>safety in pills--</span>
-          <br /> <span>safety in pills--</span> <span>safety in pills--</span> <span>safety in pills--</span> <span>safety in pills--</span> <span>safety in pills--</span> <span>safety in pills--</span> <span>safety in pills--</span>
-          <br /> <span>safety in pills--</span> <span>safety in pills--</span> <span>safety in pills--</span> <span>safety in pills--</span> <span>safety in pills--</span> <span>safety in pills--</span> <span>safety in pills--</span> <span>safety in pills--</span>
-          <br /> <span>safety in pills--</span> <span>safety in pills--</span> <span>safety in pills--</span> <span>safety in pills--</span> <span>safety in pills--</span> <span>safety in pills--</span> <span>safety in pills--</span> <span>safety in pills--</span>
-          <br /> <span>safety in pills--</span> <span>safety in pills--</span> <span>safety in pills--</span> <span>safety in pills--</span> <span>safety in pills--</span> <span>safety in pills--</span> <span>safety in pills--</span> <span>safety in pills--</span>
-          <br /> <span>safety in pills--</span> <span>safety in pills--</span> <span>safety in pills--</span> <span>safety in pills--</span> <span>safety in pills--</span> <span>safety in pills--</span> <span>safety in pills--</span> <span>safety in pills--</span>
-          <br /> <span>safety in pills--</span> <span>safety in pills--</span> <span>safety in pills--</span> <span>safety in pills--</span> <span>safety in pills--</span> <span>safety in pills--</span> <span>safety in pills--</span> <span>safety in pills--</span>
-          <br /> <span>safety in pills--</span> <span>safety in pills--</span> <span>safety in pills--</span> <span>safety in pills--</span> <span>safety in pills--</span> <span>safety in pills--</span> <span>safety in pills--</span> <span>safety in pills--</span>
-          <br /> <span>safety in pills--</span> <span>safety in pills--</span> <span>safety in pills--</span> <span>safety in pills--</span> <span>safety in pills--</span> <span>safety in pills--</span> <span>safety in pills--</span> <span>safety in pills--</span>
-          <br /> <span>safety in pills--</span> <span>safety in pills--</span> <span>safety in pills--</span> <span>safety in pills--</span> <span>safety in pills--</span> <span>safety in pills--</span> <span>safety in pills--</span>
-          <br /> <span>safety in pills--</span> <span>safety in pills--</span> <span>safety in pills--</span> <span>safety in pills--</span> <span>safety in pills--</span> <span>safety in pills--</span> <span>safety in pills--</span>
-          <br /> <span>safety in pills--</span> <span>safety in pills--</span> <span>safety in pills--</span> <span>safety in pills--</span> <span>safety in pills--</span> <span>safety in pills--</span>
-          <br /> <span>safety in pills--</span> <span>safety in pills--</span> <span>safety in pills--</span> <span>safety in pills--</span> <span>safety in pills--</span> <span>safety in pills--</span>
-          <div class="drawings">
-            <div class="right-drawing">
-              <p>__________________</p>
-              <p>&nbsp\\__________________\\</p>
-              <p>&nbsp&nbsp&nbsp&nbsp\\__________________\\</p>
-              <p>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp\\__________________\\</p>
-              <p>/.\\</p>
-              <p>/....\\</p>
-              <p>/........\\</p>
-              <p>/...........\\</p>
-              <p>/..............\\</p>
-              <p>|..............|</p>
-              <p>|||</p>
-              <p>|||</p>
-              <p>|||</p>
-              <p>_|||_</p>
-              <p>/--##--\\</p>
-              <p>|--#$#--|</p>
-              <p>|--#$#--|</p>
-              <p>\\-##-/</p>
-              <br />
-              <p>/_~~~_\\</p>
-              <p>/_~~~_\\</p>
-              <p>/_~~~~~~_\\</p>
-              <p>/_~~~~~~_\\</p>
-              <p>/_~~~~~~~~~_\\</p>
-              <p>/_~~~~~~~~~_\\</p>
-              <p>/_~~~~~==~~~~~_\\</p>
-              <p>/_~~~~====~~~~_\\</p>
-              <p>/...................................\\</p>
-
-              <br /><br /><br /><br /><br /><br /><br />
-              <p>_______</p>
-              <p>/&nbsp &nbsp &nbsp 12 &nbsp &nbsp &nbsp\\</p>
-              <p>| &nbsp &nbsp &nbsp &nbsp|&nbsp &nbsp &nbsp &nbsp &nbsp|</p>
-              <p>| 9 &nbsp&nbsp &nbsp| &nbsp&nbsp &nbsp 3 |</p>
-              <p>|&nbsp &nbsp &nbsp &nbsp&nbsp \\ &nbsp &nbsp &nbsp &nbsp|</p>
-              <p>|&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp&nbsp&nbsp|</p>
-              <p>\\___6___/</p>
-            </div>
-            <div class="left-drawing">
-            </div>
-          </div>
-        `);
-
-var alert_error_fakeout = String(`
-        <br>
-          <div class="error">
-            Uncaught ReferenceError:
-            VoceSeLembraDoRostoDele is not defined
-            at &lthere>:1:999
-          </div>
-        <br>
-      `);
-
-var erro_pagina_fakeout = String(
-  `
-    <div>
-      <div>
-        <div>
-          <h1>
-            <span>Não é possível acessar esse site</span>
-          </h1>
-          <p>Verifique se há um erro de digitação em <span style="color='red';">Você_Não_Se_Lembra_Do_Rosto_Dele</span>.</p>
-          <ul>
-            <li>Se o endereço estiver correto, <a href="./0400_back.html" id="link">tente executar um Diagnóstico</a>.</li>
-          </ul>
-          <div>DNS_PLEASE_DO_NOT_CONTINUE</div>
-        </div>
-      </div>
-    </div>
-  `
-);
-
-var div_cozinha_0400_content = String(`
-            <div class="collectable" id="div_collect_item_coffee">
-              <img id="img_coffee" src="./assets/img/coffee.png" style="filter: invert()" alt="coffee_image"onclick="comemorar('div_collect_item_coffee')">
-            </div>
-
-            <div class="collectable" id="div_collect_item_water">
-              <img id="img_water" src="./assets/img/water-jar.png" style="filter: invert()" alt="water_image" onclick="comemorar('div_collect_item_water')">
-            </div>
-
-            <div class="collectable" id="div_collect_item_machine">
-              <img id="img_machine" src="./assets/img/coffee-machine.png" style="filter: invert()" alt="machine_image" onclick="comemorar('div_collect_item_machine')">
-            </div>
-            <audio id="audio_joy" src="./assets/audio/children-joy-100078.mp3"></audio>
-`);
 
 var div_save_container_content = String(
   `
             <div class="save_container">
               <div class="save_option" style="display: flex; flex-direction: row;align-items: center;justify-content: space-between; border: 1px white solid; width: fit-content; height: 20px;">
                 <span id="saved_slot" style="border: 1px white solid; height: 100%; width: fit-content;">0400</span>
-                <span id="saved_inventory" style="display: flex; flex-direction: row;align-items: center;justify-content: center; height: 100%"><img style="border: 1px black solid; filter: invert(); height: 100%;"><img style="border: 1px black solid; filter: invert(); height: 100%;"><img style="border: 1px black solid; filter: invert(); height: 100%;"><img src="./assets/img/coffee.png" style="border: 1px black solid; filter: invert(); height: 100%;"></span>
+                <span id="saved_inventory" style="display: flex; flex-direction: row;align-items: center;justify-content: center; height: 100%"><img style="border: 1px black solid; filter: invert(); height: 100%;"><img style="border: 1px black solid; filter: invert(); height: 100%;"><img style="border: 1px black solid; filter: invert(); height: 100%;"><img src="./assets/img/capsules.png" style="border: 1px black solid; filter: invert(); height: 100%;"></span>
                 <span id="saved_time" style="border: 1px white solid; height: 100%; width: fit-content;">YYYY-MM-DD-hh-mm-ss</span></div>
             </div>
           `
@@ -244,14 +135,14 @@ function QuartoZeroUm() {
   document.getElementById("minha_resposta").textContent = "";
 
   if (!estou_quarto_01 && estou_sala) {
-    text = "Eu entro no quarto- estou com sono...";
+    text = "Mesmo se quiser... não posso voltar a dormir agora.";
     estou_quarto_01 = true;
     estou_quarto_02 = false;
     estou_Cozinha = false;
     estou_sala = false;
 
-    container.innerHTML = div_quarto_01_0400_content;
-
+    container.innerHTML = div_quarto_01_0523_content;
+    Restore_Item(quarto);
     quarto_01.classList.add("agora", "ativado");
     quarto_01.classList.remove("desativado");
 
@@ -269,9 +160,10 @@ function QuartoZeroUm() {
     cozinha.disabled = true;
     quarto_02.disabled = true;
   } else {
-    text = "Eu já estou nesse quarto...";
+    text = "Minha mãe esta me encarando...";
   }
   i = 0;
+  Restore_Item();
   typeWriter();
 }
 
@@ -279,7 +171,7 @@ function SalaMain() {
   document.getElementById("minha_resposta").textContent = "";
 
   if (!estou_sala && (estou_Cozinha || estou_quarto_01 || estou_quarto_02)) {
-    text = "Eu entro na sala- está escuro, mas consigo ainda me mover";
+    text = "Minha vó ligou as luzes e abriu as cortinas, já esta clareando...";
     estou_quarto_01 = false;
     estou_quarto_02 = false;
     estou_Cozinha = false;
@@ -290,12 +182,13 @@ function SalaMain() {
     cozinha.disabled = false;
     quarto_02.disabled = false;
 
-    container.innerHTML = `
-        <button id="button_lembra_dele" onclick="segredo_tio()">você se lembra dele?</button>
-        `;
+    container.innerHTML = div_sala_01_0523_content;
 
-    banner_0400.classList.remove("quarto-01");
-    banner_0400.classList.add("sala");
+    banner_0523.classList.remove("quarto-01");
+    banner_0523.classList.remove("quarto-02");
+    banner_0523.classList.remove("cozinha");
+
+    banner_0523.classList.add("sala");
 
     sala.classList.remove("desativado");
     sala.classList.add("ativado", "agora");
@@ -308,7 +201,7 @@ function SalaMain() {
     quarto_02.classList.remove("desativado", "agora");
     cozinha.classList.remove("desativado", "agora");
   } else {
-    text = "Eu já estou na sala...";
+    text = "Agora que esta claro eu consigo notar a bagunça...";
   }
   i = 0;
   typeWriter();
@@ -318,10 +211,10 @@ function Cozinha() {
   document.getElementById("minha_resposta").textContent = "";
 
   if (!estou_Cozinha && estou_sala) {
-    text = "Entro na cozinha, considero acender a luz";
+    text = "Entro na cozinha, mesmo com a luz desligada, esta claro...";
 
-    banner_0400.classList.remove("sala");
-    banner_0400.classList.add("cozinha");
+    banner_0523.classList.remove("sala");
+    banner_0523.classList.add("cozinha");
 
     estou_quarto_01 = false;
     estou_quarto_02 = false;
@@ -334,17 +227,17 @@ function Cozinha() {
     quarto_01.disabled = true;
     quarto_02.disabled = true;
 
-    container.innerHTML = div_cozinha_0400_content;
-
-    if (notAddedCoffee == false) {
-      document.getElementById("div_collect_item_coffee").innerHTML =
+    container.innerHTML = div_cozinha_0523_content;
+    Restore_Item(cozinha);
+    if (notAddedCapsules == false) {
+      document.getElementById("div_collect_item_capsules").innerHTML =
         "COLETADO!";
     }
     if (notAddedWater == false) {
       document.getElementById("div_collect_item_water").innerHTML = "COLETADO!";
     }
-    if (notAddedMachine == false) {
-      document.getElementById("div_collect_item_machine").innerHTML =
+    if (notAddedMedicine == false) {
+      document.getElementById("div_collect_item_medicine").innerHTML =
         "COLETADO!";
     }
 
@@ -361,9 +254,9 @@ function Cozinha() {
     quarto_01.classList.add("desativado");
     quarto_02.classList.add("desativado");
     sala.classList.remove("desativado");
-    FindThen();
+    Restore_Item();
   } else {
-    text = "Eu já estou na cozinha, não acendo a luz.";
+    text = "Eu já estou na cozinha, eu vim aqui por uma razão, acho.";
   }
 
   i = 0;
@@ -374,7 +267,7 @@ function QuartoZeroDois() {
   document.getElementById("minha_resposta").textContent = "";
 
   if (!estou_quarto_02 && estou_sala) {
-    text = "Eu entro no quarto dos outros- o ar aqui fede";
+    text = "O quarto dos meus avôs fede a tinta e metais. Minha cabeça dói";
     estou_quarto_01 = false;
     estou_quarto_02 = true;
     estou_Cozinha = false;
@@ -397,74 +290,13 @@ function QuartoZeroDois() {
 
     sala.classList.remove("agora");
     sala.classList.add("ativado");
+    
   } else {
-    text = "Eu não quero continuar aqui... ";
+    text = "Eu realmente quero muito sair daqui...";
   }
 
   i = 0;
   typeWriter();
-}
-
-function segredo_tio() {
-  document.getElementById("div_header").style.display = "none";
-  document.getElementById("div_banner_0400").style.display = "none";
-  document.getElementById("div_footer").style.display = "none";
-  document.getElementById("div_errors_fakeout").style.display = "flex";
-  document.getElementById("div_errors_fakeout").style.flexDirection = "column";
-
-  a = 0;
-  alert_fake();
-  setTimeout(error_fake, 3000);
-}
-
-function alert_fake() {
-  document.getElementById("div_errors_fakeout").innerHTML +=
-    alert_error_fakeout;
-  if (a < 28) {
-    setTimeout(alert_fake, 250);
-    a++;
-  }
-}
-
-function error_fake() {
-  document.body.style.backgroundColor = "Black";
-  document.body.style.backgroundSize = "33.33%";
-  document.getElementById("div_errors_fakeout").innerHTML = erro_pagina_fakeout;
-  setTimeout(restore_error, 7000);
-}
-
-function restore_error() {
-  QuartoZeroUm();
-  document.getElementById("div_header").style.display = "flex";
-  document.getElementById("div_banner_0400").style.display = "flex";
-  document.getElementById("div_footer").style.display = "flex";
-  document.getElementById("div_errors_fakeout").style.display = "none";
-
-  for (i = 1; i <= inventory_checker.length; i++) {
-    if (inventory_checker[i - 1] == "" && notAddedS01 == true) {
-      notAddedS01 = false;
-      inventory_checker[i - 1] = s01;
-      document.getElementById(`div_iten_container_0${i}`).innerHTML = s01;
-      switch (i) {
-        case 1:
-          sessionStorage.SLOT01 = 99;
-          break;
-        case 2:
-          sessionStorage.SLOT02 = 99;
-          break;
-
-        case 3:
-          sessionStorage.SLOT02 = 99;
-          break;
-
-        case 4:
-          sessionStorage.SLOT02 = 99;
-          break;
-      }
-    }
-  }
-  document.body.style.backgroundSize = "3.33%";
-  document.body.style.backgroundImage = "url(./assets/img/Not_found.png)";
 }
 
 function comemorar(elemento) {
@@ -479,13 +311,13 @@ function comemorar(elemento) {
 
 function updateInventory(elemento) {
   completion();
-  if (elemento == "div_collect_item_coffee") {
+  if (elemento == "div_collect_item_capsules") {
     for (i = 1; i < inventory_checker.length; i++) {
-      if (inventory_checker[i - 1] == "" && notAddedCoffee == true) {
-        notAddedCoffee = false;
-        inventory_checker[i - 1] = coffee_sprite;
+      if (inventory_checker[i - 1] == "" && notAddedCapsules == true) {
+        notAddedCapsules = false;
+        inventory_checker[i - 1] = capsules_sprite;
         document.getElementById(`div_iten_container_0${i}`).innerHTML =
-          coffee_sprite;
+          capsules_sprite;
         switch (i) {
           case 1:
             sessionStorage.SLOT01 = 1;
@@ -529,13 +361,13 @@ function updateInventory(elemento) {
         }
       }
     }
-  } else if (elemento == "div_collect_item_machine") {
+  } else if (elemento == "div_collect_item_medicine") {
     for (i = 1; i < inventory_checker.length; i++) {
-      if (inventory_checker[i - 1] == "" && notAddedMachine == true) {
-        notAddedMachine = false;
-        inventory_checker[i - 1] = machine_sprite;
+      if (inventory_checker[i - 1] == "" && notAddedMedicine == true) {
+        notAddedMedicine = false;
+        inventory_checker[i - 1] = medicine_sprite;
         document.getElementById(`div_iten_container_0${i}`).innerHTML =
-          machine_sprite;
+          medicine_sprite;
         switch (i) {
           case 1:
             sessionStorage.SLOT01 = 3;
@@ -558,18 +390,18 @@ function updateInventory(elemento) {
 }
 
 function saveState() {
-  var page = "0400";
+  var page = "0523";
 
-  if (slot_01.innerHTML == coffee_sprite) {
+  if (slot_01.innerHTML == capsules_sprite) {
     inv_01 = 1;
   }
-  if (slot_02.innerHTML == coffee_sprite) {
+  if (slot_02.innerHTML == capsules_sprite) {
     inv_02 = 1;
   }
-  if (slot_03.innerHTML == coffee_sprite) {
+  if (slot_03.innerHTML == capsules_sprite) {
     inv_03 = 1;
   }
-  if (slot_04.innerHTML == coffee_sprite) {
+  if (slot_04.innerHTML == capsules_sprite) {
     inv_04 = 1;
   }
 
@@ -586,16 +418,16 @@ function saveState() {
     inv_04 = 2;
   }
 
-  if (slot_01.innerHTML == machine_sprite) {
+  if (slot_01.innerHTML == medicine_sprite) {
     inv_01 = 3;
   }
-  if (slot_02.innerHTML == machine_sprite) {
+  if (slot_02.innerHTML == medicine_sprite) {
     inv_02 = 3;
   }
-  if (slot_03.innerHTML == machine_sprite) {
+  if (slot_03.innerHTML == medicine_sprite) {
     inv_03 = 3;
   }
-  if (slot_04.innerHTML == machine_sprite) {
+  if (slot_04.innerHTML == medicine_sprite) {
     inv_04 = 3;
   }
 
@@ -708,41 +540,41 @@ function loadState() {
             const saveItem = resultadoLoad[i + rest];
 
             if (saveItem.slot_01 == 1) {
-              sprite_load_01 = load_inventory_sprite_coffee;
+              sprite_load_01 = load_inventory_sprite_capsules;
             } else if (saveItem.slot_01 == 2) {
               sprite_load_01 = load_inventory_sprite_water;
             } else if (saveItem.slot_01 == 3) {
-              sprite_load_01 = load_inventory_sprite_machine;
+              sprite_load_01 = load_inventory_sprite_medicine;
             } else if (saveItem.slot_01 == 99) {
               sprite_load_01 = load_inventory_sprite_s01;
             }
 
             if (saveItem.slot_02 == 1) {
-              sprite_load_02 = load_inventory_sprite_coffee;
+              sprite_load_02 = load_inventory_sprite_capsules;
             } else if (saveItem.slot_02 == 2) {
               sprite_load_02 = load_inventory_sprite_water;
             } else if (saveItem.slot_02 == 3) {
-              sprite_load_02 = load_inventory_sprite_machine;
+              sprite_load_02 = load_inventory_sprite_medicine;
             } else if (saveItem.slot_02 == 99) {
               sprite_load_02 = load_inventory_sprite_s01;
             }
 
             if (saveItem.slot_03 == 1) {
-              sprite_load_03 = load_inventory_sprite_coffee;
+              sprite_load_03 = load_inventory_sprite_capsules;
             } else if (saveItem.slot_03 == 2) {
               sprite_load_03 = load_inventory_sprite_water;
             } else if (saveItem.slot_03 == 3) {
-              sprite_load_03 = load_inventory_sprite_machine;
+              sprite_load_03 = load_inventory_sprite_medicine;
             } else if (saveItem.slot_03 == 99) {
               sprite_load_03 = load_inventory_sprite_s01;
             }
 
             if (saveItem.slot_04 == 1) {
-              sprite_load_04 = load_inventory_sprite_coffee;
+              sprite_load_04 = load_inventory_sprite_capsules;
             } else if (saveItem.slot_04 == 2) {
               sprite_load_04 = load_inventory_sprite_water;
             } else if (saveItem.slot_04 == 3) {
-              sprite_load_04 = load_inventory_sprite_machine;
+              sprite_load_04 = load_inventory_sprite_medicine;
             } else if (saveItem.slot_04 == 99) {
               sprite_load_04 = load_inventory_sprite_s01;
             }
@@ -790,14 +622,14 @@ function loadState() {
 function restoreSave(a, b, c, d, e) {
   if (a != 0) {
     switch (a) {
-      case 1:
-        sessionStorage.SLOT01 = 1;
+      case 4:
+        sessionStorage.SLOT01 = 4;
         break;
-      case 2:
-        sessionStorage.SLOT01 = 2;
+      case 5:
+        sessionStorage.SLOT01 = 5;
         break;
-      case 3:
-        sessionStorage.SLOT01 = 3;
+      case 6:
+        sessionStorage.SLOT01 = 6;
         break;
       case 99:
         sessionStorage.SLOT01 = 99;
@@ -809,14 +641,14 @@ function restoreSave(a, b, c, d, e) {
 
   if (b != 0) {
     switch (b) {
-      case 1:
-        sessionStorage.SLOT02 = 1;
+      case 4:
+        sessionStorage.SLOT02 = 4;
         break;
-      case 2:
-        sessionStorage.SLOT02 = 2;
+      case 5:
+        sessionStorage.SLOT02 = 5;
         break;
-      case 3:
-        sessionStorage.SLOT02 = 3;
+      case 6:
+        sessionStorage.SLOT02 = 6;
         break;
       case 99:
         sessionStorage.SLOT02 = 99;
@@ -828,14 +660,14 @@ function restoreSave(a, b, c, d, e) {
 
   if (c != 0) {
     switch (c) {
-      case 1:
-        sessionStorage.SLOT03 = 1;
+      case 4:
+        sessionStorage.SLOT03 = 4;
         break;
-      case 2:
-        sessionStorage.SLOT03 = 2;
+      case 5:
+        sessionStorage.SLOT03 = 5;
         break;
-      case 3:
-        sessionStorage.SLOT03 = 3;
+      case 6:
+        sessionStorage.SLOT03 = 6;
         break;
       case 99:
         sessionStorage.SLOT03 = 99;
@@ -847,14 +679,14 @@ function restoreSave(a, b, c, d, e) {
 
   if (d != 0) {
     switch (d) {
-      case 1:
-        sessionStorage.SLOT04 = 1;
+      case 4:
+        sessionStorage.SLOT04 = 4;
         break;
-      case 2:
-        sessionStorage.SLOT04 = 2;
+      case 5:
+        sessionStorage.SLOT04 = 5;
         break;
-      case 3:
-        sessionStorage.SLOT04 = 3;
+      case 6:
+        sessionStorage.SLOT04 = 6;
         break;
       case 99:
         sessionStorage.SLOT04 = 99;
@@ -871,16 +703,16 @@ function start_check() {
   if (sessionStorage.SLOT01 != "0") {
     switch (sessionStorage.SLOT01) {
       case "1":
-        slot_01.innerHTML = coffee_sprite;
-        notAddedCoffee = false;
+        slot_01.innerHTML = capsules_sprite;
+        notAddedCapsules = false;
         break;
       case "2":
         slot_01.innerHTML = water_sprite;
         notAddedWater = false;
         break;
       case "3":
-        slot_01.innerHTML = machine_sprite;
-        notAddedMachine = false;
+        slot_01.innerHTML = medicine_sprite;
+        notAddedMedicine = false;
         break;
       case "99":
         slot_01.innerHTML = s01;
@@ -893,16 +725,16 @@ function start_check() {
   if (sessionStorage.SLOT02 != "0") {
     switch (sessionStorage.SLOT02) {
       case "1":
-        slot_02.innerHTML = coffee_sprite;
-        notAddedCoffee = false;
+        slot_02.innerHTML = capsules_sprite;
+        notAddedCapsules = false;
         break;
       case "2":
         slot_02.innerHTML = water_sprite;
         notAddedWater = false;
         break;
       case "3":
-        slot_02.innerHTML = machine_sprite;
-        notAddedMachine = false;
+        slot_02.innerHTML = medicine_sprite;
+        notAddedMedicine = false;
         break;
       case "99":
         slot_02.innerHTML = s01;
@@ -915,16 +747,16 @@ function start_check() {
   if (sessionStorage.SLOT03 != "0") {
     switch (sessionStorage.SLOT01) {
       case "1":
-        slot_03.innerHTML = coffee_sprite;
-        notAddedCoffee = false;
+        slot_03.innerHTML = capsules_sprite;
+        notAddedCapsules = false;
         break;
       case "2":
         slot_03.innerHTML = water_sprite;
         notAddedWater = false;
         break;
       case "3":
-        slot_03.innerHTML = machine_sprite;
-        notAddedMachine = false;
+        slot_03.innerHTML = medicine_sprite;
+        notAddedMedicine = false;
         break;
       case "99":
         slot_03.innerHTML = s01;
@@ -937,16 +769,16 @@ function start_check() {
   if (sessionStorage.SLOT04 != "0") {
     switch (sessionStorage.SLOT04) {
       case "1":
-        slot_04.innerHTML = coffee_sprite;
-        notAddedCoffee = false;
+        slot_04.innerHTML = capsules_sprite;
+        notAddedCapsules = false;
         break;
       case "2":
         slot_04.innerHTML = water_sprite;
         notAddedWater = false;
         break;
       case "3":
-        slot_04.innerHTML = machine_sprite;
-        notAddedMachine = false;
+        slot_04.innerHTML = medicine_sprite;
+        notAddedMedicine = false;
         break;
       case "99":
         slot_04.innerHTML = s01;
@@ -965,80 +797,85 @@ function Blink() {
   }, 123);
 }
 
-function FindThen() {
-  if(canEnd == false){
-    Blink();
+function Restore_Item(enter) {
+  const onde_entrei = `${enter}`;
+  if(onde_entrei == 'quarto'){
+
+
+
+  } 
+  else if (onde_entrei == 'cozinha'){
+
+
+
   }
-  const container = document.getElementById("div_quarto_01_0400");
-  const coffee = document.getElementById("div_collect_item_coffee");
-  const water = document.getElementById("div_collect_item_water");
-  const machine = document.getElementById("div_collect_item_machine");
+}
 
-  let array = [coffee, water, machine];
-  for (let i = 0; i < array.length; i++) {
-    const maxY = container.offsetHeight - array[i].offsetHeight;
-    const maxX = container.offsetWidth - array[i].offsetWidth;
+function Give_Itens(receiver) {
+  const capsules = document.getElementById("div_collect_item_capsules");
 
-    const randomY = Math.floor(Math.random() * maxY);
-    const randomX = Math.floor(Math.random() * maxX);
+  const cup_water = document.getElementById("div_collect_item_water");
 
-    let random_trans = Number((Math.random() + 0.25).toFixed(2));
-    if (random_trans > 1) {
-      random_trans = 1;
+  const medicine = document.getElementById("div_collect_item_medicine");
+
+  let array = [capsules, cup_water, medicine];
+
+  if (receiver == "vó") {
+    if (
+      array[0].innerHTML == "COLETADO!" &&
+      array[1].innerHTML == "COLETADO!"
+    ) {
+      served_gradma = true;
+      text = "Dei os remedios para minha vó";
+      i = 0;
+      typeWriter();
+    } else {
+      document.getElementById("minha_resposta").textContent = "";
+      text = "Falta a água... ou talvez esse não seja o remedio correto";
+      i = 0;
+      typeWriter();
     }
-
-    if (array[i] != "COLETADO!") {
-      array[i].style.opacity = random_trans;
-      array[i].style.top = randomY + "px";
-      array[i].style.left = randomX + "px";
+  } else if (receiver == "mãe") {
+    if (
+      array[2].innerHTML == "COLETADO!" &&
+      array[1].innerHTML == "COLETADO!"
+    ) {
+      served_mother = true;
+    } else {
+      document.getElementById("minha_resposta").textContent = "";
+      text = "Falta água... ou talvez esse não seja o remedio correto";
+      i = 0;
+      typeWriter();
     }
-  }
-  if (
-    array[0].innerHTML == "COLETADO!" &&
-    array[1].innerHTML == "COLETADO!" &&
-    array[2].innerHTML == "COLETADO!"
-  ) {
-    // console.log('AAAAAAAAAAAAA')
-    // Cozinha();
-    completion();
   } else {
-    setTimeout(FindThen, 3333);
+    alert("como?");
   }
 }
 
 function completion() {
-  const coffee = document.getElementById("div_collect_item_coffee");
-  const water = document.getElementById("div_collect_item_water");
-  const machine = document.getElementById("div_collect_item_machine");
-
   const end_choice = document.getElementById("button_completion_end");
 
-  let array = [coffee, water, machine];
-
-  if (
-    array[0].innerHTML == "COLETADO!" &&
-    array[1].innerHTML == "COLETADO!" &&
-    array[2].innerHTML == "COLETADO!"
-  ) {
+  if (served_gradma == true && served_mother == true) {
     end_choice.innerHTML = `{seguir_frente: IS_DEFINED}`;
     end_choice.style.backgroundColor = "white";
     end_choice.style.color = "black";
     end_choice.style.border = "1px gray solid";
     canEnd = true;
-    Blink();
+    // Blink();
   }
 }
+
 function showEnd() {
-    const coffee = document.getElementById("div_collect_item_coffee");
-    const water = document.getElementById("div_collect_item_water");
-    const machine = document.getElementById("div_collect_item_machine");
-    let array = [coffee, water, machine];
+  const capsules = document.getElementById("div_collect_item_capsules");
+  const cup_water = document.getElementById("div_collect_item_water");
+  const medicine = document.getElementById("div_collect_item_medicine");
+  let array = [capsules, cup_water, medicine];
 
   if (canEnd == true) {
-    alert(`Não entendo, mas quando penso vejo que já são 0523`);
-    end_back.innerHTML = '<p>0523</p>'
-    end_back.style.display = 'flex';
+    alert(`Preciso sair, preciso sair rápido, tenho que ir para lá.`);
+    end_back.innerHTML = "<p>0612</p>";
+    end_back.style.display = "flex";
   } else {
-    alert("Preciso: [da ÁGUA] [do CAFÉ] [da CAFETEIRA]");
+    alert("Preciso: dar os tomar meus remédios");
   }
 }
