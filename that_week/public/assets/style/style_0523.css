@@ -127,12 +127,34 @@ z-index: 1000;
 #div_interact_grandma img{
   width: 25%;
   background-color: rgba(25, 25, 25, 0.350);
+
+  border: 5px solid transparent; /* Optional: A transparent border can help define the box */
+  box-shadow: 0 0 10px 15px rgba(0, 0, 0, 0.33); /* x-offset, y-offset, blur-radius, spread-radius, color */
+}
+
+#div_interact_mother img{
+  width: 25%;
+  background-color: rgba(25, 25, 25, 0.350);
+  /* filter: saturate(0.35); */
+  border: 5px solid transparent; /* Optional: A transparent border can help define the box */
+  box-shadow: 0 0 10px 15px rgba(0, 0, 0, 0.33); /* x-offset, y-offset, blur-radius, spread-radius, color */
 }
 
 
 #div_interact_grandma{
   height: 100%;
   width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow:hidden;
+
+}
+
+#div_interact_mother{
+  height: 100%;
+  width: 100%;
+
   display: flex;
   align-items: center;
   justify-content: center;

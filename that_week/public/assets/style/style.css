@@ -21,6 +21,7 @@ body {
   display: flex;
   align-items: center;
   z-index: 10;
+  
 }
 
 .header .container {
@@ -624,6 +625,8 @@ label input{
   text-align: center;
   font-size: 128px !important;
 }
+
+
 
 
 

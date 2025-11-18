@@ -28,7 +28,11 @@ var slot_02 = document.getElementById("div_iten_container_02");
 var slot_03 = document.getElementById("div_iten_container_03");
 var slot_04 = document.getElementById("div_iten_container_04");
 
-var inventory_checker = ["", "", "", ""];
+var door_sfx = new Audio('assets/audio/door.mp3');
+var knock_sfx = new Audio('assets/audio/knock.mp3');
+var amb_sfx = new Audio('assets/audio/amb.mp3');
+
+var inventory_checker = ["0", "0", "0", "0"];
 var a = 0;
 
 var notAddedCoffee = true;
@@ -242,7 +246,7 @@ function typeWriter() {
 
 function QuartoZeroUm() {
   document.getElementById("minha_resposta").textContent = "";
-
+  door_sfx.play();
   if (!estou_quarto_01 && estou_sala) {
     text = "Eu entro no quarto- estou com sono...";
     estou_quarto_01 = true;
@@ -277,7 +281,7 @@ function QuartoZeroUm() {
 
 function SalaMain() {
   document.getElementById("minha_resposta").textContent = "";
-
+  door_sfx.play();
   if (!estou_sala && (estou_Cozinha || estou_quarto_01 || estou_quarto_02)) {
     text = "Eu entro na sala- está escuro, mas consigo ainda me mover";
     estou_quarto_01 = false;
@@ -316,7 +320,7 @@ function SalaMain() {
 
 function Cozinha() {
   document.getElementById("minha_resposta").textContent = "";
-
+  door_sfx.play();
   if (!estou_Cozinha && estou_sala) {
     text = "Entro na cozinha, considero acender a luz";
 
@@ -372,7 +376,7 @@ function Cozinha() {
 
 function QuartoZeroDois() {
   document.getElementById("minha_resposta").textContent = "";
-
+  door_sfx.play();
   if (!estou_quarto_02 && estou_sala) {
     text = "Eu entro no quarto dos outros- o ar aqui fede";
     estou_quarto_01 = false;
@@ -441,7 +445,7 @@ function restore_error() {
   document.getElementById("div_errors_fakeout").style.display = "none";
 
   for (i = 1; i <= inventory_checker.length; i++) {
-    if (inventory_checker[i - 1] == "" && notAddedS01 == true) {
+    if (inventory_checker[i - 1] == "0" && notAddedS01 == true) {
       notAddedS01 = false;
       inventory_checker[i - 1] = s01;
       document.getElementById(`div_iten_container_0${i}`).innerHTML = s01;
@@ -454,11 +458,11 @@ function restore_error() {
           break;
 
         case 3:
-          sessionStorage.SLOT02 = 99;
+          sessionStorage.SLOT03 = 99;
           break;
 
         case 4:
-          sessionStorage.SLOT02 = 99;
+          sessionStorage.SLOT04 = 99;
           break;
       }
     }
@@ -480,8 +484,8 @@ function comemorar(elemento) {
 function updateInventory(elemento) {
   completion();
   if (elemento == "div_collect_item_coffee") {
-    for (i = 1; i < inventory_checker.length; i++) {
-      if (inventory_checker[i - 1] == "" && notAddedCoffee == true) {
+    for (i = 1; i <= inventory_checker.length; i++) {
+      if (inventory_checker[i - 1] == "0" && notAddedCoffee == true) {
         notAddedCoffee = false;
         inventory_checker[i - 1] = coffee_sprite;
         document.getElementById(`div_iten_container_0${i}`).innerHTML =
@@ -495,18 +499,19 @@ function updateInventory(elemento) {
             break;
 
           case 3:
-            sessionStorage.SLOT02 = 1;
+            sessionStorage.SLOT03 = 1;
             break;
 
           case 4:
-            sessionStorage.SLOT02 = 1;
+            sessionStorage.SLOT04 = 1;
             break;
         }
       }
     }
-  } else if (elemento == "div_collect_item_water") {
-    for (i = 1; i < inventory_checker.length; i++) {
-      if (inventory_checker[i - 1] == "" && notAddedWater == true) {
+  } 
+  else if (elemento == "div_collect_item_water") {
+    for (i = 1; i <= inventory_checker.length; i++) {
+      if (inventory_checker[i - 1] == "0" && notAddedWater == true) {
         notAddedWater = false;
         inventory_checker[i - 1] = water_sprite;
         document.getElementById(`div_iten_container_0${i}`).innerHTML =
@@ -520,18 +525,19 @@ function updateInventory(elemento) {
             break;
 
           case 3:
-            sessionStorage.SLOT02 = 2;
+            sessionStorage.SLOT03 = 2;
             break;
 
           case 4:
-            sessionStorage.SLOT02 = 2;
+            sessionStorage.SLOT04 = 2;
             break;
         }
       }
     }
-  } else if (elemento == "div_collect_item_machine") {
-    for (i = 1; i < inventory_checker.length; i++) {
-      if (inventory_checker[i - 1] == "" && notAddedMachine == true) {
+  } 
+  else if (elemento == "div_collect_item_machine") {
+    for (i = 1; i <= inventory_checker.length; i++) {
+      if (inventory_checker[i - 1] == "0" && notAddedMachine == true) {
         notAddedMachine = false;
         inventory_checker[i - 1] = machine_sprite;
         document.getElementById(`div_iten_container_0${i}`).innerHTML =
@@ -545,11 +551,11 @@ function updateInventory(elemento) {
             break;
 
           case 3:
-            sessionStorage.SLOT02 = 3;
+            sessionStorage.SLOT03 = 3;
             break;
 
           case 4:
-            sessionStorage.SLOT02 = 3;
+            sessionStorage.SLOT04 = 3;
             break;
         }
       }
@@ -872,89 +878,109 @@ function start_check() {
     switch (sessionStorage.SLOT01) {
       case "1":
         slot_01.innerHTML = coffee_sprite;
+        inventory_checker[0] = coffee_sprite;
         notAddedCoffee = false;
         break;
       case "2":
         slot_01.innerHTML = water_sprite;
+        inventory_checker[0] = water_sprite;
         notAddedWater = false;
         break;
       case "3":
         slot_01.innerHTML = machine_sprite;
+        inventory_checker[0] = machine_sprite;
         notAddedMachine = false;
         break;
       case "99":
         slot_01.innerHTML = s01;
+        inventory_checker[0] = s01;
         notAddedS01 = false;
         break;
     }
   } else {
     slot_01.innerHTML = "";
+    inventory_checker[0] = "0";
   }
   if (sessionStorage.SLOT02 != "0") {
     switch (sessionStorage.SLOT02) {
       case "1":
         slot_02.innerHTML = coffee_sprite;
+        inventory_checker[1] = coffee_sprite;
         notAddedCoffee = false;
         break;
       case "2":
         slot_02.innerHTML = water_sprite;
+        inventory_checker[1] = water_sprite;
         notAddedWater = false;
         break;
       case "3":
         slot_02.innerHTML = machine_sprite;
+        inventory_checker[1] = machine_sprite;
         notAddedMachine = false;
         break;
       case "99":
         slot_02.innerHTML = s01;
+        inventory_checker[1] = s01;
         notAddedS01 = false;
         break;
     }
   } else {
     slot_02.innerHTML = "";
+    inventory_checker[1] = "0";
   }
   if (sessionStorage.SLOT03 != "0") {
     switch (sessionStorage.SLOT01) {
       case "1":
         slot_03.innerHTML = coffee_sprite;
+        inventory_checker[2] = coffee_sprite;
         notAddedCoffee = false;
         break;
       case "2":
         slot_03.innerHTML = water_sprite;
+        inventory_checker[2] = water_sprite;
         notAddedWater = false;
         break;
       case "3":
         slot_03.innerHTML = machine_sprite;
+        inventory_checker[2] = machine_sprite;
         notAddedMachine = false;
         break;
       case "99":
         slot_03.innerHTML = s01;
+        inventory_checker[2] = s01;
         notAddedS01 = false;
         break;
     }
   } else {
     slot_03.innerHTML = "";
+    inventory_checker[2] = "0";
   }
   if (sessionStorage.SLOT04 != "0") {
     switch (sessionStorage.SLOT04) {
       case "1":
         slot_04.innerHTML = coffee_sprite;
+        inventory_checker[3] = coffee_sprite;
         notAddedCoffee = false;
         break;
       case "2":
         slot_04.innerHTML = water_sprite;
+        inventory_checker[3] = water_sprite;
         notAddedWater = false;
         break;
       case "3":
         slot_04.innerHTML = machine_sprite;
+        inventory_checker[3] = machine_sprite;
         notAddedMachine = false;
         break;
       case "99":
         slot_04.innerHTML = s01;
+        inventory_checker[3] = s01;
         notAddedS01 = false;
         break;
     }
   } else {
     slot_04.innerHTML = "";
+    inventory_checker[3] = "0";
   }
 }
 

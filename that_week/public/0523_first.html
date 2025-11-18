@@ -38,9 +38,22 @@
     <div id="div_banner_0523" class="banner quarto-01">
       <div id="div_0400" class="container">
         <div id="div_quarto_01_0400">
+
+          <!-- <div style="width: 75%; height: 25%;">
+            <canvas id="myChart"></canvas>
+          </div> -->
+
+            <!--
             <div id="div_interact_grandma">
               <img id="gif_grandma" src="./assets/img/GIF/clock_mouth_grandma-ezgif.com-effects.gif" alt="grandma_image">
-            </div>
+            </div> 
+            -->
+
+            
+            <div id="div_interact_mother" onclick="interact('div_interact_mother')">
+              <img id="gif_mother" src="./assets/img/GIF/mother.gif" alt="mother_image">
+            </div> 
+           
 
           </div>
         </div>
@@ -152,7 +165,63 @@
     <div id="div_effect_blackout" style="display: none; height: 100%;width: 100%;background-color: black;position: fixed;left:50%; top: 50%;transform: translate(-50%,-50%); z-index: 99;"></div>
   </body>
 </html>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="./js/0523_first.js"></script>
+<script>
+
+
+
+const ctx = document.getElementById('myChart');
+
+const config = {
+  type: 'line',
+  data: {
+    labels: ['antes', 'antes', 'antes', 'antes', 'antes','antes','antes','antes','antes','agora'],
+    datasets: [
+      {
+        label: 'limit',
+        data: [90,90,90,90,90,90,90,90,90,90],
+        borderColor: 'red',
+        pointRadius: 0,
+        borderWidth: 1
+      },
+      {
+      label: 'Stress',
+      data: [24,10,65,55,23,12,56,55,23,12],
+      borderColor: 'green',
+      pointRadius: 2,
+      borderWidth: 2
+    },
+    {
+      label: 'limit',
+      data: [-10,-10,-10,-10,-10,-10,-10,-10,-10,-10],
+      borderColor: 'red',
+      pointRadius: 0,
+      borderWidth: 1
+    }]
+  },
+  options: {
+    scales: {
+      y: {
+        min: -20,
+        max: 100,
+        ticks: {
+          stepSize: 10
+        }
+      }
+    }
+  }
+};
+new Chart(document.getElementById('myChart'), config);
+
+  
+</script>
+
+
+
+
+
+
 <!-- <script src="./js/register.js"></script> -->
 <!-- <script src="./js/paginas.js"></script> -->
 <!-- <script src="./js/login.js"></script> -->
