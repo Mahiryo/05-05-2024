@@ -132,15 +132,6 @@ z-index: 1000;
   box-shadow: 0 0 10px 15px rgba(0, 0, 0, 0.33); /* x-offset, y-offset, blur-radius, spread-radius, color */
 }
 
-#div_interact_mother img{
-  width: 25%;
-  background-color: rgba(25, 25, 25, 0.350);
-  /* filter: saturate(0.35); */
-  border: 5px solid transparent; /* Optional: A transparent border can help define the box */
-  box-shadow: 0 0 10px 15px rgba(0, 0, 0, 0.33); /* x-offset, y-offset, blur-radius, spread-radius, color */
-}
-
-
 #div_interact_grandma{
   height: 100%;
   width: 100%;
@@ -150,16 +141,59 @@ z-index: 1000;
   overflow:hidden;
 
 }
-
-#div_interact_mother{
-  height: 100%;
-  width: 100%;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
+.interact-grid {
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: 1fr auto 1fr;
+  background-color: black;
+  position: relative;
+  overflow: hidden;
 }
+
+.interact-grid img {
+  grid-column: 1;
+  grid-row: 2;
+  align-self: center;
+  justify-self: center;
+  z-index: 10;
+  transform: scale(0.2);
+  transition: transform 3s ease-in-out 0.25s;
+}
+
+/* FINAL SIZE — JS adds .show to interact-grid */
+.interact-grid.show img {
+  transform: scale(1);
+}
+
+.interact-top,
+.interact-right,
+.interact-bottom {
+  background-color: black;
+  text-align: center;
+  
+}
+
+.interact-top {
+  grid-column: 1 / span 2;
+  grid-row: 1;
+}
+.interact-right {
+  grid-column: 2;
+  grid-row: 2;
+}
+.interact-bottom {
+  grid-column: 1 / span 2;
+  grid-row: 3;
+}
+
+
+
+
+
+
+
 #div_quarto_01_0400 {
 height: 100%;
 width: 100%;

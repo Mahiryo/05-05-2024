@@ -122,10 +122,14 @@ var div_save_container_content = String(
             </div>
           `
 );
-
+var writter_target = '';
+function defineWriter(element){
+  writter_target = document.getElementById(element);
+  typeWriter();
+}
 function typeWriter() {
   if (i < text.length) {
-    document.getElementById("minha_resposta").textContent += text.charAt(i);
+    writter_target.textContent += text.charAt(i);
     i++;
     setTimeout(typeWriter, speed);
   }
@@ -164,7 +168,7 @@ function QuartoZeroUm() {
   }
   i = 0;
   Restore_Item();
-  typeWriter();
+  defineWriter("minha_resposta");
 }
 
 function SalaMain() {
@@ -204,7 +208,7 @@ function SalaMain() {
     text = "Agora que esta claro eu consigo notar a bagunça...";
   }
   i = 0;
-  typeWriter();
+  defineWriter("minha_resposta");
 }
 
 function Cozinha() {
@@ -260,7 +264,7 @@ function Cozinha() {
   }
 
   i = 0;
-  typeWriter();
+  defineWriter("minha_resposta");
 }
 
 function QuartoZeroDois() {
@@ -295,7 +299,7 @@ function QuartoZeroDois() {
   }
 
   i = 0;
-  typeWriter();
+  defineWriter("minha_resposta");
 }
 
 function comemorar(elemento) {
@@ -840,12 +844,12 @@ function Give_Itens(receiver) {
       served_gradma = true;
       text = "Dei os remedios para minha vó";
       i = 0;
-      typeWriter();
+      defineWriter("minha_resposta");
     } else {
       document.getElementById("minha_resposta").textContent = "";
       text = "Falta a água... ou talvez esse não seja o remedio correto";
       i = 0;
-      typeWriter();
+      defineWriter("minha_resposta");
     }
   } else if (receiver == "mãe") {
     if (
@@ -857,7 +861,7 @@ function Give_Itens(receiver) {
       document.getElementById("minha_resposta").textContent = "";
       text = "Falta água... ou talvez esse não seja o remedio correto";
       i = 0;
-      typeWriter();
+      defineWriter("minha_resposta");
     }
   } else {
     alert("como?");
@@ -892,24 +896,33 @@ function showEnd() {
   }
 }
 
-function interact(person) {
+function interact(id) {
   document.getElementById("div_header").style.display = "none";
   document.getElementById("div_footer").style.display = "none";
 
-  var interact_target = document.getElementById(person);
-  interact_target.innerHTML = `<img id="gif_mother" src="./assets/img/GIF/mother_on_interact.gif" alt="mother_image">`;
+  const target = document.getElementById(id);
+  const banner = document.getElementById("div_banner_0523");
 
-  var img = interact_target.children;
+    banner.style.height = "100vh";
 
-  banner_0523.style.height = '100vh';
+  target.innerHTML = `
+    <div class="interact-top" id="div_interact_top"></div>
 
-  img[0].style.width = "75vw";
-  img[0].style.position = "sticky";
-  img[0].style.top = "50%";
-  img[0].style.left = "50%";
-  // img[0].style.align
-  img[0].style.transform = "translate(-50%, -50%)";
-  img[0].style.zIndex = "1000";
-  interact_target.style.display = 'block';
+    <img src="./assets/img/GIF/mother_on_interact.gif"
+         alt="mother_image">
+    <div class="interact-right" id="div_interact_right"></div>
 
+    <div class="interact-bottom" id="div_interact_botton"></div>
+  `;
+
+  target.classList.add("interact-grid");
+  const mother_diaglog = document.getElementById('div_interact_right');
+
+  i = 0;
+  text = 'bom dia. filha. por favor. preciso. que.. você: traga os rémedios par- para- pra sua mãe e vó'
+  defineWriter("div_interact_right");
+
+  setTimeout(() => {
+    target.classList.add("show");
+  }, 200);
 }
