@@ -32,6 +32,8 @@ var door_sfx = new Audio('assets/audio/door.mp3');
 var knock_sfx = new Audio('assets/audio/knock.mp3');
 var amb_sfx = new Audio('assets/audio/amb.mp3');
 
+var error_sfx = new Audio('assets/audio/error.mp3');
+
 var inventory_checker = ["0", "0", "0", "0"];
 var a = 0;
 
@@ -415,7 +417,7 @@ function segredo_tio() {
   document.getElementById("div_footer").style.display = "none";
   document.getElementById("div_errors_fakeout").style.display = "flex";
   document.getElementById("div_errors_fakeout").style.flexDirection = "column";
-
+  error_sfx.play();
   a = 0;
   alert_fake();
   setTimeout(error_fake, 3000);
@@ -427,6 +429,8 @@ function alert_fake() {
   if (a < 28) {
     setTimeout(alert_fake, 250);
     a++;
+      error_sfx.play();
+
   }
 }
 
@@ -999,35 +1003,33 @@ function FindThen() {
   const coffee = document.getElementById("div_collect_item_coffee");
   const water = document.getElementById("div_collect_item_water");
   const machine = document.getElementById("div_collect_item_machine");
-
   let array = [coffee, water, machine];
-  for (let i = 0; i < array.length; i++) {
-    const maxY = container.offsetHeight - array[i].offsetHeight;
-    const maxX = container.offsetWidth - array[i].offsetWidth;
+  if(estou_Cozinha == true){
 
-    const randomY = Math.floor(Math.random() * maxY);
-    const randomX = Math.floor(Math.random() * maxX);
-
-    let random_trans = Number((Math.random() + 0.25).toFixed(2));
-    if (random_trans > 1) {
-      random_trans = 1;
-    }
-
-    if (array[i] != "COLETADO!") {
-      array[i].style.opacity = random_trans;
-      array[i].style.top = randomY + "px";
-      array[i].style.left = randomX + "px";
+    
+    for (let i = 0; i < array.length; i++) {
+      const maxY = container.offsetHeight - array[i].offsetHeight;
+      const maxX = container.offsetWidth - array[i].offsetWidth;
+      
+      const randomY = Math.floor(Math.random() * maxY);
+      const randomX = Math.floor(Math.random() * maxX);
+      
+      let random_trans = Number((Math.random() + 0.25).toFixed(2));
+      if (random_trans > 1) {
+        random_trans = 1;
+      }
+      
+      if (array[i] != "COLETADO!") {
+        array[i].style.opacity = random_trans;
+        array[i].style.top = randomY + "px";
+        array[i].style.left = randomX + "px";
+      }
     }
   }
-  if (
-    array[0].innerHTML == "COLETADO!" &&
-    array[1].innerHTML == "COLETADO!" &&
-    array[2].innerHTML == "COLETADO!"
-  ) {
-    // console.log('AAAAAAAAAAAAA')
-    // Cozinha();
+  if ( array[0].innerHTML == "COLETADO!" && array[1].innerHTML == "COLETADO!" && array[2].innerHTML == "COLETADO!") {
     completion();
-  } else {
+  } 
+  else {
     setTimeout(FindThen, 3333);
   }
 }

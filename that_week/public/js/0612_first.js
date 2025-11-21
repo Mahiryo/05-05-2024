@@ -9,7 +9,7 @@ var i = 0;
 
 var banner_0523 = document.getElementById("div_banner_0523");
 var container = document.getElementById("div_quarto_01_0400");
-banner_0523.style.filter = "brightness(2)";
+banner_0523.style.filter = "brightness(4)";
 const blackout = document.getElementById("div_effect_blackout");
 
 var quarto_01 = document.getElementById("button_quarto_01");
@@ -31,16 +31,16 @@ var slot_04 = document.getElementById("div_iten_container_04");
 var inventory_checker = ["0","0","0","0"];
 var a = 0;
 
+
 var door_sfx = new Audio("assets/audio/door.mp3");
 var knock_sfx = new Audio("assets/audio/knock.mp3");
 var amb_sfx = new Audio("assets/audio/amb.mp3");
 
+
 var notAddedCapsules = true;
 var notAddedMedicine = true;
-var notAddedWaterCup = true;
 
-var served_mother = false;
-var served_gradma = false;
+
 
 var notAddedS01 = true;
 
@@ -64,6 +64,8 @@ var medicine_sprite = String(
   '<img id="img_medicine" src="./assets/img/medicine.png" style="filter: invert()" alt="medicine_image">'
 );
 
+
+
 var s01 = String(
   '<img id="gif_S01" src="./assets/img/GIF/ERROR_TIO.gif" style="width: 95%" alt="error_image">'
 );
@@ -75,12 +77,6 @@ var load_inventory_sprite_s01 = String(
 var load_inventory_sprite_cup_water = String(
   `<img src="./assets/img/cup_water.png" style="border: 1px black solid; filter: invert(); height: 100%;">`
 );
-var load_inventory_sprite_medicine = String(
-  `<img src="./assets/img/medicine.png"style="border: 1px black solid; filter: invert(); height: 100%;">`
-);
-var load_inventory_sprite_capsules = String(
-  `<img src="./assets/img/capsules.png" style="border: 1px black solid; filter: invert(); height: 100%;">`
-);
 
 var confetti_change = String(
   `<img class="confetti" id="img_gif_confetti" src="./assets/img/GIF/joy.gif" alt="confetti">`
@@ -89,15 +85,7 @@ var confetti_change = String(
 
 
 var div_cozinha_0523_content = String(`
-            <div class="collectable" id="div_collect_iten_capsules">
-              <img id="img_capsules" src="./assets/img/capsules.png" style="filter: invert()" alt="capsules_image" onclick="comemorar('div_collect_iten_capsules')">
-            </div>
 
-            <div class="collectable" id="div_collect_iten_water_cup">
-              <img id="img_water" src="./assets/img/cup_water.png" style="filter: invert()" alt="water_image" onclick="comemorar('div_collect_iten_water_cup')">
-            </div>
-
-            <audio id="audio_joy" src="./assets/audio/children-joy-100078.mp3"></audio>
             <audio id="audio_knock" src="./assets/audio/knock.mp3"></audio>
 `);
 
@@ -111,11 +99,7 @@ var div_quarto_01_0523_content = String(`
               style="transform: scale(0.25)"
             />
           </div>
-          <div class="collectable" id="div_collect_iten_medicine">
-              <img id="img_medicine" src="./assets/img/medicine.png" style="filter: invert()" alt="medicine_image" onclick="comemorar('div_collect_iten_medicine')">
-          </div>
 
-          <audio id="audio_joy" src="./assets/audio/children-joy-100078.mp3"></audio>
           <audio id="audio_knock" src="./assets/audio/knock.mp3"></audio>
 `);
 
@@ -1019,8 +1003,7 @@ function completion() {
 function showEnd() {
 
   if (canEnd == true) {
-    alert(`Preciso sair, preciso sair rápido, tenho que ir para lá. são 0612......talvez pegar uma agua tambem`);
-    notAddedWaterCup = true;
+    alert(`Preciso sair, preciso sair rápido, tenho que ir para lá. são 0612`);
     end_back.innerHTML = "<p>0612</p>";
     end_back.style.display = "flex";
   } else {
