@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RE / RE / INTE</title>
+    <!-- <link rel="stylesheet" href="./assets/style/style.css" /> -->
+    <link rel="stylesheet" href="./assets/style/style_0733.css" />
+  </head>
+
+  <body>
+    <div id="div_errors_fakeout" style="display: none">
+      <video id="game_over" src="./assets/video/Game_Over.mp4"></video>
+    </div>
+    <div id="div_solution_ending" class="time-hint">
+      <div class="clock-container">
+        <div id="clock">
+          <div class="controls">
+            <!-- <button class="arrow-up" id="button_hora_h1_mais" onclick="AumentarPrimeiroDigito()"><img
+                src="./assets/icon/down_arrow.png"></button> -->
+
+            <div class="digit" id="h1">
+
+              <div class="segment a on"></div>
+              <div class="segment b on"></div>
+              <div class="segment c on"></div>
+              <div class="segment d"></div>
+              <div class="segment e on"></div>
+              <div class="segment f on"></div>
+              <div class="segment g on"></div>
+
+            </div>
+
+            <!-- <button id="button_hora_h1_menos" onclick="DiminuirPrimeiroDigito()"><img
+                src="./assets/icon/down_arrow.png"></button> -->
+          </div>
+
+          <div class="controls">
+            <!-- <button class="arrow-up" id="button_hora_h2_mais" onclick="AumentarSegundoDigito()"><img
+                src="./assets/icon/down_arrow.png"></button> -->
+
+            <div class="digit" id="h2">
+
+              <div class="segment a on"></div>
+              <div class="segment b on"></div>
+              <div class="segment c on"></div>
+              <div class="segment d"></div>
+              <div class="segment e on"></div>
+              <div class="segment f on"></div>
+              <div class="segment g on"></div>
+
+            </div>
+
+            <!-- <button id="button_hora_h2_menos" onclick="DiminuirSegundoDigito()"><img
+                src="./assets/icon/down_arrow.png"></button> -->
+          </div>
+
+
+          <div class="colon">:</div>
+
+          <div class="controls">
+            <!-- <button class="arrow-up" id="button_minuto_m1_mais" onclick="AumentarTerceiroDigito()"><img
+                src="./assets/icon/down_arrow.png"></button> -->
+
+            <div class="digit" id="m1">
+
+              <div class="segment a on"></div>
+              <div class="segment b on"></div>
+              <div class="segment c on"></div>
+              <div class="segment d"></div>
+              <div class="segment e on"></div>
+              <div class="segment f on"></div>
+              <div class="segment g on"></div>
+
+            </div>
+
+            <!-- <button id="button_minuto_m1_menos" onclick="DiminuirTerceiroDigito()"><img
+                src="./assets/icon/down_arrow.png"></button> -->
+          </div>
+
+
+          <div class="controls">
+            <!-- <button class="arrow-up" id="button_minuto_m2_mais" onclick="AumentarQuartoDigito()"><img
+                src="./assets/icon/down_arrow.png"></button> -->
+
+            <div class="digit" id="m2">
+
+              <div class="segment a on"></div>
+              <div class="segment b on"></div>
+              <div class="segment c on"></div>
+              <div class="segment d"></div>
+              <div class="segment e on"></div>
+              <div class="segment f on"></div>
+              <div class="segment g on"></div>
+
+            </div>
+
+            <!-- <button id="button_minuto_m2_menos" onclick="DiminuirQuartoDigito()"><img
+                src="./assets/icon/down_arrow.png"></button> -->
+          </div>
+
+
+        </div>
+
+        <!-- <button class="enter-timer" onclick="redirect_timer()">INPUT=={VALUE:timer-til}</button> -->
+
+      </div>
+    </div>
+
+
+
+    <audio id="audio_beep" src="./assets/audio/short_beep.mp3"></audio>
+    <div id="div_header" class="header">
+      <div class="container">
+        <div class="navbar">
+          <img id="img_espelho" src="./assets/icon/mirror.png" alt="Espelho"/>
+          <h1 class="titulo">RE/ RE / IN</h1>
+        </div>
+
+        <ul class="navbar">
+          <li><a href="./index.html">Inicial</a></li>
+          <li><a href="./paginas.html">Horarios</a></li>
+
+        </ul>
+      </div>
+    </div>
+
+    <div id="div_banner_0523" class="banner quarto-01">
+      <div id="div_0400" class="container">
+        <div id="div_quarto_01_0400">
+          <div class="chart-sticky-container">
+            <div class="chart-container">
+              <canvas id="myChart"></canvas>
+            </div>
+          </div>
+        </div>
+        <button id="button_calma"  onmousedown="startHold()" onmouseup="endHold()">
+          Acalmar::Respirar
+        </button>
+      </div>
+    </div>
+
+    <div id="div_footer" class="footer">
+      <div class="hotbar">
+        <button
+          id="button_open_iventory"
+          onclick="
+            var content = document.getElementById('item_bar');
+            content.style.display = (content.style.display === 'flex') ? 'none' : 'flex';
+          "
+        >
+          Itens::Bar
+        </button>
+        <button id="button_completion_end" onclick="showEnd()">
+          {seguir_frente: null}
+        </button>
+        <div id="item_bar" class="inventory">
+          <div class="iten-container" id="div_iten_container_01"></div>
+          <div class="iten-container" id="div_iten_container_02"></div>
+          <div class="iten-container" id="div_iten_container_03"></div>
+          <div class="iten-container" id="div_iten_container_04"></div>
+        </div>
+
+        <div id="minha_resposta">
+          <span class="cursor">|</span>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="left_container">
+          <div id="div_save_containers"></div>
+          <h4>
+            <button id="save_button" onclick="saveState()">
+              {Salvar_Progresso: true}
+            </button>
+            <button id="load_button" onclick="loadState()">
+              {Carregar_Progresso: true}
+            </button>
+          </h4>
+          <div class="contacts_container">
+            <img src="./assets/icon/instagran.png" alt="Instagram" />
+            <img src="./assets/icon/cellphone.png" alt="Cellphone" />
+            <img src="./assets/icon/whatzapp.png" alt="WhatsApp" />
+            <img src="./assets/icon/facebook.png" alt="Facebook" />
+            <img src="./assets/icon/discord.png" alt="Discord" />
+          </div>
+        </div>
+
+        <div class="right_container">
+          <div class="left">
+            <h6>Explore</h6>
+            <button
+              id="button_quarto_01"
+                            disabled="true"
+              class="explore desativado"
+              onclick="QuartoZeroUm()"
+            >
+              Quarto::01
+            </button>
+            <button
+              id="button_quarto_02"
+              disabled="true"
+              class="explore desativado"
+              onclick="QuartoZeroDois()"
+            >
+              Quarto::02
+            </button>
+            <button
+              id="button_cozinha"
+              disabled="true"
+              class="explore desativado"
+              onclick="Cozinha()"
+            >
+              Cozinha
+            </button>
+            <button
+              id="button_sala"
+              disabled="true"
+              class="explore desativado"
+              onclick="SalaMain()"
+            >
+              Sala
+            </button>
+          </div>
+
+          <div class="vertical_ruler">
+            <hr />
+          </div>
+
+          <div class="right">
+            <div class="above">
+              <h6>Endereço</h6>
+              <p>Sua Casa</p>
+            </div>
+
+            <div class="bellow">
+              <h6>Contato</h6>
+              <p>SeuNome@gmail.com</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="middle">
+        <hr />
+      </div>
+
+      <div class="page_end"></div>
+    </div>
+  </body>
+</html>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  const beep = document.getElementById('audio_beep');
+  beep.volume = 0.33;
+  beep.playbackRate= 1.5;
+  const ctx = document.getElementById("myChart");
+
+  const config = {
+    type: "line",
+    data: {
+      labels: [
+        "antes",
+        "antes",
+        "antes",
+        "antes",
+        "antes",
+        "antes",
+        "antes",
+        "antes",
+        "antes",
+        "antes",
+        "antes",
+        "antes",
+        "agora",
+      ],
+      datasets: [
+        {
+          label: "limit",
+          data: [90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90],
+          borderColor: "red",
+          backgroundColor: "red",
+          pointRadius: 0,
+          borderWidth: 1,
+        },
+        {
+          label: "Stress",
+          data: [33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33],
+          borderColor: "green",
+          backgroundColor: "green",
+          pointRadius: 0,
+          borderWidth: 2,
+          tension: 0.5
+        },
+        {
+          label: "limit",
+          data: [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10],
+          borderColor: "red",
+          backgroundColor: "red",
+          pointRadius: 0,
+          borderWidth: 1,
+        },
+      ],
+    },
+    options: {
+      animation: false,
+      scales: {
+        y: {
+          min: 0,
+          max: 100,
+          ticks: {
+            stepSize: 10,
+          },
+        },
+      },
+    },
+  };
+  myChart = new Chart(document.getElementById("myChart"), config);
+
+
+  let value = 33;
+add_liniar()
+  function add_liniar(){
+    value += (Math.random() * 2);
+    myChart.update();
+    setTimeout(add_liniar, 1000);
+  }
+
+
+
+  hell_sim()
+  function hell_sim(){
+    myChart.data.datasets[1].data.shift();
+    myChart.data.datasets[1].data.push(value);
+    myChart.update();
+    if(value > 98){
+      div_solution_ending.style.display = 'none';
+      div_header.style.display = 'none';
+      div_banner_0523.style.display = 'none';
+      div_footer.style.display = 'none';
+      div_errors_fakeout.style.display = 'flex';
+      setTimeout(() => {game_over.play()}, 150);
+      setTimeout(() => {location.reload()}, 7500);
+    } 
+    else if( value < 2){
+      div_solution_ending.style.display = 'none';
+      div_header.style.display = 'none';
+      div_banner_0523.style.display = 'none';
+      div_footer.style.display = 'none';
+      div_errors_fakeout.style.display = 'flex';
+      setTimeout(() => {game_over.play()}, 150);
+      setTimeout(() => {location.reload()}, 7500);
+    }
+
+    setTimeout(hell_sim, 250);
+  }
+
+  chart_hell()
+  function chart_hell(){
+    let time;
+    beep.play()
+    if(value >= 100){
+      value = 100;
+    } else if(value <= 0){
+      value = 0
+    }
+    if(value > 50){
+      time = ((100 - value) * 20);
+    } else {
+      time = (value * 20)
+    }
+    
+
+    setTimeout(chart_hell, (time));
+  }
+  
+
+
+  </script>
+  <script src="./js/0733_first.js"></script>

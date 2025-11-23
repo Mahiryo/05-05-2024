@@ -28,61 +28,67 @@ var slot_02 = document.getElementById("div_iten_container_02");
 var slot_03 = document.getElementById("div_iten_container_03");
 var slot_04 = document.getElementById("div_iten_container_04");
 
-var inventory_checker = ["0","0","0","0"];
+var inventory_checker = ["0", "0", "0", "0"];
 var a = 0;
-
 
 var door_sfx = new Audio("assets/audio/door.mp3");
 var knock_sfx = new Audio("assets/audio/knock.mp3");
 var amb_sfx = new Audio("assets/audio/amb.mp3");
 
-
-var notAddedCapsules = true;
-var notAddedMedicine = true;
-
-
+var notAddedbag = true;
+var notAddednotebook = true;
+var notAddedWaterCup = true;
 
 var notAddedS01 = true;
+var notAddedS02 = true;
 
 var menu_open = false;
 
 var canEnd = false;
 
-var estou_quarto_01 = false;
-var estou_quarto_02 = true;
+var estou_quarto_01 = true;
+var estou_quarto_02 = false;
 var estou_sala = false;
 var estou_Cozinha = false;
 
-
-var capsules_sprite = String(
-  '<img id="img_capsules" src="./assets/img/capsules.png" style="filter: invert()" alt="capsules_image">'
+var bag_sprite = String(
+  '<img id="img_bag" src="./assets/img/bag.png" style="filter: invert()" alt="bag_image">'
 );
 var water_cup_sprite = String(
   '<img id="img_water" src="./assets/img/cup_water.png" style="filter: invert()" alt="water_image">'
 );
-var medicine_sprite = String(
-  '<img id="img_medicine" src="./assets/img/medicine.png" style="filter: invert()" alt="medicine_image">'
+var notebook_sprite = String(
+  '<img id="img_notebook" src="./assets/img/notebook.png" style="filter: invert()" alt="notebook_image">'
 );
-
-
 
 var s01 = String(
   '<img id="gif_S01" src="./assets/img/GIF/ERROR_TIO.gif" style="width: 95%" alt="error_image">'
 );
+var s02 = String(
+  '<img id="gif_S02" src="./assets/img/GIF/undefined.gif" style="width: 95%" alt="error_image">'
+);
 
 var load_inventory_sprite_s01 = String(
   `<img src="./assets/img/GIF/ERROR_TIO.gif" style="border: 1px black solid; height: 100%;">`
+);
+var load_inventory_sprite_s02 = String(
+  `<img src="./assets/img/GIF/undefined.gif" style="border: 1px black solid; height: 100%;">`
 );
 
 var load_inventory_sprite_cup_water = String(
   `<img src="./assets/img/cup_water.png" style="border: 1px black solid; filter: invert(); height: 100%;">`
 );
 
+var load_inventory_sprite_notebook = String(
+  `<img src="./assets/img/notebook.png"style="border: 1px black solid; filter: invert(); height: 100%;">`
+);
+var load_inventory_sprite_bag = String(
+  `<img src="./assets/img/bag.png" style="border: 1px black solid; filter: invert(); height: 100%;">`
+);
+
 var confetti_change = String(
   `<img class="confetti" id="img_gif_confetti" src="./assets/img/GIF/joy.gif" alt="confetti">`
 );
-
-
 
 var div_cozinha_0523_content = String(`
 
@@ -91,47 +97,55 @@ var div_cozinha_0523_content = String(`
 
 var div_quarto_01_0523_content = String(`
           <div id="div_interact_mother">
-            <img
-              id="gif_mother"
-              onclick="interact('div_interact_mother')"
-              src="./assets/img/GIF/mother.gif"
-              alt="mother_image"
-              style="transform: scale(0.25)"
-            />
+            <img id="gif_mother" onclick="interact('div_interact_mother')" src="./assets/img/GIF/mother.gif" alt="mother_image" style="transform: scale(0.25)"/>
           </div>
 
-          <audio id="audio_knock" src="./assets/audio/knock.mp3"></audio>
+          <audio id="audio_joy" src="./assets/audio/children-joy-100078.mp3"></audio>
+          // <audio id="audio_knock" src="./assets/audio/knock.mp3"></audio>
 `);
 
 var div_sala_01_0523_content = String(`
-            <div id="div_interact_grandma">
-              <img id="gif_grandma" src="./assets/img/GIF/clock_mouth_grandma.gif" alt="grandma_image" onclick="interact('div_interact_grandma')">
+            <div id="div_interact_mother">           
+              <img id="gif_mother" onclick="interact('div_interact_mother')" src="./assets/img/GIF/mother.gif" alt="mother_image" style="transform: scale(0.25)"/>
+            </div>
+
+            <div id="div_container_0612">
+
+              <div class="collectable" id="div_collect_iten_bag" style="position: static;">
+                <img id="img_bag" src="./assets/img/bag.png" style="filter: invert()" alt="bag_image" onclick="comemorar('div_collect_iten_bag')">
+              </div>
+  
+              <div id="div_interact_grandma">
+                <img id="gif_grandma" src="./assets/img/GIF/clock_mouth_grandma.gif" alt="grandma_image" onclick="interact('div_interact_grandma')">
+              </div>
+
+              <div class="collectable" id="div_collect_iten_notebook" style="position: static;">
+                <img id="img_notebook" src="./assets/img/notebook.png" style="filter: invert()" alt="notebook_image" onclick="comemorar('div_collect_iten_notebook')">
+              </div>
+
             </div>
 
             <audio id="audio_joy" src="./assets/audio/children-joy-100078.mp3"></audio>
             <audio id="audio_knock" src="./assets/audio/knock.mp3"></audio>
 `);
 
-
 var div_save_container_content = String(
   `
             <div class="save_container">
               <div class="save_option" style="display: flex; flex-direction: row;align-itens: center;justify-content: space-between; border: 1px white solid; width: fit-content; height: 20px;">
                 <span id="saved_slot" style="border: 1px white solid; height: 100%; width: fit-content;">0400</span>
-                <span id="saved_inventory" style="display: flex; flex-direction: row;align-itens: center;justify-content: center; height: 100%"><img style="border: 1px black solid; filter: invert(); height: 100%;"><img style="border: 1px black solid; filter: invert(); height: 100%;"><img style="border: 1px black solid; filter: invert(); height: 100%;"><img src="./assets/img/capsules.png" style="border: 1px black solid; filter: invert(); height: 100%;"></span>
+                <span id="saved_inventory" style="display: flex; flex-direction: row;align-itens: center;justify-content: center; height: 100%"><img style="border: 1px black solid; filter: invert(); height: 100%;"><img style="border: 1px black solid; filter: invert(); height: 100%;"><img style="border: 1px black solid; filter: invert(); height: 100%;"><img src="./assets/img/bag.png" style="border: 1px black solid; filter: invert(); height: 100%;"></span>
                 <span id="saved_time" style="border: 1px white solid; height: 100%; width: fit-content;">YYYY-MM-DD-hh-mm-ss</span></div>
             </div>
           `
 );
-
-
-
 
 var writter_target = "";
 function defineWriter(element) {
   writter_target = document.getElementById(element);
   writter_target.textContent = "";
   typeWriter();
+  i = 0;
 }
 function typeWriter() {
   if (i < text.length) {
@@ -145,7 +159,7 @@ function QuartoZeroUm() {
   document.getElementById("minha_resposta").textContent = "";
   door_sfx.play();
   if (!estou_quarto_01 && estou_sala) {
-    text = "Mesmo se quiser... não posso voltar a dormir agora.";
+    text = "Tenho que ir";
     estou_quarto_01 = true;
     estou_quarto_02 = false;
     estou_Cozinha = false;
@@ -174,9 +188,9 @@ function QuartoZeroUm() {
     quarto_01.disabled = false;
     cozinha.disabled = true;
     quarto_02.disabled = true;
-    FindThen();
+    // FindThen();
   } else {
-    text = "Minha mãe esta me encarando...";
+    text = "Tenho que ir";
   }
   i = 0;
   // Restore_iten();
@@ -187,7 +201,7 @@ function SalaMain() {
   document.getElementById("minha_resposta").textContent = "";
   door_sfx.play();
   if (!estou_sala && (estou_Cozinha || estou_quarto_01 || estou_quarto_02)) {
-    text = "Minha vó ligou as luzes e abriu as cortinas, já esta clareando...";
+    text = "Tenho que ir";
     estou_quarto_01 = false;
     estou_quarto_02 = false;
     estou_Cozinha = false;
@@ -199,7 +213,13 @@ function SalaMain() {
     quarto_02.disabled = false;
 
     container.innerHTML = div_sala_01_0523_content;
-
+    if (notAddedbag == false) {
+      document.getElementById("div_collect_iten_bag").innerHTML = "COLETADO!";
+    }
+    if (notAddednotebook == false) {
+      document.getElementById("div_collect_iten_notebook").innerHTML =
+        "COLETADO!";
+    }
     banner_0523.classList.remove("quarto-01");
     banner_0523.classList.remove("quarto-02");
     banner_0523.classList.remove("cozinha");
@@ -217,7 +237,7 @@ function SalaMain() {
     quarto_02.classList.remove("desativado", "agora");
     cozinha.classList.remove("desativado", "agora");
   } else {
-    text = "Agora que esta claro eu consigo notar a bagunça...";
+    text = "Tenho que ir";
   }
   i = 0;
   defineWriter("minha_resposta");
@@ -227,7 +247,7 @@ function Cozinha() {
   document.getElementById("minha_resposta").textContent = "";
   door_sfx.play();
   if (!estou_Cozinha && estou_sala) {
-    text = "Entro na cozinha, mesmo com a luz desligada, esta claro...";
+    text = "Tenho que ir";
 
     banner_0523.classList.remove("sala");
     banner_0523.classList.add("cozinha");
@@ -245,13 +265,8 @@ function Cozinha() {
 
     container.innerHTML = div_cozinha_0523_content;
     // Restore_iten(cozinha);
-    if (notAddedCapsules == false) {
-      document.getElementById("div_collect_iten_capsules").innerHTML = "COLETADO!";
-    }
-    if (notAddedWaterCup == false) {
-      document.getElementById("div_collect_iten_water_cup").innerHTML = "COLETADO!";
-    }
-    FindThen()
+
+    // FindThen();
 
     cozinha.classList.add("agora", "ativado");
     sala.classList.remove("agora");
@@ -268,7 +283,7 @@ function Cozinha() {
     sala.classList.remove("desativado");
     // Restore_iten();
   } else {
-    text = "Eu já estou na cozinha, eu vim aqui por uma razão, acho.";
+    text = "Tenho que ir";
   }
 
   i = 0;
@@ -279,7 +294,7 @@ function QuartoZeroDois() {
   document.getElementById("minha_resposta").textContent = "";
   door_sfx.play();
   if (!estou_quarto_02 && estou_sala) {
-    text = "O quarto dos meus avôs fede a tinta e metais. Minha cabeça dói";
+    text = "Tenho que ir";
     estou_quarto_01 = false;
     estou_quarto_02 = true;
     estou_Cozinha = false;
@@ -303,7 +318,7 @@ function QuartoZeroDois() {
     sala.classList.remove("agora");
     sala.classList.add("ativado");
   } else {
-    text = "Eu realmente quero muito sair daqui...";
+    text = "Tenho que ir";
   }
 
   i = 0;
@@ -317,7 +332,6 @@ function comemorar(elemento) {
 }
 
 function updateInventory(elemento) {
-
   if (elemento == "div_collect_iten_water_cup") {
     for (i = 1; i <= inventory_checker.length; i++) {
       if (inventory_checker[i - 1] == "0" && notAddedWaterCup == true) {
@@ -343,54 +357,52 @@ function updateInventory(elemento) {
         }
       }
     }
-  } 
-  else if (elemento == "div_collect_iten_capsules") {
+  } else if (elemento == "div_collect_iten_bag") {
     for (i = 1; i <= inventory_checker.length; i++) {
-      if (inventory_checker[i - 1] == "0" && notAddedCapsules == true) {
-        notAddedCapsules = false;
-        inventory_checker[i - 1] = capsules_sprite;
+      if (inventory_checker[i - 1] == "0" && notAddedbag == true) {
+        notAddedbag = false;
+        inventory_checker[i - 1] = bag_sprite;
         document.getElementById(`div_iten_container_0${i}`).innerHTML =
-          capsules_sprite;
+          bag_sprite;
         switch (i) {
           case 1:
-            sessionStorage.SLOT01 = 5;
+            sessionStorage.SLOT01 = 7;
             break;
           case 2:
-            sessionStorage.SLOT02 = 5;
+            sessionStorage.SLOT02 = 7;
             break;
 
           case 3:
-            sessionStorage.SLOT03 = 5;
+            sessionStorage.SLOT03 = 7;
             break;
 
           case 4:
-            sessionStorage.SLOT04 = 5;
+            sessionStorage.SLOT04 = 7;
             break;
         }
       }
     }
-  } 
-  else if (elemento == "div_collect_iten_medicine") {
+  } else if (elemento == "div_collect_iten_notebook") {
     for (i = 1; i <= inventory_checker.length; i++) {
-      if (inventory_checker[i - 1] == "0" && notAddedMedicine == true) {
-        notAddedMedicine = false;
-        inventory_checker[i - 1] = medicine_sprite;
+      if (inventory_checker[i - 1] == "0" && notAddednotebook == true) {
+        notAddednotebook = false;
+        inventory_checker[i - 1] = notebook_sprite;
         document.getElementById(`div_iten_container_0${i}`).innerHTML =
-          medicine_sprite;
+          notebook_sprite;
         switch (i) {
           case 1:
-            sessionStorage.SLOT01 = 6;
+            sessionStorage.SLOT01 = 8;
             break;
           case 2:
-            sessionStorage.SLOT02 = 6;
+            sessionStorage.SLOT02 = 8;
             break;
 
           case 3:
-            sessionStorage.SLOT03 = 6;
+            sessionStorage.SLOT03 = 8;
             break;
 
           case 4:
-            sessionStorage.SLOT04 = 6;
+            sessionStorage.SLOT04 = 8;
             break;
         }
       }
@@ -399,7 +411,7 @@ function updateInventory(elemento) {
 }
 
 function saveState() {
-  var page = "0523";
+  var page = "0612";
 
   if (slot_01.innerHTML == water_cup_sprite) {
     inv_01 = 4;
@@ -414,29 +426,29 @@ function saveState() {
     inv_04 = 4;
   }
 
-  if (slot_01.innerHTML == capsules_sprite) {
-    inv_01 = 5;
+  if (slot_01.innerHTML == bag_sprite) {
+    inv_01 = 7;
   }
-  if (slot_02.innerHTML == capsules_sprite) {
-    inv_02 = 5;
+  if (slot_02.innerHTML == bag_sprite) {
+    inv_02 = 7;
   }
-  if (slot_03.innerHTML == capsules_sprite) {
-    inv_03 = 5;
+  if (slot_03.innerHTML == bag_sprite) {
+    inv_03 = 7;
   }
-  if (slot_04.innerHTML == capsules_sprite) {
-    inv_04 = 5;
+  if (slot_04.innerHTML == bag_sprite) {
+    inv_04 = 7;
   }
 
-  if (slot_01.innerHTML == medicine_sprite) {
+  if (slot_01.innerHTML == notebook_sprite) {
     inv_01 = 3;
   }
-  if (slot_02.innerHTML == medicine_sprite) {
+  if (slot_02.innerHTML == notebook_sprite) {
     inv_02 = 3;
   }
-  if (slot_03.innerHTML == medicine_sprite) {
+  if (slot_03.innerHTML == notebook_sprite) {
     inv_03 = 3;
   }
-  if (slot_04.innerHTML == medicine_sprite) {
+  if (slot_04.innerHTML == notebook_sprite) {
     inv_04 = 3;
   }
 
@@ -512,7 +524,6 @@ function loadState() {
       .then(function (resposta) {
         console.log("resposta objeto fetch cru: ", resposta);
 
-
         if (resposta.ok) {
           return resposta.json();
         } else {
@@ -549,40 +560,40 @@ function loadState() {
 
             if (saveiten.slot_01 == 4) {
               sprite_load_01 = load_inventory_sprite_cup_water;
-            } else if (saveiten.slot_01 == 5) {
-              sprite_load_01 = load_inventory_sprite_capsules;
-            } else if (saveiten.slot_01 == 6) {
-              sprite_load_01 = load_inventory_sprite_medicine;
+            } else if (saveiten.slot_01 == 7) {
+              sprite_load_01 = load_inventory_sprite_bag;
+            } else if (saveiten.slot_01 == 8) {
+              sprite_load_01 = load_inventory_sprite_notebook;
             } else if (saveiten.slot_01 == 99) {
               sprite_load_01 = load_inventory_sprite_s01;
             }
 
             if (saveiten.slot_02 == 4) {
               sprite_load_02 = load_inventory_sprite_cup_water;
-            } else if (saveiten.slot_02 == 5) {
-              sprite_load_02 = load_inventory_sprite_capsules;
-            } else if (saveiten.slot_02 == 6) {
-              sprite_load_02 = load_inventory_sprite_medicine;
+            } else if (saveiten.slot_02 == 7) {
+              sprite_load_02 = load_inventory_sprite_bag;
+            } else if (saveiten.slot_02 == 8) {
+              sprite_load_02 = load_inventory_sprite_notebook;
             } else if (saveiten.slot_02 == 99) {
               sprite_load_02 = load_inventory_sprite_s01;
             }
 
             if (saveiten.slot_03 == 4) {
               sprite_load_03 = load_inventory_sprite_cup_water;
-            } else if (saveiten.slot_03 == 5) {
-              sprite_load_03 = load_inventory_sprite_capsules;
-            } else if (saveiten.slot_03 == 6) {
-              sprite_load_03 = load_inventory_sprite_medicine;
+            } else if (saveiten.slot_03 == 7) {
+              sprite_load_03 = load_inventory_sprite_bag;
+            } else if (saveiten.slot_03 == 8) {
+              sprite_load_03 = load_inventory_sprite_notebook;
             } else if (saveiten.slot_03 == 99) {
               sprite_load_03 = load_inventory_sprite_s01;
             }
 
             if (saveiten.slot_04 == 4) {
               sprite_load_04 = load_inventory_sprite_cup_water;
-            } else if (saveiten.slot_04 == 5) {
-              sprite_load_04 = load_inventory_sprite_capsules;
-            } else if (saveiten.slot_04 == 6) {
-              sprite_load_04 = load_inventory_sprite_medicine;
+            } else if (saveiten.slot_04 == 7) {
+              sprite_load_04 = load_inventory_sprite_bag;
+            } else if (saveiten.slot_04 == 8) {
+              sprite_load_04 = load_inventory_sprite_notebook;
             } else if (saveiten.slot_04 == 99) {
               sprite_load_04 = load_inventory_sprite_s01;
             }
@@ -633,11 +644,11 @@ function restoreSave(a, b, c, d, e) {
       case 4:
         sessionStorage.SLOT01 = 4;
         break;
-      case 5:
-        sessionStorage.SLOT01 = 5;
+      case 7:
+        sessionStorage.SLOT01 = 7;
         break;
-      case 6:
-        sessionStorage.SLOT01 = 6;
+      case 8:
+        sessionStorage.SLOT01 = 8;
         break;
       case 99:
         sessionStorage.SLOT01 = 99;
@@ -652,11 +663,11 @@ function restoreSave(a, b, c, d, e) {
       case 4:
         sessionStorage.SLOT02 = 4;
         break;
-      case 5:
-        sessionStorage.SLOT02 = 5;
+      case 7:
+        sessionStorage.SLOT02 = 7;
         break;
-      case 6:
-        sessionStorage.SLOT02 = 6;
+      case 8:
+        sessionStorage.SLOT02 = 8;
         break;
       case 99:
         sessionStorage.SLOT02 = 99;
@@ -671,11 +682,11 @@ function restoreSave(a, b, c, d, e) {
       case 4:
         sessionStorage.SLOT03 = 4;
         break;
-      case 5:
-        sessionStorage.SLOT03 = 5;
+      case 7:
+        sessionStorage.SLOT03 = 7;
         break;
-      case 6:
-        sessionStorage.SLOT03 = 6;
+      case 8:
+        sessionStorage.SLOT03 = 8;
         break;
       case 99:
         sessionStorage.SLOT03 = 99;
@@ -690,11 +701,11 @@ function restoreSave(a, b, c, d, e) {
       case 4:
         sessionStorage.SLOT04 = 4;
         break;
-      case 5:
-        sessionStorage.SLOT04 = 5;
+      case 7:
+        sessionStorage.SLOT04 = 7;
         break;
-      case 6:
-        sessionStorage.SLOT04 = 6;
+      case 8:
+        sessionStorage.SLOT04 = 8;
         break;
       case 99:
         sessionStorage.SLOT04 = 99;
@@ -708,6 +719,9 @@ function restoreSave(a, b, c, d, e) {
 }
 
 function start_check() {
+
+
+  
   if (sessionStorage.SLOT01 != "0") {
     switch (sessionStorage.SLOT01) {
       case "4":
@@ -715,15 +729,15 @@ function start_check() {
         inventory_checker[0] = water_cup_sprite;
         notAddedWaterCup = false;
         break;
-      case "5":
-        slot_01.innerHTML = capsules_sprite;
-        inventory_checker[0] = capsules_sprite;
-        notAddedCapsules = false;
+      case "7":
+        slot_01.innerHTML = bag_sprite;
+        inventory_checker[0] = bag_sprite;
+        notAddedbag = false;
         break;
-      case "6":
-        slot_01.innerHTML = medicine_sprite;
-        inventory_checker[0] = medicine_sprite;
-        notAddedMedicine = false;
+      case "8":
+        slot_01.innerHTML = notebook_sprite;
+        inventory_checker[0] = notebook_sprite;
+        notAddednotebook = false;
         break;
       case "99":
         slot_01.innerHTML = s01;
@@ -742,15 +756,15 @@ function start_check() {
         inventory_checker[1] = water_cup_sprite;
         notAddedWaterCup = false;
         break;
-      case "5":
-        slot_02.innerHTML = capsules_sprite;
-        inventory_checker[1] = capsules_sprite;
-        notAddedCapsules = false;
+      case "7":
+        slot_02.innerHTML = bag_sprite;
+        inventory_checker[1] = bag_sprite;
+        notAddedbag = false;
         break;
-      case "6":
-        slot_02.innerHTML = medicine_sprite;
-        inventory_checker[1] = medicine_sprite;
-        notAddedMedicine = false;
+      case "8":
+        slot_02.innerHTML = notebook_sprite;
+        inventory_checker[1] = notebook_sprite;
+        notAddednotebook = false;
         break;
       case "99":
         slot_02.innerHTML = s01;
@@ -769,15 +783,15 @@ function start_check() {
         inventory_checker[2] = water_cup_sprite;
         notAddedWaterCup = false;
         break;
-      case "5":
-        slot_03.innerHTML = capsules_sprite;
-        inventory_checker[2] = capsules_sprite;
-        notAddedCapsules = false;
+      case "7":
+        slot_03.innerHTML = bag_sprite;
+        inventory_checker[2] = bag_sprite;
+        notAddedbag = false;
         break;
-      case "6":
-        slot_03.innerHTML = medicine_sprite;
-        inventory_checker[2] = medicine_sprite;
-        notAddedMedicine = false;
+      case "8":
+        slot_03.innerHTML = notebook_sprite;
+        inventory_checker[2] = notebook_sprite;
+        notAddednotebook = false;
         break;
       case "99":
         slot_03.innerHTML = s01;
@@ -791,20 +805,20 @@ function start_check() {
   }
   if (sessionStorage.SLOT04 != "0") {
     switch (sessionStorage.SLOT04) {
-        case "4":
-        slot_02.innerHTML = water_cup_sprite;
+      case "4":
+        slot_04.innerHTML = water_cup_sprite;
         inventory_checker[3] = water_cup_sprite;
-        notAddedWaterCup = false; 
+        notAddedWaterCup = false;
         break;
-      case "5":
-        slot_02.innerHTML = capsules_sprite;
-        inventory_checker[3] = capsules_sprite;
-        notAddedCapsules = false;
+      case "7":
+        slot_04.innerHTML = bag_sprite;
+        inventory_checker[3] = bag_sprite;
+        notAddedbag = false;
         break;
-      case "6":
-        slot_02.innerHTML = medicine_sprite;
-        inventory_checker[3] = medicine_sprite;
-        notAddedMedicine = false;
+      case "8":
+        slot_04.innerHTML = notebook_sprite;
+        inventory_checker[3] = notebook_sprite;
+        notAddednotebook = false;
         break;
       case "99":
         slot_04.innerHTML = s01;
@@ -818,212 +832,118 @@ function start_check() {
   }
 }
 
-function Blink() {
-  blackout.style.display = "block";
-  setTimeout(() => {
-    blackout.style.display = "none";
-  }, 123);
-}
-
-
-
-function Give_Itens(receiver) {
-
-  if(receiver == 1){
-    let has_capsules = false;
-    let has_water = false;
-    let slot_has_capsules = Number()
-    let slot_has_water = Number()
-    for (i = 0; i < inventory_checker.length; i++) {
-      if(inventory_checker[i] == capsules_sprite){
-        has_capsules = true;
-        slot_has_capsules = i+1;
-      }
-
-      if(inventory_checker[i] == water_cup_sprite){
-        has_water = true;
-        slot_has_water = i+1;
-      }
-    }
-    if(has_capsules && has_water){
-      i = 0;
-      text = ".. ah... esta na hora.. já... obrigada filha.";
-      defineWriter("div_interact_right");
-      served_gradma = true;
-      inventory_checker[slot_has_capsules-1] = '0';
-      inventory_checker[slot_has_water -1] = '0';
-      document.getElementById(`div_iten_container_0${slot_has_capsules}`).innerHTML = '';
-      document.getElementById(`div_iten_container_0${slot_has_water}`).innerHTML = '';
-
-      sessionStorage.setItem(`SLOT0${slot_has_capsules}`, '0');
-      sessionStorage.setItem(`SLOT0${slot_has_water}`, '0');
-      if(!served_mother){
-        notAddedWaterCup = true;
-      } else {
-        completion()
-      }
-    } 
-    else if(has_capsules){
-      i = 0;
-      text = "faz. favor.. agua?";
-      defineWriter("div_interact_right");
-    } 
-    else if(has_water){
-      i = 0;
-      text = "meu remedio.. na cozinha";
-      defineWriter("div_interact_right");
-    }
-  }
-  else if(receiver == 2){
-    let has_medicine = false;
-    let has_water = false;
-    let slot_has_medicine = Number()
-    let slot_has_water = Number()
-    for (i = 0; i < inventory_checker.length; i++) {
-      if(inventory_checker[i] == medicine_sprite){
-        has_medicine = true;
-        slot_has_medicine = i+1;
-      }
-
-      if(inventory_checker[i] == water_cup_sprite){
-        has_water = true;
-        slot_has_water = i+1;
-      }
-    }
-    if(has_medicine && has_water){
-      i = 0;
-      text = "obriga-da Essta tudo ceRTo!";
-      defineWriter("div_interact_right");
-      served_mother = true;
-      inventory_checker[slot_has_medicine-1] =' 0';
-      inventory_checker[slot_has_water-1] = '0';
-      document.getElementById(`div_iten_container_0${slot_has_medicine}`).innerHTML = '';
-      document.getElementById(`div_iten_container_0${slot_has_water}`).innerHTML = '';
-
-      sessionStorage.setItem(`SLOT0${slot_has_medicine}`, '0');
-      sessionStorage.setItem(`SLOT0${slot_has_water}`, '0');
-
-      if(!served_gradma){
-        notAddedWaterCup = true;
-      } else {
-        completion()
-      }
-    } 
-    else if(has_medicine){
-      i = 0;
-      text = "oh. remedio estta certo, pode t-trazer a AgUA?";
-      defineWriter("div_interact_right");
-    } 
-    else if(has_water){
-      i = 0;
-      text = "ttenho meu remedio certo para tomar. esta no nosso quarto";
-      defineWriter("div_interact_right");
-    }
-  }
-}
-function FindThen() {
-  const container_img = container;
-  let array = [];
-
-  if(estou_Cozinha == true){
-    const cup_water = document.getElementById("div_collect_iten_water_cup");
-    const capsules = document.getElementById("div_collect_iten_capsules");
-    if(!notAddedCapsules){
-      capsules.innerHTML = "COLETADO!"
-    }
-    if(!notAddedWaterCup){
-      cup_water.innerHTML = "COLETADO!"
-    }
-    array = [capsules, cup_water];
-    if(notAddedWaterCup || notAddedCapsules){
-      for (let i = 0; i < array.length; i++) {
-        const maxY = container_img.offsetHeight - array[i].offsetHeight;
-        const maxX = container_img.offsetWidth - array[i].offsetWidth;
-        
-        const randomY = Math.floor(Math.random() * maxY);
-        const randomX = Math.floor(Math.random() * maxX);
-        
-        let random_trans = Number((Math.random() + 0.25).toFixed(2));
-        if (random_trans > 1) {
-          random_trans = 1;
-        }
-        
-          array[i].style.opacity = random_trans;
-          array[i].style.top = randomY + "px";
-          array[i].style.left = randomX + "px";
-        
-      }
-    } 
-  }
-  else if(estou_quarto_01){
-    const medicine = document.getElementById("div_collect_iten_medicine");
-      if(!notAddedMedicine){
-        medicine.innerHTML = "COLETADO!"
-      }
-      array = [medicine];
-      console.log(array)
-      for (let i = 0; i < array.length; i++) {
-        const maxY = container_img.offsetHeight - array[i].offsetHeight;
-        const maxX = container_img.offsetWidth - array[i].offsetWidth;
-        
-        const randomY = Math.floor(Math.random() * maxY);
-        const randomX = Math.floor(Math.random() * maxX);
-        
-        let random_trans = Number((Math.random() + 0.25).toFixed(2));
-        if (random_trans > 1) {
-          random_trans = 1;
-        }
-        
-          array[i].style.opacity = random_trans;
-          array[i].style.top = randomY + "px";
-          array[i].style.left = randomX + "px";
-      }
-  } else {
-    array = [];
-  }
-
-  
-  setTimeout(FindThen, 3000);
-}
-
-
+completion();
 function completion() {
   const end_choice = document.getElementById("button_completion_end");
-
-  if (served_gradma  && served_mother ) {
+  if (!notAddedbag && !notAddednotebook) {
     end_choice.innerHTML = `{seguir_frente: IS_DEFINED}`;
     end_choice.style.backgroundColor = "white";
     end_choice.style.color = "black";
     end_choice.style.border = "1px gray solid";
     canEnd = true;
-
+  } else {
+    setTimeout(completion, 1000);
   }
 }
 
 function showEnd() {
+  if (canEnd == true && !notAddedWaterCup) {
+    interact("div_interact_mother");
 
-  if (canEnd == true) {
-    alert(`Preciso sair, preciso sair rápido, tenho que ir para lá. são 0612`);
-    end_back.innerHTML = "<p>0612</p>";
+    let has_bag = false;
+    let has_water = false;
+    let has_notebook = false;
+    let slot_has_bag = Number();
+    let slot_has_water = Number();
+    let slot_has_notebook = Number();
+    for (i = 0; i < inventory_checker.length; i++) {
+      if (inventory_checker[i] == bag_sprite) {
+        has_bag = true;
+        slot_has_bag = i + 1;
+      }
+      if (inventory_checker[i] == notebook_sprite) {
+        has_notebook = true;
+        slot_has_notebook = i + 1;
+      }
+      if (inventory_checker[i] == water_cup_sprite) {
+        has_water = true;
+        slot_has_water = i + 1;
+      }
+    }
+
+    inventory_checker[slot_has_bag - 1] = " 0";
+    inventory_checker[slot_has_notebook - 1] = " 0";
+    inventory_checker[slot_has_water - 1] = "0";
+
+    document.getElementById(
+      `div_iten_container_0${slot_has_notebook}`
+    ).innerHTML = "";
+
+    document.getElementById(`div_iten_container_0${slot_has_bag}`).innerHTML =
+      "";
+
+    document.getElementById(`div_iten_container_0${slot_has_water}`).innerHTML =
+      "";
+
+    sessionStorage.setItem(`SLOT0${slot_has_notebook}`, "0");
+    sessionStorage.setItem(`SLOT0${slot_has_water}`, "0");
+    sessionStorage.setItem(`SLOT0${slot_has_bag}`, "0");
+
+
+    for (i = 1; i <= inventory_checker.length; i++) {
+    if (inventory_checker[i - 1] == "0" && notAddedS02 == true) {
+      notAddedS02 = false;
+      inventory_checker[i - 1] = s02;
+      document.getElementById(`div_iten_container_0${i}`).innerHTML = s02;
+      switch (i) {
+        case 1:
+          sessionStorage.SLOT01 = 66;
+          break;
+        case 2:
+          sessionStorage.SLOT02 = 66;
+          break;
+
+        case 3:
+          sessionStorage.SLOT03 = 66;
+          break;
+
+        case 4:
+          sessionStorage.SLOT04 = 66;
+          break;
+      }
+    }
+  }
+  } else if (canEnd == true) {
+    alert(`Preciso sair, preciso sair rápido, tenho que ir para lá. são 0733`);
+    end_back.innerHTML = "<p>0733</p>";
     end_back.style.display = "flex";
   } else {
-    alert("preciso ir pro quarto, algo que preciso esta lá");
+    alert("preciso pegar minhas coisas... tenho que sair logo");
   }
 }
 
-
-function closeInteract(){
+function closeInteract() {
   const banner = document.getElementById("div_banner_0523");
   document.getElementById("div_header").style.display = "flex";
   document.getElementById("div_footer").style.display = "flex";
   container.innerHTML = interact_prev;
   banner.style.height = "300vh";
-
-
-
-
+  if (estou_sala) {
+    document.getElementById("div_collect_iten_bag").style.display = "flex";
+    document.getElementById("div_collect_iten_notebook").style.display = "flex";
+    document.getElementById("div_container_0612").style.display = "flex";
+  }
+  if (!canEnd && notAddedWaterCup && notAddedS02) {
+    text = "não se esqueç-";
+  } else if (!canEnd && !notAddedWaterCup && notAddedS02) {
+    text =
+      "filha. não esqueça os seus {[CENSORED]} cruzes... as vezes parece que voce nem esta aqui...";
+  } else {
+    text = "não se esqueç-";
+  }
 }
-let interact_prev = '';
+
+let interact_prev = "";
 function interact(id) {
   document.getElementById("div_header").style.display = "none";
   document.getElementById("div_footer").style.display = "none";
@@ -1033,9 +953,9 @@ function interact(id) {
 
   banner.style.height = "100vh";
   interact_prev = container.innerHTML;
-  if(id == 'div_interact_grandma' && !served_gradma){
+  if (id == "div_interact_grandma") {
     target.innerHTML = `
-    <div class="interact-top" id="div_interact_top"onclick="Give_Itens(1)" style="cursor: pointer;">(|D-arr~cApsUlas&&Agua[_janela_]--Interaction{}|)></div>
+    <div class="interact-top" id="div_interact_top"></div>
     
     <img src="./assets/img/GIF/clock_mouth_grandma.gif"
     alt="grandma_image">
@@ -1043,37 +963,43 @@ function interact(id) {
     
     <div class="interact-bottom" id="div_interact_botton" onclick="closeInteract()" style="cursor: pointer;">(|Encerrar[_janela_]--Interaction{}|)</div>
     `;
-    
+    document.getElementById("div_collect_iten_bag").style.display = "none";
+    document.getElementById("div_collect_iten_notebook").style.display = "none";
+
     target.classList.add("interact-grid");
     const mother_diaglog = document.getElementById("div_interact_right");
     i = 0;
     text =
-    "...................................................................";
+      "...................................................................";
     defineWriter("div_interact_right");
-    
+
     setTimeout(() => {
       target.classList.add("show");
-    }, 200); 
-  } 
-  else if((id == 'div_interact_mother') && !served_mother){
+    }, 200);
+  } else if (id == "div_interact_mother") {
     target.innerHTML = `
-    <div class="interact-top" id="div_interact_top"onclick="Give_Itens(2)" style="cursor: pointer;">(|D-arr~Remedio&&Agua[_janela_]--Interaction{}|)></div>
+    <div class="interact-top" id="div_interact_top"></div>
     
     <img src="./assets/img/GIF/mother_on_interact.gif"
-    alt="mother_image">
-    <div class="interact-right" id="div_interact_right"></div>
+    alt="mother_image"> <div class="interact-right" id="div_interact_right"></div>
     
     <div class="interact-bottom" id="div_interact_botton" onclick="closeInteract()" style="cursor: pointer;">(|Encerrar[_janela_]--Interaction{}|)</div>
     `;
-    
+    document.getElementById("div_container_0612").style.display = "none";
     target.classList.add("interact-grid");
     const mother_diaglog = document.getElementById("div_interact_right");
-    
+
     i = 0;
-    text =
-    "bom dia. filha. por favor. preciso. pode?.. que.. TRaZer. você: traga os rémedios par- para- pra sua mãe e vó";
+    if (!canEnd && notAddedWaterCup && !notAddedS02) {
+      text = "não se esqueç-";
+    } else if (canEnd && !notAddedWaterCup && notAddedS02) {
+      text =
+        "filha. não esqueça os seus {[CENSORED]} cruzes... as vezes parece que voce nem esta aqui...";
+    } else {
+      text = "não se esqueç-";
+    }
     defineWriter("div_interact_right");
-    
+
     setTimeout(() => {
       target.classList.add("show");
     }, 200);

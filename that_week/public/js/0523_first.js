@@ -808,17 +808,17 @@ function start_check() {
   if (sessionStorage.SLOT04 != "0") {
     switch (sessionStorage.SLOT04) {
         case "4":
-        slot_02.innerHTML = water_cup_sprite;
+        slot_04.innerHTML = water_cup_sprite;
         inventory_checker[3] = water_cup_sprite;
         notAddedWaterCup = false; 
         break;
       case "5":
-        slot_02.innerHTML = capsules_sprite;
+        slot_04.innerHTML = capsules_sprite;
         inventory_checker[3] = capsules_sprite;
         notAddedCapsules = false;
         break;
       case "6":
-        slot_02.innerHTML = medicine_sprite;
+        slot_04.innerHTML = medicine_sprite;
         inventory_checker[3] = medicine_sprite;
         notAddedMedicine = false;
         break;

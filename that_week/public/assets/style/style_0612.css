@@ -672,3 +672,8 @@ label input{
 
 
 
+#div_container_0612{
+  display:flex; 
+  justify-content: space-around; 
+  width: 100%;
+}

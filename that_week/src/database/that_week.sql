@@ -21,3 +21,13 @@ create table saveStates(
 		foreign key (fkUser)
         references users(idUser)
 );
+drop table userScore;
+create table userScore(
+idScore int not null unique,
+scorePoints int not null,
+constraint FK_USER_SCORE
+	foreign key (idScore)
+    references users(idUser),
+constraint PK_USER_SCORE
+	primary key (idScore)
+)
