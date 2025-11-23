@@ -73,7 +73,7 @@ function cadastrar(req, res) {
 
 function registerScore(req, res) {
   // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
-  var idUser = req.body.idUser;
+  var idUser = req.body.ID_USER;
 
     usuarioModel
       .registerScore(idUser)

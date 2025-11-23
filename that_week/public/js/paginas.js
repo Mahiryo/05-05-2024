@@ -612,5 +612,9 @@ function redirect_timer(){
     window.location.href = './1414.html';
     
   }
+  else if(timer_value == '18:18'){
+    window.location.href = './1818.html';
+    
+  }
 
 }
