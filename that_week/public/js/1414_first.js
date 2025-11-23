@@ -6,8 +6,75 @@ var inv_04 = 0;
 var text = "";
 var speed = 100;
 var i = 0;
-
+let counter_dmg = 0;
 var save_container = document.getElementById("div_save_containers");
+
+const bird_frame_01 = `<img src="./assets/img/origami_bird/ezgif-frame-001.png" id="frame_01" style="filter: saturate(10000%) hue-rotate(320deg);" onclick="damage_anomaly('frame_01')">`;
+const bird_frame_02 = `<img src="./assets/img/origami_bird/ezgif-frame-002.png" id="frame_02" style="filter: saturate(10000%) hue-rotate(320deg);" onclick="damage_anomaly('frame_02')">`;
+const bird_frame_03 = `<img src="./assets/img/origami_bird/ezgif-frame-003.png" id="frame_03" style="filter: saturate(10000%) hue-rotate(320deg);" onclick="damage_anomaly('frame_03')">`;
+const bird_frame_04 = `<img src="./assets/img/origami_bird/ezgif-frame-004.png" id="frame_04" style="filter: saturate(10000%) hue-rotate(320deg);" onclick="damage_anomaly('frame_04')">`;
+const bird_frame_05 = `<img src="./assets/img/origami_bird/ezgif-frame-005.png" id="frame_05" style="filter: saturate(10000%) hue-rotate(320deg);" onclick="damage_anomaly('frame_05')">`;
+const bird_frame_06 = `<img src="./assets/img/origami_bird/ezgif-frame-006.png" id="frame_06" style="filter: saturate(10000%) hue-rotate(320deg);" onclick="damage_anomaly('frame_06')">`;
+const bird_frame_07 = `<img src="./assets/img/origami_bird/ezgif-frame-007.png" id="frame_07" style="filter: saturate(10000%) hue-rotate(320deg);" onclick="damage_anomaly('frame_07')">`;
+const bird_frame_08 = `<img src="./assets/img/origami_bird/ezgif-frame-008.png" id="frame_08" style="filter: saturate(10000%) hue-rotate(320deg);" onclick="damage_anomaly('frame_08')">`;
+const bird_frame_09 = `<img src="./assets/img/origami_bird/ezgif-frame-009.png" id="frame_09" style="filter: saturate(10000%) hue-rotate(320deg);" onclick="damage_anomaly('frame_09')">`;
+
+let bird_list_anomaly = [
+  bird_frame_01,
+  bird_frame_02,
+  bird_frame_03,
+  bird_frame_04,
+  bird_frame_05,
+  bird_frame_06,
+  bird_frame_07,
+  bird_frame_08,
+  bird_frame_09,
+];
+
+const tutorial_frame_00 = `<img src="./assets/img/tutorial_frames/frame_00_delay-0.07s.png" id="tutorial_frame_00">`;
+const tutorial_frame_01 = `<img src="./assets/img/tutorial_frames/frame_01_delay-0.07s.png" id="tutorial_frame_01">`;
+const tutorial_frame_02 = `<img src="./assets/img/tutorial_frames/frame_02_delay-0.07s.png" id="tutorial_frame_02">`;
+const tutorial_frame_03 = `<img src="./assets/img/tutorial_frames/frame_03_delay-0.07s.png" id="tutorial_frame_03">`;
+const tutorial_frame_04 = `<img src="./assets/img/tutorial_frames/frame_04_delay-0.07s.png" id="tutorial_frame_04">`;
+const tutorial_frame_05 = `<img src="./assets/img/tutorial_frames/frame_05_delay-0.07s.png" id="tutorial_frame_05">`;
+const tutorial_frame_06 = `<img src="./assets/img/tutorial_frames/frame_06_delay-0.07s.png" id="tutorial_frame_06">`;
+const tutorial_frame_07 = `<img src="./assets/img/tutorial_frames/frame_07_delay-0.07s.png" id="tutorial_frame_07">`;
+const tutorial_frame_08 = `<img src="./assets/img/tutorial_frames/frame_08_delay-0.07s.png" id="tutorial_frame_08">`;
+const tutorial_frame_09 = `<img src="./assets/img/tutorial_frames/frame_09_delay-0.07s.png" id="tutorial_frame_09">`;
+const tutorial_frame_10 = `<img src="./assets/img/tutorial_frames/frame_10_delay-0.07s.png" id="tutorial_frame_10">`;
+const tutorial_frame_11 = `<img src="./assets/img/tutorial_frames/frame_11_delay-0.07s.png" id="tutorial_frame_11">`;
+const tutorial_frame_12 = `<img src="./assets/img/tutorial_frames/frame_12_delay-0.07s.png" id="tutorial_frame_12">`;
+const tutorial_frame_13 = `<img src="./assets/img/tutorial_frames/frame_13_delay-0.07s.png" id="tutorial_frame_13">`;
+const tutorial_frame_14 = `<img src="./assets/img/tutorial_frames/frame_14_delay-0.07s.png" id="tutorial_frame_14">`;
+const tutorial_frame_15 = `<img src="./assets/img/tutorial_frames/frame_15_delay-0.07s.png" id="tutorial_frame_15">`;
+const tutorial_frame_16 = `<img src="./assets/img/tutorial_frames/frame_16_delay-0.07s.png" id="tutorial_frame_16">`;
+const tutorial_frame_17 = `<img src="./assets/img/tutorial_frames/frame_17_delay-0.07s.png" id="tutorial_frame_17">`;
+const tutorial_frame_18 = `<img src="./assets/img/tutorial_frames/frame_18_delay-0.07s.png" id="tutorial_frame_18">`;
+const tutorial_frame_19 = `<img src="./assets/img/tutorial_frames/frame_19_delay-0.07s.png" id="tutorial_frame_19">`;
+
+let list_tutorial_frames = [
+  tutorial_frame_00,
+  tutorial_frame_01,
+  tutorial_frame_02,
+  tutorial_frame_03,
+  tutorial_frame_04,
+  tutorial_frame_05,
+  tutorial_frame_06,
+  tutorial_frame_07,
+  tutorial_frame_08,
+  tutorial_frame_09,
+  tutorial_frame_10,
+  tutorial_frame_11,
+  tutorial_frame_12,
+  tutorial_frame_13,
+  tutorial_frame_14,
+  tutorial_frame_15,
+  tutorial_frame_16,
+  tutorial_frame_17,
+  tutorial_frame_18,
+  tutorial_frame_19,
+];
+let list_tutorial_position = 0;
 
 var end_choice = document.getElementById("button_completion_end");
 
@@ -22,12 +89,9 @@ var inventory_checker = ["0", "0", "0", "0"];
 var a = 0;
 
 var door_sfx = new Audio("assets/audio/door.mp3");
+var ringtone_sfx = new Audio("assets/audio/ringtone.mp3");
 var knock_sfx = new Audio("assets/audio/knock.mp3");
 var amb_sfx = new Audio("assets/audio/amb.mp3");
-
-
-start_check()
-
 
 var notAddedS01 = true;
 var notAddedS02 = true;
@@ -61,7 +125,7 @@ var div_save_container_content = String(
           `
 );
 
-var writter_target = "";
+var writter_target;
 function defineWriter(element) {
   writter_target = document.getElementById(element);
   writter_target.textContent = "";
@@ -78,15 +142,16 @@ function typeWriter() {
 
 let holdStart = 0;
 
-const tranquilizer = document.getElementById('button_calma');
+const tranquilizer = document.getElementById("button_calma");
 
 let held = 0;
 
 function startHold() {
   holdStart = Date.now();
   held = 0;
-  good_game_design()
+  good_game_design();
 }
+
 var resp_sfx = new Audio("assets/audio/respirar.mp3");
 
 function endHold() {
@@ -95,31 +160,30 @@ function endHold() {
     value -= 20;
     i = 0;
     text = " phew ";
-    
+
     defineWriter("minha_resposta");
   }
   held = "abacate";
 }
 
-function good_game_design(){
-  if(held >= 0){
+function good_game_design() {
+  if (held >= 0) {
     held = Date.now() - holdStart;
     console.log(held);
   }
 
-  if(held >= 500 && held <= 1500){
-    tranquilizer.style.filter = 'invert()';
+  if (held >= 500 && held <= 1500) {
+    tranquilizer.style.filter = "invert()";
   } else {
-    tranquilizer.style.filter = 'none';
+    tranquilizer.style.filter = "none";
   }
 
-  if(held >= 0){
+  if (held >= 0) {
     setTimeout(good_game_design, 100);
   }
 }
 
-
-  // referencia \\
+// referencia \\
 // var digit_0 = [1, 1, 1, 0, 1, 1, 1];
 // var digit_1 = [0, 0, 1, 0, 0, 1, 0];
 // var digit_2 = [1, 0, 1, 1, 1, 0, 1];
@@ -244,10 +308,7 @@ var counter_h2 = 0;
 var counter_m1 = 0;
 var counter_m2 = 0;
 
-
-
 function AumentarPrimeiroDigito() {
-
   switch (counter_h1) {
     case 0:
       {
@@ -302,7 +363,6 @@ function AumentarPrimeiroDigito() {
   }
 }
 function DiminuirPrimeiroDigito() {
-
   switch (counter_h1) {
     case 0:
       {
@@ -357,11 +417,7 @@ function DiminuirPrimeiroDigito() {
   }
 }
 
-
-
-
 function AumentarTerceiroDigito() {
-
   switch (counter_m1) {
     case 0:
       {
@@ -416,7 +472,6 @@ function AumentarTerceiroDigito() {
   }
 }
 function DiminuirTerceiroDigito() {
-
   switch (counter_m1) {
     case 0:
       {
@@ -471,11 +526,7 @@ function DiminuirTerceiroDigito() {
   }
 }
 
-
-
-
 function AumentarSegundoDigito() {
-
   switch (counter_h2) {
     case 0:
       {
@@ -530,7 +581,6 @@ function AumentarSegundoDigito() {
   }
 }
 function DiminuirSegundoDigito() {
-
   switch (counter_h2) {
     case 0:
       {
@@ -585,11 +635,7 @@ function DiminuirSegundoDigito() {
   }
 }
 
-
-
-
 function AumentarQuartoDigito() {
-
   switch (counter_m2) {
     case 0:
       {
@@ -698,97 +744,80 @@ function DiminuirQuartoDigito() {
   }
 }
 
-
-let minutes = String('00');
-let seconds = String('33');
+let minutes = String("00");
+let seconds = String("45");
 let total_time = Number();
-start_clock()
+start_clock();
 
-function start_clock(){
+function start_clock() {
   counter_h1 = Number(minutes[0]);
   counter_h2 = Number(minutes[1]);
 
   counter_m1 = Number(seconds[0]);
   counter_m2 = Number(seconds[1]);
 
-  AumentarPrimeiroDigito()
-  AumentarSegundoDigito()
-  AumentarTerceiroDigito()
-  AumentarQuartoDigito()
+  AumentarPrimeiroDigito();
+  AumentarSegundoDigito();
+  AumentarTerceiroDigito();
+  AumentarQuartoDigito();
 
   // console.log(counter_h1)
   // console.log(counter_h2)
   // console.log(counter_m1)
   // console.log(counter_m2)
 
-  total_time = Number( (Number(minutes) * 60) + Number(seconds));
-  clock_til_win()
+  total_time = Number(Number(minutes) * 60 + Number(seconds));
+  clock_til_win();
 }
-
-function clock_til_win(){
-
+start_check()
+function clock_til_win() {
   // console.log(total_time);
 
-  
-  
-  AumentarTerceiroDigito()
-  AumentarQuartoDigito()
-  AumentarSegundoDigito()
-  AumentarPrimeiroDigito()
-  DiminuirPrimeiroDigito()
-  DiminuirSegundoDigito()
-  DiminuirQuartoDigito()
-  DiminuirTerceiroDigito()
-  if(counter_m2 == 0){
-      counter_m2 = 9
-      
-      if(counter_m1 == 0){
-        counter_m1 = 5
-        counter_m2 = 9
+  AumentarTerceiroDigito();
+  AumentarQuartoDigito();
+  AumentarSegundoDigito();
+  AumentarPrimeiroDigito();
+  DiminuirPrimeiroDigito();
+  DiminuirSegundoDigito();
+  DiminuirQuartoDigito();
+  DiminuirTerceiroDigito();
+  if (counter_m2 == 0) {
+    counter_m2 = 9;
 
-        if(counter_h2 == 0){
-          counter_h2 = 9
+    if (counter_m1 == 0) {
+      counter_m1 = 5;
+      counter_m2 = 9;
 
-          if(counter_h1 == 0){
-            counter_h1 = 5
-            counter_h2 = 9
+      if (counter_h2 == 0) {
+        counter_h2 = 9;
 
-          } 
-          else {
-            counter_h1--
-
-          }
+        if (counter_h1 == 0) {
+          counter_h1 = 5;
+          counter_h2 = 9;
         } else {
-          counter_h2--
-
+          counter_h1--;
         }
       } else {
-        counter_m1--
-
+        counter_h2--;
       }
     } else {
-      counter_m2--
-
+      counter_m1--;
     }
+  } else {
+    counter_m2--;
+  }
   // console.log(counter_h1)
   // console.log(counter_h2)
   // console.log(counter_m1)
   // console.log(counter_m2)
 
-
-
-
-  if(total_time > 0){
+  if (total_time > 0) {
     total_time -= 1;
-    setTimeout(clock_til_win, 1000)
+    setTimeout(clock_til_win, 1000);
   } else {
-    completion()
+    completion();
   }
 }
-
-
-
-
 
 function completion() {
   const end_choice = document.getElementById("button_completion_end");
@@ -800,54 +829,23 @@ function completion() {
     end_choice.style.border = "1px gray solid";
     canEnd = true;
     // showEnd()
-
   }
 }
 function showEnd() {
-
   if (canEnd == true) {
-    alert(`Eu acordo... estou confusa. Quando que dormi? olho ao meu redor são: 1253`);
+    alert(
+      `Eu acordo... estou confusa. Quando que dormi? olho ao meu redor são: 1253`
+    );
     // notAddedWaterCup = true;
-    end_back.innerHTML = "<p>1253</p>";
+    end_back.innerHTML = "<p>1818</p>";
     end_back.style.display = "flex";
-    end_back.style.fontFamily = 'pixel_like'; 
-    end_back.style.color = 'yellow';
-    end_back.style.filter = 'opacity(1)';
+    end_back.style.fontFamily = "pixel_like";
+    end_back.style.color = "yellow";
+    end_back.style.filter = "opacity(1)";
   } else {
     alert(".................");
   }
 }
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 function saveState() {
   var page = "1818";
@@ -1162,13 +1160,18 @@ function start_check() {
     inventory_checker[3] = "0";
   }
 }
-start_check()
+
 setTimeout(calling, 5000);
-let save_onclick_elemento_inst = document.getElementById("img_contact_inst").onclick;
-let save_onclick_elemento_cell = document.getElementById("img_contact_cell").onclick;
-let save_onclick_elemento_zapp = document.getElementById("img_contact_zapp").onclick;
-let save_onclick_elemento_face = document.getElementById("img_contact_face").onclick;
-let save_onclick_elemento_disc = document.getElementById("img_contact_disc").onclick;
+let save_onclick_elemento_inst =
+  document.getElementById("img_contact_inst").onclick;
+let save_onclick_elemento_cell =
+  document.getElementById("img_contact_cell").onclick;
+let save_onclick_elemento_zapp =
+  document.getElementById("img_contact_zapp").onclick;
+let save_onclick_elemento_face =
+  document.getElementById("img_contact_face").onclick;
+let save_onclick_elemento_disc =
+  document.getElementById("img_contact_disc").onclick;
 
 let elemento;
 function calling() {
@@ -1224,5 +1227,140 @@ function calling() {
       break;
   }
 
+  elemento.classList.remove("desativado");
+  elemento.classList.add("vibrate");
+  start_call();
+  // setTimeout(calling, 7500);
 }
-start_check();
+
+function atender(elemento) {
+  let contact = document.getElementById(elemento);
+  count_time = "batata";
+  contact.classList.add("desativado");
+  contact.classList.remove("vibrate");
+  document.getElementById(elemento).onclick = null;
+  ringtone_sfx.loop = false;
+  setTimeout(calling, 7500);
+}
+
+let call_timer;
+let count_time;
+// let call_timer
+
+function start_call() {
+  call_timer = Date.now();
+  count_time = 0;
+  ringtone_sfx.play();
+  ringtone_sfx.loop = true;
+  call_design();
+}
+
+function call_design() {
+  if (count_time >= 0) {
+    count_time = Date.now() - call_timer;
+    value += 0.5;
+    setTimeout(call_design, 100);
+  }
+}
+
+function galery_next(target) {
+  if (list_tutorial_position < list_tutorial_frames.length - 1) {
+    list_tutorial_position += 1;
+  } else {
+    list_tutorial_position = 0;
+  }
+  galery(target);
+}
+function galery_back(target) {
+  if (list_tutorial_position < list_tutorial_frames.length - 1) {
+    list_tutorial_position -= 1;
+  } else {
+    list_tutorial_position = 19;
+  }
+  galery(target);
+}
+
+function galery(target) {
+  const piece = document.getElementById(target);
+  piece.innerHTML = list_tutorial_frames[list_tutorial_position];
+}
+function restore_galery() {
+  list_tutorial_frames = [
+    tutorial_frame_00,
+    tutorial_frame_01,
+    tutorial_frame_02,
+    tutorial_frame_03,
+    tutorial_frame_04,
+    tutorial_frame_05,
+    tutorial_frame_06,
+    tutorial_frame_07,
+    tutorial_frame_08,
+    tutorial_frame_09,
+    tutorial_frame_10,
+    tutorial_frame_11,
+    tutorial_frame_12,
+    tutorial_frame_13,
+    tutorial_frame_14,
+    tutorial_frame_15,
+    tutorial_frame_16,
+    tutorial_frame_17,
+    tutorial_frame_18,
+    tutorial_frame_19
+  ];
+  galery("div_it_shows");
+  console.log(list_tutorial_position);
+}
+
+setTimeout(spawn_anomaly, 1500);
+
+function spawn_anomaly() {
+  const target = Math.floor(Math.random() * 10);
+  list_tutorial_frames[target] = (bird_list_anomaly[target]);
+  // console.log(counter_dmg);
+  // console.log(value);
+  i = 0;
+  text = " Algo esta muito errado";
+  defineWriter("minha_resposta");
+  anomaly_hell()
+  setTimeout(spawn_anomaly, 50000);
+}
+let panic = false;
+function anomaly_hell(){
+  panic = false;
+  for (let l = 0; l < list_tutorial_frames.length; l++) {
+    if(list_tutorial_frames.includes(bird_list_anomaly[l])){
+      if (list_tutorial_frames[l] == bird_list_anomaly[l]){
+        counter_dmg += 1;
+        panic = true
+      }
+    }
+  }
+  if(panic){
+    value -= counter_dmg;
+    setTimeout(anomaly_hell, 1000);
+  }
+
+}
+
+
+let enemy = "";
+let enemy_hp = 5;
+
+function damage_anomaly(target) {
+  if (enemy == target) {
+    enemy_hp -= 1;
+    if (enemy_hp <= 0) {
+      restore_galery();
+      
+    }
+  } else {
+    enemy = target;
+    enemy_hp = 5;
+  }
+}
+
+// img_contact_inst
+// img_contact_cell
+// img_contact_zapp
+// img_contact_face
+// img_contact_disc

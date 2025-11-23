@@ -354,6 +354,77 @@ justify-content: center;
   filter: invert(100);
 }
 
+
+#my_galery{
+  align-self: center;
+  justify-self: center;
+  height: 40vh;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: black;
+}
+
+button.arrow-right {
+  transform: rotate(270deg);
+  filter: invert();
+  background: none;
+  height: 10%;
+  width: 100%;
+  border: none;
+}
+
+button.arrow-right img{
+  /* transform: rotate(90deg); */
+  height: 100%;
+  width: 100%;
+  /* filter: invert(); */
+  border: none;
+}
+
+
+button.arrow-right img:hover{
+  /* transform: rotate(90deg); */
+  height: 100%;
+  width: 100%;
+  filter: invert();
+  border: none;
+}
+
+
+button.arrow-left{
+  transform: rotate(90deg);
+  background: none;
+  height: 10%;
+  width: 100%;
+  filter: invert();
+  border: none;
+}
+
+
+button.arrow-left img{
+  /* transform: rotate(90deg); */
+  height: 100%;
+  width: 100%;
+  /* filter: invert(); */
+  border: none;
+}
+
+
+button.arrow-left img:hover{
+  /* transform: rotate(90deg); */
+  height: 100%;
+  width: 100%;
+  filter: invert();
+  border: none;
+}
+
+
+
+
+
+
 .controls button.arrow-up {
   transform: rotate(180deg);
 }
@@ -663,7 +734,7 @@ audio {
   width: fit-content;
   padding-left: 6px;
   padding-right: 6px;
-  display: none;
+  display: flex;
   justify-content: center;
   height: fit-content;
 }

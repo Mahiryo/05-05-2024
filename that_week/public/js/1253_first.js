@@ -22,6 +22,7 @@ var inventory_checker = ["0", "0", "0", "0"];
 var a = 0;
 
 var door_sfx = new Audio("assets/audio/door.mp3");
+var ringtone_sfx = new Audio("assets/audio/ringtone.mp3");
 var knock_sfx = new Audio("assets/audio/knock.mp3");
 var amb_sfx = new Audio("assets/audio/amb.mp3");
 
@@ -84,11 +85,15 @@ function startHold() {
   good_game_design();
 }
 
+var resp_sfx = new Audio("assets/audio/respirar.mp3");
+
 function endHold() {
   if (held >= 500 && held <= 1500) {
+    resp_sfx.play();
     value -= 20;
     i = 0;
-    text = " -20 ";
+    text = " phew ";
+    
     defineWriter("minha_resposta");
   }
   held = "abacate";
@@ -672,7 +677,7 @@ function DiminuirQuartoDigito() {
   }
 }
 
-let minutes = String("02");
+let minutes = String("00");
 let seconds = String("45");
 let total_time = Number();
 start_clock();
@@ -765,7 +770,7 @@ function showEnd() {
       `Eu acordo... estou confusa. Quando que dormi? olho ao meu redor são: 1253`
     );
     // notAddedWaterCup = true;
-    end_back.innerHTML = "<p>1253</p>";
+    end_back.innerHTML = "<p>1414</p>";
     end_back.style.display = "flex";
     end_back.style.fontFamily = "pixel_like";
     end_back.style.color = "yellow";
@@ -774,127 +779,22 @@ function showEnd() {
     alert(".................");
   }
 }
-
-function updateInventory(elemento) {
-  if (elemento == "div_collect_iten_water_cup") {
-    for (i = 1; i <= inventory_checker.length; i++) {
-      if (inventory_checker[i - 1] == "0" && notAddedWaterCup == true) {
-        notAddedWaterCup = false;
-        inventory_checker[i - 1] = water_cup_sprite;
-        document.getElementById(`div_iten_container_0${i}`).innerHTML =
-          water_cup_sprite;
-        switch (i) {
-          case 1:
-            sessionStorage.SLOT01 = 4;
-            break;
-          case 2:
-            sessionStorage.SLOT02 = 4;
-            break;
-
-          case 3:
-            sessionStorage.SLOT03 = 4;
-            break;
-
-          case 4:
-            sessionStorage.SLOT04 = 4;
-            break;
-        }
-      }
-    }
-  } else if (elemento == "div_collect_iten_bag") {
-    for (i = 1; i <= inventory_checker.length; i++) {
-      if (inventory_checker[i - 1] == "0" && notAddedbag == true) {
-        notAddedbag = false;
-        inventory_checker[i - 1] = bag_sprite;
-        document.getElementById(`div_iten_container_0${i}`).innerHTML =
-          bag_sprite;
-        switch (i) {
-          case 1:
-            sessionStorage.SLOT01 = 7;
-            break;
-          case 2:
-            sessionStorage.SLOT02 = 7;
-            break;
-
-          case 3:
-            sessionStorage.SLOT03 = 7;
-            break;
-
-          case 4:
-            sessionStorage.SLOT04 = 7;
-            break;
-        }
-      }
-    }
-  } else if (elemento == "div_collect_iten_notebook") {
-    for (i = 1; i <= inventory_checker.length; i++) {
-      if (inventory_checker[i - 1] == "0" && notAddednotebook == true) {
-        notAddednotebook = false;
-        inventory_checker[i - 1] = notebook_sprite;
-        document.getElementById(`div_iten_container_0${i}`).innerHTML =
-          notebook_sprite;
-        switch (i) {
-          case 1:
-            sessionStorage.SLOT01 = 8;
-            break;
-          case 2:
-            sessionStorage.SLOT02 = 8;
-            break;
-
-          case 3:
-            sessionStorage.SLOT03 = 8;
-            break;
-
-          case 4:
-            sessionStorage.SLOT04 = 8;
-            break;
-        }
-      }
-    }
-  }
-}
-
 function saveState() {
-  var page = "0612";
+  var page = "1818";
 
-  if (slot_01.innerHTML == water_cup_sprite) {
-    inv_01 = 4;
+  if (slot_01.innerHTML == s02) {
+    inv_01 = 66;
   }
-  if (slot_02.innerHTML == water_cup_sprite) {
-    inv_02 = 4;
+  if (slot_02.innerHTML == s02) {
+    inv_02 = 66;
   }
-  if (slot_03.innerHTML == water_cup_sprite) {
-    inv_03 = 4;
+  if (slot_03.innerHTML == s02) {
+    inv_03 = 66;
   }
-  if (slot_04.innerHTML == water_cup_sprite) {
-    inv_04 = 4;
-  }
-
-  if (slot_01.innerHTML == bag_sprite) {
-    inv_01 = 7;
-  }
-  if (slot_02.innerHTML == bag_sprite) {
-    inv_02 = 7;
-  }
-  if (slot_03.innerHTML == bag_sprite) {
-    inv_03 = 7;
-  }
-  if (slot_04.innerHTML == bag_sprite) {
-    inv_04 = 7;
+  if (slot_04.innerHTML == s02) {
+    inv_04 = 66;
   }
 
-  if (slot_01.innerHTML == notebook_sprite) {
-    inv_01 = 3;
-  }
-  if (slot_02.innerHTML == notebook_sprite) {
-    inv_02 = 3;
-  }
-  if (slot_03.innerHTML == notebook_sprite) {
-    inv_03 = 3;
-  }
-  if (slot_04.innerHTML == notebook_sprite) {
-    inv_04 = 3;
-  }
 
   if (slot_01.innerHTML == s01) {
     inv_01 = 99;
@@ -1002,42 +902,26 @@ function loadState() {
 
             const saveiten = resultadoLoad[i + rest];
 
-            if (saveiten.slot_01 == 4) {
-              sprite_load_01 = load_inventory_sprite_cup_water;
-            } else if (saveiten.slot_01 == 7) {
-              sprite_load_01 = load_inventory_sprite_bag;
-            } else if (saveiten.slot_01 == 8) {
-              sprite_load_01 = load_inventory_sprite_notebook;
+            if (saveiten.slot_01 == 66) {
+              sprite_load_01 = load_inventory_sprite_s02;
             } else if (saveiten.slot_01 == 99) {
               sprite_load_01 = load_inventory_sprite_s01;
             }
 
-            if (saveiten.slot_02 == 4) {
-              sprite_load_02 = load_inventory_sprite_cup_water;
-            } else if (saveiten.slot_02 == 7) {
-              sprite_load_02 = load_inventory_sprite_bag;
-            } else if (saveiten.slot_02 == 8) {
-              sprite_load_02 = load_inventory_sprite_notebook;
+            if (saveiten.slot_02 == 66) {
+              sprite_load_02 = load_inventory_sprite_s02;
             } else if (saveiten.slot_02 == 99) {
               sprite_load_02 = load_inventory_sprite_s01;
             }
 
-            if (saveiten.slot_03 == 4) {
-              sprite_load_03 = load_inventory_sprite_cup_water;
-            } else if (saveiten.slot_03 == 7) {
-              sprite_load_03 = load_inventory_sprite_bag;
-            } else if (saveiten.slot_03 == 8) {
-              sprite_load_03 = load_inventory_sprite_notebook;
+            if (saveiten.slot_03 == 66) {
+              sprite_load_03 = load_inventory_sprite_s02;
             } else if (saveiten.slot_03 == 99) {
               sprite_load_03 = load_inventory_sprite_s01;
             }
 
-            if (saveiten.slot_04 == 4) {
-              sprite_load_04 = load_inventory_sprite_cup_water;
-            } else if (saveiten.slot_04 == 7) {
-              sprite_load_04 = load_inventory_sprite_bag;
-            } else if (saveiten.slot_04 == 8) {
-              sprite_load_04 = load_inventory_sprite_notebook;
+            if (saveiten.slot_04 == 66) {
+              sprite_load_04 = load_inventory_sprite_s02;
             } else if (saveiten.slot_04 == 99) {
               sprite_load_04 = load_inventory_sprite_s01;
             }
@@ -1085,14 +969,8 @@ function loadState() {
 function restoreSave(a, b, c, d, e) {
   if (a != 0) {
     switch (a) {
-      case 4:
-        sessionStorage.SLOT01 = 4;
-        break;
-      case 7:
-        sessionStorage.SLOT01 = 7;
-        break;
-      case 8:
-        sessionStorage.SLOT01 = 8;
+      case 66:
+        sessionStorage.SLOT01 = 66;
         break;
       case 99:
         sessionStorage.SLOT01 = 99;
@@ -1104,14 +982,8 @@ function restoreSave(a, b, c, d, e) {
 
   if (b != 0) {
     switch (b) {
-      case 4:
-        sessionStorage.SLOT02 = 4;
-        break;
-      case 7:
-        sessionStorage.SLOT02 = 7;
-        break;
-      case 8:
-        sessionStorage.SLOT02 = 8;
+      case 66:
+        sessionStorage.SLOT02 = 66;
         break;
       case 99:
         sessionStorage.SLOT02 = 99;
@@ -1123,14 +995,8 @@ function restoreSave(a, b, c, d, e) {
 
   if (c != 0) {
     switch (c) {
-      case 4:
-        sessionStorage.SLOT03 = 4;
-        break;
-      case 7:
-        sessionStorage.SLOT03 = 7;
-        break;
-      case 8:
-        sessionStorage.SLOT03 = 8;
+      case 66:
+        sessionStorage.SLOT03 = 66;
         break;
       case 99:
         sessionStorage.SLOT03 = 99;
@@ -1142,14 +1008,8 @@ function restoreSave(a, b, c, d, e) {
 
   if (d != 0) {
     switch (d) {
-      case 4:
-        sessionStorage.SLOT04 = 4;
-        break;
-      case 7:
-        sessionStorage.SLOT04 = 7;
-        break;
-      case 8:
-        sessionStorage.SLOT04 = 8;
+      case 66:
+        sessionStorage.SLOT04 = 66;
         break;
       case 99:
         sessionStorage.SLOT04 = 99;
@@ -1165,20 +1025,10 @@ function restoreSave(a, b, c, d, e) {
 function start_check() {
   if (sessionStorage.SLOT01 != "0") {
     switch (sessionStorage.SLOT01) {
-      case "4":
-        slot_01.innerHTML = water_cup_sprite;
-        inventory_checker[0] = water_cup_sprite;
-        notAddedWaterCup = false;
-        break;
-      case "7":
-        slot_01.innerHTML = bag_sprite;
-        inventory_checker[0] = bag_sprite;
-        notAddedbag = false;
-        break;
-      case "8":
-        slot_01.innerHTML = notebook_sprite;
-        inventory_checker[0] = notebook_sprite;
-        notAddednotebook = false;
+      case "66":
+        slot_01.innerHTML = s02;
+        inventory_checker[0] = s02;
+        notAddedS02 = false;
         break;
       case "99":
         slot_01.innerHTML = s01;
@@ -1192,20 +1042,10 @@ function start_check() {
   }
   if (sessionStorage.SLOT02 != "0") {
     switch (sessionStorage.SLOT02) {
-      case "4":
-        slot_02.innerHTML = water_cup_sprite;
-        inventory_checker[1] = water_cup_sprite;
-        notAddedWaterCup = false;
-        break;
-      case "7":
-        slot_02.innerHTML = bag_sprite;
-        inventory_checker[1] = bag_sprite;
-        notAddedbag = false;
-        break;
-      case "8":
-        slot_02.innerHTML = notebook_sprite;
-        inventory_checker[1] = notebook_sprite;
-        notAddednotebook = false;
+      case "66":
+        slot_02.innerHTML = s02;
+        inventory_checker[1] = s02;
+        notAddedS02 = false;
         break;
       case "99":
         slot_02.innerHTML = s01;
@@ -1219,20 +1059,10 @@ function start_check() {
   }
   if (sessionStorage.SLOT03 != "0") {
     switch (sessionStorage.SLOT03) {
-      case "4":
-        slot_03.innerHTML = water_cup_sprite;
-        inventory_checker[2] = water_cup_sprite;
-        notAddedWaterCup = false;
-        break;
-      case "7":
-        slot_03.innerHTML = bag_sprite;
-        inventory_checker[2] = bag_sprite;
-        notAddedbag = false;
-        break;
-      case "8":
-        slot_03.innerHTML = notebook_sprite;
-        inventory_checker[2] = notebook_sprite;
-        notAddednotebook = false;
+      case "66":
+        slot_03.innerHTML = s02;
+        inventory_checker[2] = s02;
+        notAddedS02 = false;
         break;
       case "99":
         slot_03.innerHTML = s01;
@@ -1246,20 +1076,10 @@ function start_check() {
   }
   if (sessionStorage.SLOT04 != "0") {
     switch (sessionStorage.SLOT04) {
-      case "4":
-        slot_04.innerHTML = water_cup_sprite;
-        inventory_checker[3] = water_cup_sprite;
-        notAddedWaterCup = false;
-        break;
-      case "7":
-        slot_04.innerHTML = bag_sprite;
-        inventory_checker[3] = bag_sprite;
-        notAddedbag = false;
-        break;
       case "8":
-        slot_04.innerHTML = notebook_sprite;
-        inventory_checker[3] = notebook_sprite;
-        notAddednotebook = false;
+        slot_04.innerHTML = s02;
+        inventory_checker[3] = s02;
+        notAddedS02 = false;
         break;
       case "99":
         slot_04.innerHTML = s01;
@@ -1272,24 +1092,18 @@ function start_check() {
     inventory_checker[3] = "0";
   }
 }
-
-start_check();
-
+start_check()
 setTimeout(calling, 5000);
+let save_onclick_elemento_inst = document.getElementById("img_contact_inst").onclick;
+let save_onclick_elemento_cell = document.getElementById("img_contact_cell").onclick;
+let save_onclick_elemento_zapp = document.getElementById("img_contact_zapp").onclick;
+let save_onclick_elemento_face = document.getElementById("img_contact_face").onclick;
+let save_onclick_elemento_disc = document.getElementById("img_contact_disc").onclick;
+
+let elemento;
 function calling() {
   let rng_call = Math.random() * 5 + 1;
   rng_call = Math.floor(rng_call);
-  let save_onclick_elemento_inst =
-    document.getElementById("img_contact_inst").onclick;
-  let save_onclick_elemento_cell =
-    document.getElementById("img_contact_cell").onclick;
-  let save_onclick_elemento_zapp =
-    document.getElementById("img_contact_zapp").onclick;
-  let save_onclick_elemento_face =
-    document.getElementById("img_contact_face").onclick;
-  let save_onclick_elemento_disc =
-    document.getElementById("img_contact_disc").onclick;
-  let elemento;
 
   document.getElementById("img_contact_inst").onclick = null;
   document.getElementById("img_contact_cell").onclick = null;
@@ -1343,16 +1157,17 @@ function calling() {
   elemento.classList.remove("desativado");
   elemento.classList.add("vibrate");
   start_call()
-setTimeout(calling, 7500);
+  // setTimeout(calling, 7500);
 }
 
 function atender(elemento){
   let contact = document.getElementById(elemento);
+  count_time = 'batata';
   contact.classList.add('desativado');
   contact.classList.remove('vibrate');
-  count_time = 'batata';
   document.getElementById(elemento).onclick = null;
-  setTimeout(calling, 5000);
+  ringtone_sfx.loop = false;
+  setTimeout(calling, 7500);
 }
 
 let call_timer 
@@ -1363,6 +1178,8 @@ let count_time
 function start_call() {
   call_timer = Date.now();
   count_time = 0;
+  ringtone_sfx.play()
+  ringtone_sfx.loop = true;
   call_design()
 }
 

@@ -13,4 +13,8 @@ router.post("/autenticar", function (req, res) {
     usuarioController.autenticar(req, res);
 });
 
+router.post("/registerScore", function (req, res) {
+    usuarioController.registerScore(req, res);
+});
+
 module.exports = router;

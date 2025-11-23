@@ -22,9 +22,12 @@ create table saveStates(
         references users(idUser)
 );
 drop table userScore;
+
+
 create table userScore(
 idScore int not null unique,
 scorePoints int not null,
+timeScore datetime default current_timestamp,
 constraint FK_USER_SCORE
 	foreign key (idScore)
     references users(idUser),

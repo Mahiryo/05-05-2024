@@ -604,5 +604,13 @@ function redirect_timer(){
     window.location.href = './0733.html';
     
   }
+  else if(timer_value == '12:53'){
+    window.location.href = './1253.html';
+    
+  }
+  else if(timer_value == '14:14'){
+    window.location.href = './1414.html';
+    
+  }
 
 }
