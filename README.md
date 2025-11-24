@@ -1,5 +1,6 @@
-# 05-05-2024
-Repositório para controle dos meus arquivos de projeto individual
+# Re:flexão
+# Re:ssignificação
+# In:teratividade
 
 <p  align="center">
     <img width="320" height="1100" alt="image" src="https://github.com/user-attachments/assets/5a28bf96-7aec-466b-9e72-3b644f882321" />
