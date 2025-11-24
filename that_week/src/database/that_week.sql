@@ -8,6 +8,7 @@ create table users(
     userPass varchar(33) not null
 );
 
+
 create table saveStates(
 	idState int primary key auto_increment,
     fkUser int not null,

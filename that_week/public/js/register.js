@@ -54,19 +54,7 @@ var pass = document.getElementById("input_user_pass");
     })
       .then(function (resposta) {
         console.log("resposta: ", resposta);
-
-        if (resposta.ok) {
-          cardErro.style.display = "block";
-
-          setTimeout(() => {
-            window.location = "login.html";
-          }, "2000");
-
-          limparFormulario();
-          finalizarAguardar();
-        } else {
-          throw "Houve um erro ao tentar realizar o cadastro!";
-        }
+        window.location = './login_thatWeek.html';
       })
       .catch(function (resposta) {
         console.log(`#ERRO: ${resposta}`);

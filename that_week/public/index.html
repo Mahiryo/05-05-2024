@@ -1,114 +1,422 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>05 / 05 / 2024</title>
+    <link rel="stylesheet" href="./assets/style/style_index.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title> 05 / 05 / 2024 </title>
-  <link rel="stylesheet" href="./assets/style/style.css">
-</head>
+  <body>
+    <div class="header">
+      <div class="container">
+        <div class="navbar">
+          <img class="icon" src="./assets/icon/mirror.png" alt="Espelho" />
+          <h1 class="titulo">05 / 05 / 2024</h1>
+        </div>
 
-<body>
+        <ul class="navbar">
+          <li class="agora"><a href="./index.html">Inicial</a></li>
 
-  <div class="header">
-    <div class="container">
-      <div class="navbar">
-        <img class="icon" src="./assets/icon/mirror.png" alt="Espelho">
-        <h1 class="titulo"> 05 / 05 / 2024 </h1>
+          <li>|</li>
+          <li>
+            <a class="login_cadastro" href="./register_thatWeek.html"
+              ><img
+                src="./assets/icon/icon_person.png"
+                alt="Vitalis Perfil"
+              />Register</a
+            >
+          </li>
+          <li>
+            <a class="login_cadastro" href="./login_thatWeek.html"
+              ><img
+                src="./assets/icon/icon_person.png"
+                alt="Vitalis Perfil"
+              />Login</a
+            >
+          </li>
+        </ul>
       </div>
-
-      <ul class="navbar">
-        <li class="agora"><a href="./Index.html">Inicial</a></li>
-        <li><a href="./paginas.html">Horarios</a></li>
-        <li>|</li>
-        <li><a class="login_cadastro" href="./register_thatWeek.html"><img src="./assets/icon/icon_person.png" alt="Vitalis Perfil">Register</a></li>
-        <li><a class="login_cadastro" href="./login_thatWeek.html"><img src="./assets/icon/icon_person.png" alt="Vitalis Perfil">Login</a></li>
-      </ul>
     </div>
-  </div>
 
+    <div class="banner">
+      <div class="container">
+        <div class="slide_container">
+          <div
+            id="div_slide_next"
+            class="slide"
+            onclick="next_slide()"
+            style="left: 52.5%"
+          ></div>
+          <div id="div_slide_content">
 
-  <div class="banner">
-    <div class="container">
+                        <div id="t_holder">
+              <div id="tittle">
+                <h1>Desafio Projeto Individual:</h1>
+              </div>
+              <br/>
+              <div id="sub_tittle">
+                <h2><span style="color: rgb(112, 112, 112)">Re</span>:flexão</h2>
+              </div>
+              <br />
+              <br />
+              <br />
+              <br />
+              <div id="sub_sub_tittle">
+                <h3>Desenvolvedor</h3>
+                <h4>Marcos Hiroshi</h4>
+                <br />
+              </div>
+            </div>
+            <div id="text_content">
+              <img src="./assets/img/GIF/hourglass.gif" style="width: 55%" />
+            </div>
+            <div id="extra_content">
+              <img
+                src="./assets/img/BarredDoor.webp"
+                style="filter: grayscale(); height: 20vh"
+              />
+            </div>
 
+          </div>
+          <div
+            id="div_slide_back"
+            class="slide"
+            onclick="back_slide()"
+            style="left: 0%"
+          ></div>
+        </div>
+      </div>
     </div>
-  </div>
 
-
-
-  <div class="footer">
-    <div class="hotbar">
-      <button id="button_open_iventory" onclick="
+    <div class="footer">
+      <div class="hotbar">
+        <button
+          id="button_open_iventory"
+          onclick="
             var content = document.getElementById('item_bar');
             content.style.display = (content.style.display === 'flex') ? 'none' : 'flex';
-          ">
-        Itens::Bar
-      </button>
-      <div id="item_bar" class="inventory">
-        <div class="iten-container">null</div>
-        <div class="iten-container">null</div>
-        <div class="iten-container">null</div>
-        <div class="iten-container">null</div>
-      </div>
+          "
+        >
+          Itens::Bar
+        </button>
+        <div id="item_bar" class="inventory">
+          <div class="iten-container">null</div>
+          <div class="iten-container">null</div>
+          <div class="iten-container">null</div>
+          <div class="iten-container">null</div>
+        </div>
 
-      <div id="minha_resposta">
-        <span class="cursor">|</span>
-      </div>
-    </div>
-
-    <div class="container">
-      <div class="left_container">
-        <h4>Está tudo bem</h4>
-        <div class="contacts_container">
-          <img src="./assets/icon/instagran.png" alt="Instagram" />
-          <img src="./assets/icon/whatzapp.png" alt="WhatsApp" />
-          <img src="./assets/icon/facebook.png" alt="Facebook" />
-          <img src="./assets/icon/discord.png" alt="Discord" />
+        <div id="minha_resposta">
+          <span class="cursor">|</span>
         </div>
       </div>
 
-      <div class="right_container">
-        <div class="left">
-          <h6>Explore</h6>
-          <button id="button_quarto_01" disabled="true" class="explore desativado " onclick="QuartoZeroUm()">
-            Quarto::01
-          </button>
-          <button id="button_quarto_02" disabled="true" class="explore desativado" onclick="QuartoZeroDois()">
-            Quarto::02
-          </button>
-          <button id="button_cozinha" disabled="true" class="explore desativado" onclick="Cozinha()">
-            Cozinha
-          </button>
-          <button id="button_sala" disabled="true" class="explore desativado" onclick="SalaMain()">
-            Sala
-          </button>
-        </div>
-
-        <div class="vertical_ruler">
-          <hr />
-        </div>
-
-        <div class="right">
-          <div class="above">
-            <h6>Endereço</h6>
-            <p>Sua Casa</p>
-          </div>
-
-          <div class="bellow">
-            <h6>Contato</h6>
-            <p>SeuNome@gmail.com</p>
+      <div class="container">
+        <div class="left_container">
+          <h4>Está tudo bem</h4>
+          <div class="contacts_container">
+            <img src="./assets/icon/instagran.png" alt="Instagram" />
+            <img src="./assets/icon/whatzapp.png" alt="WhatsApp" />
+            <img src="./assets/icon/facebook.png" alt="Facebook" />
+            <img src="./assets/icon/discord.png" alt="Discord" />
           </div>
         </div>
+
+        <div class="right_container">
+          <div class="left">
+            <h6>Explore</h6>
+            <button
+              id="button_quarto_01"
+              disabled="true"
+              class="explore desativado"
+              onclick="QuartoZeroUm()"
+            >
+              Quarto::01
+            </button>
+            <button
+              id="button_quarto_02"
+              disabled="true"
+              class="explore desativado"
+              onclick="QuartoZeroDois()"
+            >
+              Quarto::02
+            </button>
+            <button
+              id="button_cozinha"
+              disabled="true"
+              class="explore desativado"
+              onclick="Cozinha()"
+            >
+              Cozinha
+            </button>
+            <button
+              id="button_sala"
+              disabled="true"
+              class="explore desativado"
+              onclick="SalaMain()"
+            >
+              Sala
+            </button>
+          </div>
+
+          <div class="vertical_ruler">
+            <hr />
+          </div>
+
+          <div class="right">
+            <div class="above">
+              <h6>Endereço</h6>
+              <p>Sua Casa</p>
+            </div>
+
+            <div class="bellow">
+              <h6>Contato</h6>
+              <p>SeuNome@gmail.com</p>
+            </div>
+          </div>
+        </div>
       </div>
+
+      <div class="middle">
+        <hr />
+      </div>
+
+      <div class="page_end"></div>
     </div>
-
-    <div class="middle">
-      <hr />
-    </div>
-
-    <div class="page_end"></div>
-  </div>
-
-</body>
-
+  </body>
 </html>
+
+<script>
+  var slide_to_update = document.getElementById("div_slide_content");
+
+  var eye_mirror =
+    '<img src="./assets/img/GIF/14-57-34-438_512.webp" style="filter: grayscale(); width: 55%;">';
+  var hourglass_gif =
+    '<img src="./assets/img/GIF/hourglass.gif" style="width: 55%;">';
+
+  // document.getElementById('text_content').innerHTML = eye_mirror;
+  // setTimeout(alternate(), 3000);
+  alternate();
+  function alternate() {
+    if(slide_page == 0 || slide_page == 1 || slide_page == 2){
+    if (document.getElementById("text_content").innerHTML == eye_mirror) {
+      document.getElementById("text_content").innerHTML = hourglass_gif;
+      setTimeout(alternate, 3000);
+    } else {
+      document.getElementById("text_content").innerHTML = eye_mirror;
+      setTimeout(alternate, 3000);
+    }
+  }
+  // setTimeout(alternate, 3000);
+  }
+
+  var slide_000 = String(`
+            <div id="t_holder">
+              <div id="tittle">
+                <h1>Desafio Projeto Individual:</h1>
+              </div>
+              <br/>
+              <div id="sub_tittle">
+                <h2><span style="color: rgb(112, 112, 112)">Re</span>:flexão</h2>
+              </div>
+              <br />
+              <br />
+              <br />
+              <br />
+              <div id="sub_sub_tittle">
+                <h3>Desenvolvedor</h3>
+                <h4>Marcos Hiroshi</h4>
+                <br />
+              </div>
+            </div>
+            <div id="text_content">
+              <img src="./assets/img/GIF/hourglass.gif" style="width: 55%" />
+            </div>
+            <div id="extra_content">
+              <img
+                src="./assets/img/BarredDoor.webp"
+                style="filter: grayscale(); height: 20vh"
+              />
+            </div>`);
+  var slide_001 = String(`
+            <div id="t_holder">
+              <div id="tittle">
+                <h1>Desafio Projeto Individual:</h1>
+              </div>
+              <br />
+              <div id="sub_tittle">
+                <h2>
+                  <span style="color: rgb(112, 112, 112)">Re</span
+                  >:ssignificação
+                </h2>
+              </div>
+              <br />
+              <br />
+              <br />
+              <br />
+              <div id="sub_sub_tittle">
+                <h3>Desenvolvedor</h3>
+                <h4>Carvalho Yogi</h4>
+                <br />
+              </div>
+            </div>
+
+            <div id="text_content">
+              <img src="./assets/img/GIF/hourglass.gif" style="width: 55%" />
+            </div>
+            <div id="extra_content">
+              <img
+                src="./assets/img/GIF/video_dorr_trick.gif"
+                style="filter: grayscale(); height: 20vh"
+              />
+            </div>
+          </div>
+          <div
+            id="div_slide_back"
+            class="slide"
+            onclick="back_slide()"
+            style="left: 0%"
+          ></div>
+
+  `);
+  var slide_002 = String(`
+            <div id="t_holder">
+              <div id="tittle">
+                <h1>Desafio Projeto Individual:</h1>
+              </div>
+              <br />
+              <div id="sub_tittle">
+                <h2>
+                  <span style="color: rgb(114, 35, 35)">In</span
+                  >:teratividade
+                </h2>
+              </div>
+              <br />
+              <br />
+              <br />
+              <br />
+              <div id="sub_sub_tittle">
+                <h3>Desenvolvedor</h3>
+                <h4>Marcos Yogi</h4>
+                <br />
+              </div>
+            </div>
+
+            <div id="text_content">
+              <img src="./assets/img/GIF/hourglass.gif" style="width: 55%" />
+            </div>
+            <div id="extra_content">
+              <img
+                src="./assets/img/GIF/door_tricked.gif"
+                style="filter: grayscale(); height: 20vh"
+              />
+            </div>
+  
+  
+  `);
+  var slide_003 = String(`
+            <div id="t_holder">
+              <div id="tittle">
+                <h1>Meu Projeto Individual:</h1>
+              </div>
+              <br />
+              <div id="sub_tittle">
+                <h2><span style="color: rgb(112, 112, 112)">Re</span>:flexão</h2>
+                <h2><span style="color: rgb(112, 112, 112)">Re</span>:ssignificação</h2>
+                <h2><span style="color: rgb(114, 35, 35)">In</span>:teratividade</h2>
+              </div>
+              <br />
+              <br />
+              <br />
+              <br />
+              <div id="sub_sub_tittle">
+                <h3>Desenvolvedor</h3>
+                <h4>Marcos Hiroshi Yogi Carvalho</h4>
+                <br />
+              </div>
+            </div>
+            <div id="text_content">
+            <img src="./assets/img/Imagem1.png" style=" width: 20vw;"/>
+            </div> 
+`);
+  var slide_004 = String();
+  var slide_005 = String();
+  var slide_006 = String();
+  var slide_007 = String();
+  var slide_008 = String();
+  var slide_009 = String();
+  var slide_010 = String();
+  var slide_011 = String();
+  var slide_012 = String();
+  var slide_013 = String();
+  var slide_014 = String();
+  var slide_015 = String();
+  var slide_016 = String();
+  var slide_017 = String();
+  var slide_018 = String();
+  var slide_019 = String();
+  var slide_020 = String();
+  var slide_021 = String();
+  var slide_022 = String();
+  var slide_023 = String();
+  var slide_024 = String();
+  var slide_025 = String();
+  var slide_026 = String();
+  var slide_027 = String();
+  var slide_028 = String();
+  var slide_029 = String();
+
+  var slides = [
+    slide_000,
+    slide_001,
+    slide_002,
+    slide_003,
+    slide_004,
+    slide_005,
+    slide_006,
+    slide_007,
+    slide_008,
+    slide_009,
+    slide_010,
+    slide_011,
+    slide_012,
+    slide_013,
+    slide_014,
+    slide_015,
+    slide_016,
+    slide_017,
+    slide_018,
+    slide_019,
+    slide_020,
+    slide_021,
+    slide_022,
+    slide_023,
+    slide_024,
+    slide_025,
+    slide_026,
+    slide_027,
+    slide_028,
+    slide_029,
+  ];
+  var slide_page = 0;
+
+  function next_slide() {
+    if (slide_page < slides.length) {
+      slide_page += 1;
+    }
+    update_slide();
+  }
+  function back_slide() {
+    if (slide_page > 0) {
+      slide_page -= 1;
+    }
+    update_slide();
+  }
+
+  update_slide();
+  function update_slide() {
+      alternate();
+    slide_to_update.innerHTML = slides[slide_page];
+  }
+</script>
