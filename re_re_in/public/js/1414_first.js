@@ -834,7 +834,7 @@ function completion() {
 function showEnd() {
   if (canEnd == true) {
     alert(
-      `Eu acordo... estou confusa. Quando que dormi? olho ao meu redor são: 1253`
+      `Eu acordo... estou confusa. Quando que dormi? olho ao meu redor são: 1818`
     );
     // notAddedWaterCup = true;
     end_back.innerHTML = "<p>1818</p>";
