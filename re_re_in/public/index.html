@@ -50,35 +50,7 @@
             style="left: 52.5%"
           ></div>
           <div id="div_slide_content">
-
-                        <div id="t_holder">
-              <div id="tittle">
-                <h1>Desafio Projeto Individual:</h1>
-              </div>
-              <br/>
-              <div id="sub_tittle">
-                <h2><span style="color: rgb(112, 112, 112)">Re</span>:flexão</h2>
-              </div>
-              <br />
-              <br />
-              <br />
-              <br />
-              <div id="sub_sub_tittle">
-                <h3>Desenvolvedor</h3>
-                <h4>Marcos Hiroshi</h4>
-                <br />
-              </div>
-            </div>
-            <div id="text_content">
-              <img src="./assets/img/GIF/hourglass.gif" style="width: 55%" />
-            </div>
-            <div id="extra_content">
-              <img
-                src="./assets/img/BarredDoor.webp"
-                style="filter: grayscale(); height: 20vh"
-              />
-            </div>
-
+ 
           </div>
           <div
             id="div_slide_back"
@@ -193,26 +165,27 @@
 
   var eye_mirror =
     '<img src="./assets/img/GIF/14-57-34-438_512.webp" style="filter: grayscale(); width: 55%;">';
-  var hourglass_gif =
-    '<img src="./assets/img/GIF/hourglass.gif" style="width: 55%;">';
 
-  // document.getElementById('text_content').innerHTML = eye_mirror;
-  // setTimeout(alternate(), 3000);
-  alternate();
+  var hourglass_gif =
+    '<img src="./assets/img/GIF/hourglass.gif" style="width: 55%" />';
+
+  var slide_page = 0;
+
+  // alternate();
   function alternate() {
-    if(slide_page == 0 || slide_page == 1 || slide_page == 2){
-    if (document.getElementById("text_content").innerHTML == eye_mirror) {
-      document.getElementById("text_content").innerHTML = hourglass_gif;
-      setTimeout(alternate, 3000);
-    } else {
-      document.getElementById("text_content").innerHTML = eye_mirror;
-      setTimeout(alternate, 3000);
+    if (slide_page == 1 || slide_page == 2 || slide_page == 3) {
+      if (document.getElementById("text_content").innerHTML == eye_mirror) {
+        document.getElementById("text_content").innerHTML = hourglass_gif;
+        setTimeout(alternate, 3000);
+      } else {
+        document.getElementById("text_content").innerHTML = eye_mirror;
+        setTimeout(alternate, 3000);
+      }
     }
   }
-  // setTimeout(alternate, 3000);
-  }
 
-  var slide_000 = String(`
+  var slide_000 = String("");
+  var slide_001 = String(`
             <div id="t_holder">
               <div id="tittle">
                 <h1>Desafio Projeto Individual:</h1>
@@ -240,7 +213,7 @@
                 style="filter: grayscale(); height: 20vh"
               />
             </div>`);
-  var slide_001 = String(`
+  var slide_002 = String(`
             <div id="t_holder">
               <div id="tittle">
                 <h1>Desafio Projeto Individual:</h1>
@@ -281,7 +254,7 @@
           ></div>
 
   `);
-  var slide_002 = String(`
+  var slide_003 = String(`
             <div id="t_holder">
               <div id="tittle">
                 <h1>Desafio Projeto Individual:</h1>
@@ -316,7 +289,7 @@
   
   
   `);
-  var slide_003 = String(`
+  var slide_004 = String(`
             <div id="t_holder">
               <div id="tittle">
                 <h1>Meu Projeto Individual:</h1>
@@ -341,84 +314,33 @@
             <img src="./assets/img/Imagem1.png" style=" width: 20vw;"/>
             </div> 
 `);
-  var slide_004 = String();
-  var slide_005 = String();
-  var slide_006 = String();
-  var slide_007 = String();
-  var slide_008 = String();
-  var slide_009 = String();
-  var slide_010 = String();
-  var slide_011 = String();
-  var slide_012 = String();
-  var slide_013 = String();
-  var slide_014 = String();
-  var slide_015 = String();
-  var slide_016 = String();
-  var slide_017 = String();
-  var slide_018 = String();
-  var slide_019 = String();
-  var slide_020 = String();
-  var slide_021 = String();
-  var slide_022 = String();
-  var slide_023 = String();
-  var slide_024 = String();
-  var slide_025 = String();
-  var slide_026 = String();
-  var slide_027 = String();
-  var slide_028 = String();
-  var slide_029 = String();
 
-  var slides = [
-    slide_004,
-    slide_000,
-    slide_001,
-    slide_002,
-    slide_003,
-    slide_005,
-    slide_006,
-    slide_007,
-    slide_008,
-    slide_009,
-    slide_010,
-    slide_011,
-    slide_012,
-    slide_013,
-    slide_014,
-    slide_015,
-    slide_016,
-    slide_017,
-    slide_018,
-    slide_019,
-    slide_020,
-    slide_021,
-    slide_022,
-    slide_023,
-    slide_024,
-    slide_025,
-    slide_026,
-    slide_027,
-    slide_028,
-    slide_029,
-  ];
-  var slide_page = 0;
+
+  var slides = [slide_000, slide_001, slide_002, slide_003, slide_004];
 
   function next_slide() {
-    if (slide_page < slides.length) {
+    if (slide_page < (slides.length - 1)) {
       slide_page += 1;
+            document.getElementById("audio_camera").play();
     }
     update_slide();
   }
   function back_slide() {
     if (slide_page > 0) {
       slide_page -= 1;
+            document.getElementById("audio_camera").play();
     }
     update_slide();
   }
 
   update_slide();
   function update_slide() {
-      alternate();
-      audio_camera.play();
     slide_to_update.innerHTML = slides[slide_page];
+
+
+    if (slide_page == 1 || slide_page == 2 || slide_page == 3) {
+      alternate();
+
+    } 
   }
 </script>
